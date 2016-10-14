@@ -15,15 +15,6 @@ function(input, output, session) {
   # maxAgeSecs.
   pkgData <- packageData(pkgStream, maxAgeSecs)
   
-  # dlCount is a reactive expression that keeps track of the total
-  # number of rows that have ever appeared through pkgStream.
-  dlCount <- downloadCount(pkgStream)  
-
-  # usrCount is a reactive expression that keeps an approximate
-  # count of all of the unique users that have been seen since the
-  # app started.
-  usrCount <- userCount(pkgStream)
-  
   # Record the time that the session started.
   startTime <- as.numeric(Sys.time())
  
@@ -37,14 +28,12 @@ function(input, output, session) {
       value = formatC(downloadRate, digits = 1, format = "f"),
       subtitle = "Percent completed",
       icon = icon("percent"),
-      #color = if (downloadRate >= input$rateThreshold) "yellow" else "aqua"
       color = "yellow" 
     )
   })
   
   output$count <- renderValueBox({
     currentServerCnt   <- max(nrow(pkgData()), input$rateThreshold*1.50)
-    
     valueBox(
       value = currentServerCnt,
       subtitle = "Time to complete",
