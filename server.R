@@ -16,7 +16,7 @@ function(input, output, session) {
   
   output$count <- renderValueBox({
     valueBox(
-      value = max(nrow(pkgData()), input$rateThreshold*100),
+      value = max(nrow(pkgData()), input$servercnt*100),
       subtitle = "Time to complete",icon = icon("clock-o")
     )
   })

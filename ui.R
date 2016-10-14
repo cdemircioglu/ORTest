@@ -1,7 +1,7 @@
 dashboardPage(
-  dashboardHeader(title = "Open ROADS Community",titleWidth = 350),
+  dashboardHeader(),
   dashboardSidebar(
-    sliderInput("rateThreshold", "Number of computers",
+    sliderInput("servercnt", "Number of computers",
                 min = 0, max = 20, value = 3, step = 1
     )
   ),
