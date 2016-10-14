@@ -17,11 +17,9 @@ function(input, output, session) {
   #  )
   #})
 
-  aaa <<-isolate(input$servercnt)
-    
   output$count <- renderValueBox({
     valueBox(
-      value = serverCost(aaa),
+      value = isolate(input$servercnt),
       subtitle = "Time to complete",icon = icon("clock-o")
     )
   })
