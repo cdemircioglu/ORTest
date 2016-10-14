@@ -96,14 +96,6 @@ cx <- function (n, h = c(-243, 360), c = 91, l = c(61, 77), power = 0.8333333333
   })
 
   
-  output$users <- renderValueBox({
-    valueBox(
-      usrCount(),
-      "Unique customers",
-      icon = icon("users")
-    )
-  })
-  
   output$packagePlot <- renderBubbles({
     if (nrow(pkgData()) == 0)
       return()
@@ -120,18 +112,6 @@ cx <- function (n, h = c(-243, 360), c = 91, l = c(61, 77), power = 0.8333333333
   })
   
 
-  output$downloadCsv <- downloadHandler(
-    filename = "cranlog.csv",
-    content = function(file) {
-      write.csv(pkgData(), file)
-    },
-    contentType = "text/csv"
-  )
-  
-  output$rawtable <- renderPrint({
-    orig <- options(width = 1000)
-    print(tail(pkgData(), input$maxrows))
-    options(orig)
-  })
+
 }
 
