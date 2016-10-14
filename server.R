@@ -119,17 +119,7 @@ cx <- function (n, h = c(-243, 360), c = 91, l = c(61, 77), power = 0.8333333333
     bubbles(df$n, df$package, key = df$package,color = cx(nrow(df)) )
   })
   
-  output$packageTable <- renderTable({
-    pkgData() %>%
-      group_by(package) %>%
-      tally() %>%
-      arrange(desc(n), tolower(package)) %>%
-      mutate(percentage = n / nrow(pkgData()) * 100) %>%
-      select("Web site" = package, "% of activity" = percentage) %>%
-      as.data.frame() %>%
-      head(15)
-  }, digits = 1)
-  
+
   output$downloadCsv <- downloadHandler(
     filename = "cranlog.csv",
     content = function(file) {
