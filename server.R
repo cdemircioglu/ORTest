@@ -7,7 +7,7 @@ function(input, output, session) {
   pkgStream <- packageStream(session)
   pkgData <- packageData(pkgStream, 100)
   
-  gakguk <- serverCost(pkgStream,isolate(input$servercnt))
+  gakguk <- serverCost(pkgStream,aaa)
   
   output$rate <- renderValueBox({
     valueBox(
@@ -25,7 +25,9 @@ function(input, output, session) {
   })
   
 
-
+  observe({
+    aaa <- isolate(input$servercnt)
+  })
 
 }
 
