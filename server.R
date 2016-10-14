@@ -84,26 +84,7 @@ function(input, output, session) {
     )
   })
   
-  output$cost <- renderValueBox({
-    
-    costRate <- max(srvCost(), input$rateThreshold*1.50)
-    
-    valueBox(
-      value =  formatC(costRate, digits = 2, format = "f"),
-      subtitle = "Cost per hour",
-      icon = icon("usd")
-    )
-  })
-  
-  
-  output$users <- renderValueBox({
-    valueBox(
-      usrCount(),
-      "Unique customers",
-      icon = icon("users")
-    )
-  })
-  
+
   output$packagePlot <- renderBubbles({
     if (nrow(pkgData()) == 0)
       return()
@@ -119,29 +100,5 @@ function(input, output, session) {
     bubbles(df$n, df$package, key = df$package,color = cx(nrow(df)) )
   })
   
-  output$packageTable <- renderTable({
-    pkgData() %>%
-      group_by(package) %>%
-      tally() %>%
-      arrange(desc(n), tolower(package)) %>%
-      mutate(percentage = n / nrow(pkgData()) * 100) %>%
-      select("Web site" = package, "% of activity" = percentage) %>%
-      as.data.frame() %>%
-      head(15)
-  }, digits = 1)
-  
-  output$downloadCsv <- downloadHandler(
-    filename = "cranlog.csv",
-    content = function(file) {
-      write.csv(pkgData(), file)
-    },
-    contentType = "text/csv"
-  )
-  
-  output$rawtable <- renderPrint({
-    orig <- options(width = 1000)
-    print(tail(pkgData(), input$maxrows))
-    options(orig)
-  })
 }
 
