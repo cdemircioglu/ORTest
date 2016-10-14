@@ -6,8 +6,7 @@ function(input, output, session) {
   # data frame of new downloads since the last update.
   pkgStream <- packageStream(session)
   pkgData <- packageData(pkgStream, 100)
-  
-  gakguk <- serverCost(aaa)
+
   
   output$rate <- renderValueBox({
     valueBox(
@@ -19,15 +18,11 @@ function(input, output, session) {
   output$count <- renderValueBox({
     valueBox(
       #value = max(nrow(pkgData()), input$servercnt*100),
-      value = gakguk(), 
+      value = serverCost(isolate(input$servercnt)),
       subtitle = "Time to complete",icon = icon("clock-o")
     )
   })
   
-
-  observe({
-    aaa <- isolate(input$servercnt)
-  })
 
 }
 
