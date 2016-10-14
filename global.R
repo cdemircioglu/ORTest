@@ -6,10 +6,7 @@ library(bubbles)
 source("bloomfilter.R")
 
 # An empty prototype of the data frame we want to create
-prototype <- data.frame(date = character(), time = character(),
-  size = numeric(), r_version = character(), r_arch = character(),
-  r_os = character(), package = character(), version = character(),
-  country = character(), ip_id = character(), received = numeric())
+prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = character(), r_arch = character(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
 
 # Connects to streaming log data for cran.rstudio.com and
 # returns a reactive expression that serves up the cumulative
@@ -48,29 +45,3 @@ packageData <- function(pkgStream, timeWindow) {
 }
 
 
-# Use a bloom filter to probabilistically track the number of unique
-# users we have seen; using bloom filter means we will not have a
-# perfectly accurate count, but the memory usage will be bounded.
-userCount <- function(pkgStream) {
-  # These parameters estimate that with 5000 unique users added to
-  # the filter, we'll have a 1% chance of false positive on the next
-  # user to be queried.
-  bloomFilter <- BloomFilter$new(5000, 0.01)
-  total <- 0
-  reactive({
-    df <- pkgStream()
-    if (!is.null(df) && nrow(df) > 0) {
-      # ip_id is only unique on a per-day basis. To make them unique
-      # across days, include the date. And call unique() to make sure
-      # we don't double-count dupes in the current data frame.
-      ids <- paste(df$date, df$ip_id) %>% unique()
-      # Get indices of IDs we haven't seen before
-      newIds <- !sapply(ids, bloomFilter$has)
-      # Add the count of new IDs
-      total <<- total + length(newIds)
-      # Add the new IDs so we know for next time
-      sapply(ids[newIds], bloomFilter$set)
-    }
-    total
-  })
-}
