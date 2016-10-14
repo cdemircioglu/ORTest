@@ -46,7 +46,7 @@ packageData <- function(pkgStream, timeWindow) {
 
 
 # Server cost the total nrows of pkgStream
-serverCost <- function(pkgStream,numserver) {
+serverCost <- function(numserver) {
       return(numserver)
 }
 
