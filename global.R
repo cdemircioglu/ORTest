@@ -3,7 +3,6 @@ library(shinySignals)
 library(dplyr)
 library(shinydashboard)
 library(bubbles)
-source("bloomfilter.R")
 
 # An empty prototype of the data frame we want to create
 prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = character(), r_arch = character(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
@@ -39,7 +38,7 @@ packageStream <- function(session) {
 # (assuming the presence of a "received" field)
 packageData <- function(pkgStream, timeWindow) {
   shinySignals::reducePast(pkgStream, function(memo, value) {
-    rbind(memo, value) %>%
+    rbind(memo, value) 
       filter(received > as.numeric(Sys.time()) - timeWindow)
   }, prototype)
 }
