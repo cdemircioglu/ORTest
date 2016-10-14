@@ -47,7 +47,8 @@ library(bubbles)
 
 # Server cost the total nrows of pkgStream
 serverCost <- function(numserver) {
-      return(numserver)
+      aaa <<- numserver 
+      return(aaa)
 }
 
 

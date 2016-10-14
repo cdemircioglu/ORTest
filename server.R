@@ -1,4 +1,6 @@
 
+
+
 function(input, output, session) {
 
   # pkgStream is a reactive expression that represents a stream of
@@ -14,10 +16,12 @@ function(input, output, session) {
   #    subtitle = "Percent completed",icon = icon("percent")
   #  )
   #})
-  
+
+  aaa <<-isolate(input$servercnt)
+    
   output$count <- renderValueBox({
     valueBox(
-      value = serverCost(isolate(input$servercnt)),
+      value = serverCost(aaa),
       subtitle = "Time to complete",icon = icon("clock-o")
     )
   })
