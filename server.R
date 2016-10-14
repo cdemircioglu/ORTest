@@ -43,7 +43,7 @@ function(input, output, session) {
   })
   
   output$count <- renderValueBox({
-    currentServerCnt   <- max(srvCost(), input$rateThreshold*1.50)
+    currentServerCnt   <- max(nrow(pkgData()), input$rateThreshold*1.50)
     
     valueBox(
       value = currentServerCnt,
