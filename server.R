@@ -41,21 +41,7 @@ function(input, output, session) {
     )
   })
   
-  output$packagePlot <- renderBubbles({
-    if (nrow(pkgData()) == 0)
-      return()
-    
-    order <- unique(pkgData()$package)
-    df <- pkgData() %>%
-      group_by(package) %>%
-      tally() %>%
-      arrange(desc(n), tolower(package)) %>%
-      # Just show the top 60, otherwise it gets hard to see
-      head(60)
-      
-    bubbles(df$n, df$package, key = df$package )
-  })
-  
+
 
 
 }

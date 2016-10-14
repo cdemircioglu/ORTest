@@ -14,13 +14,6 @@ dashboardPage(
               fluidRow(
                 valueBoxOutput("rate", width=3),
                 valueBoxOutput("count", width=3)
-              ),
-              fluidRow(
-                box(
-                  width = 8, status = "info", solidHeader = TRUE,
-                  title = "Revenue by group size (green better - red worse)",
-                  bubblesOutput("packagePlot", width = "100%", height = 600)
-                )
               )
       )
     )
