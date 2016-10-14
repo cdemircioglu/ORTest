@@ -1,8 +1,8 @@
-#library(shiny)
-#library(shinySignals)
-#library(dplyr)
-#library(shinydashboard)
-#library(bubbles)
+library(shiny)
+library(shinySignals)
+library(dplyr)
+library(shinydashboard)
+library(bubbles)
 
 # An empty prototype of the data frame we want to create
 #prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = character(), r_arch = character(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
