@@ -6,13 +6,9 @@ dashboardPage(
     )
   ),
   dashboardBody(
-    tabItems(
-      tabItem("dashboard",
               fluidRow(
                 valueBoxOutput("rate", width=3),
                 valueBoxOutput("count", width=3)
               )
-      )
-    )
   )
 )
