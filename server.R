@@ -21,11 +21,11 @@ function(input, output, session) {
   output$rate <- renderValueBox({
     # The downloadRate is the number of rows in pkgData since
     # either startTime or maxAgeSecs ago, whichever is later.
-    elapsed <- as.numeric(Sys.time()) - startTime
-    downloadRate <- nrow(pkgData()) / min(maxAgeSecs, elapsed)
+    #elapsed <- as.numeric(Sys.time()) - startTime
+    #downloadRate <- nrow(pkgData()) / min(maxAgeSecs, elapsed)
     
     valueBox(
-      value = formatC(downloadRate, digits = 1, format = "f"),
+      value = formatC(nrow(pkgData()), digits = 1, format = "f"),
       subtitle = "Percent completed",
       icon = icon("percent"),
       color = "yellow" 
