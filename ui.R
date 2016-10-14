@@ -1,5 +1,6 @@
 library(shiny)
 library(shinydashboard)
+library(bubbles)
 
 dashboardPage(
   dashboardHeader(title = "Open ROADS Community"),
