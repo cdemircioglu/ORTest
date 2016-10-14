@@ -5,9 +5,7 @@ library(dplyr)
 library(shinydashboard)
 library(bubbles)
 source("bloomfilter.R")
-
-options(shiny.sanitize.errors = FALSE)
-
+  
 function(input, output, session) {
   
   #######VARIABLES SECTION#######    
