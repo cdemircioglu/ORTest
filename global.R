@@ -37,8 +37,21 @@ packageStream <- function(session) {
 # Accumulates pkgStream rows over time; throws out any older than timeWindow
 # (assuming the presence of a "received" field)
 packageData <- function(pkgStream, timeWindow) {
-  #shinySignals::reducePast(pkgStream, function(memo, value) {rbind(memo, value)}, prototype)
-  return(prototype)
+  shinySignals::reducePast(pkgStream, function(memo, value) {
+    rbind(memo, value) %>%
+      filter(received > as.numeric(Sys.time()) - timeWindow)
+  }, prototype)
+}
+
+
+
+# Server cost the total nrows of pkgStream
+serverCost <- function(pkgStream,numserver) {
+  shinySignals::reducePast(pkgStream, function(memo, df) {
+    if (is.null(df))
+      return(0)
+    numserver
+  },0)
 }
 
 

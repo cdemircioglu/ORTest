@@ -7,6 +7,8 @@ function(input, output, session) {
   pkgStream <- packageStream(session)
   pkgData <- packageData(pkgStream, 100)
   
+  gakguk <- serverCost(pkgStream,isolate(input$servercnt))
+  
   output$rate <- renderValueBox({
     valueBox(
       value = formatC(nrow(pkgData()), digits = 1, format = "f"),
@@ -16,7 +18,8 @@ function(input, output, session) {
   
   output$count <- renderValueBox({
     valueBox(
-      value = max(nrow(pkgData()), input$servercnt*100),
+      #value = max(nrow(pkgData()), input$servercnt*100),
+      value = gakguk(), 
       subtitle = "Time to complete",icon = icon("clock-o")
     )
   })
