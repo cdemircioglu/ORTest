@@ -5,11 +5,6 @@ dashboardPage(
                 min = 0, max = 20, value = 3, step = 1
     ),
 
-    sliderInput("perceivedValue", "Perceived value",
-                min = 0, max = 50, value = 40, step = 10
-    ),
-    sliderInput("costtoDeliver", "Cost to deliver",
-                min = 0, max = 50, value = 10, step = 5
     ),
     sidebarMenu(
       menuItem("Dashboard", tabName = "dashboard"),
