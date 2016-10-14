@@ -4,20 +4,19 @@ function(input, output, session) {
   # pkgStream is a reactive expression that represents a stream of
   # new package download data; up to once a second it may return a
   # data frame of new downloads since the last update.
-  pkgStream <- packageStream(session)
-  pkgData <- packageData(pkgStream, 100)
+  #pkgStream <- packageStream(session)
+  #pkgData <- packageData(pkgStream, 100)
 
   
-  output$rate <- renderValueBox({
-    valueBox(
-      value = formatC(nrow(pkgData()), digits = 1, format = "f"),
-      subtitle = "Percent completed",icon = icon("percent")
-    )
-  })
+  #output$rate <- renderValueBox({
+  #  valueBox(
+  #    value = formatC(nrow(pkgData()), digits = 1, format = "f"),
+  #    subtitle = "Percent completed",icon = icon("percent")
+  #  )
+  #})
   
   output$count <- renderValueBox({
     valueBox(
-      #value = max(nrow(pkgData()), input$servercnt*100),
       value = serverCost(isolate(input$servercnt)),
       subtitle = "Time to complete",icon = icon("clock-o")
     )

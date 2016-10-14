@@ -7,7 +7,7 @@ dashboardPage(
   ),
   dashboardBody(
               fluidRow(
-                valueBoxOutput("rate", width=3),
+                #valueBoxOutput("rate", width=3),
                 valueBoxOutput("count", width=3)
               )
   )
