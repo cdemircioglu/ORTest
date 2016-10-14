@@ -38,7 +38,7 @@ packageStream <- function(session) {
 # (assuming the presence of a "received" field)
 packageData <- function(pkgStream, timeWindow) {
   shinySignals::reducePast(pkgStream, function(memo, value) {
-    rbind(memo, value) 
+    rbind(memo, value) %>%
       filter(received > as.numeric(Sys.time()) - timeWindow)
   }, prototype)
 }
