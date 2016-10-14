@@ -47,11 +47,7 @@ packageData <- function(pkgStream, timeWindow) {
 
 # Server cost the total nrows of pkgStream
 serverCost <- function(pkgStream,numserver) {
-  shinySignals::reducePast(pkgStream, function(memo, df) {
-    if (is.null(df))
-      return(0)
-    numserver
-  },0)
+      return(numserver)
 }
 
 
