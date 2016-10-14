@@ -19,7 +19,7 @@ function(input, output, session) {
 
   output$count <- renderValueBox({
     valueBox(
-      value = isolate(input$servercnt),
+      value = input$servercnt,
       subtitle = "Time to complete",icon = icon("clock-o")
     )
   })
