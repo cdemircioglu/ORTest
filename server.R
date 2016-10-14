@@ -19,8 +19,6 @@ function(input, output, session) {
   # number of rows that have ever appeared through pkgStream.
   dlCount <- downloadCount(pkgStream)  
 
-  srvCost <- serverCost(pkgStream,1)
-
   # usrCount is a reactive expression that keeps an approximate
   # count of all of the unique users that have been seen since the
   # app started.
@@ -28,11 +26,7 @@ function(input, output, session) {
   
   # Record the time that the session started.
   startTime <- as.numeric(Sys.time())
-
-  tmRemain <- timeRemain(pkgStream,startTime,input$rateThreshold)
-  
-     
-  
+ 
   output$rate <- renderValueBox({
     # The downloadRate is the number of rows in pkgData since
     # either startTime or maxAgeSecs ago, whichever is later.
@@ -57,18 +51,6 @@ function(input, output, session) {
       icon = icon("clock-o")
     )
   })
-
-  output$cost <- renderValueBox({
-
-   costRate <- max(srvCost(), input$rateThreshold*1.50)
-
-    valueBox(
-      value =  formatC(costRate, digits = 2, format = "f"),
-      subtitle = "Cost per hour",
-      icon = icon("usd")
-    )
-  })
-
   
   output$packagePlot <- renderBubbles({
     if (nrow(pkgData()) == 0)

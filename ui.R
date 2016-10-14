@@ -13,8 +13,7 @@ dashboardPage(
       tabItem("dashboard",
               fluidRow(
                 valueBoxOutput("rate", width=3),
-                valueBoxOutput("count", width=3),
-                valueBoxOutput("cost", width=3)
+                valueBoxOutput("count", width=3)
               ),
               fluidRow(
                 box(
