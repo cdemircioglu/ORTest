@@ -22,11 +22,6 @@ dashboardPage(
                   width = 8, status = "info", solidHeader = TRUE,
                   title = "Revenue by group size (green better - red worse)",
                   bubblesOutput("packagePlot", width = "100%", height = 600)
-                ),
-                box(
-                  width = 4, status = "info",
-                  title = "Top web sites visited",
-                  tableOutput("packageTable")
                 )
               )
       )
