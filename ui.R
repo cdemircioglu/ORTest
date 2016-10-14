@@ -5,8 +5,7 @@ dashboardPage(
                 min = 0, max = 20, value = 3, step = 1
     ),
     sidebarMenu(
-      menuItem("Dashboard", tabName = "dashboard"),
-      menuItem("Raw data", tabName = "rawdata")
+      menuItem("Dashboard", tabName = "dashboard")
     )
   ),
   dashboardBody(
@@ -30,11 +29,6 @@ dashboardPage(
                   tableOutput("packageTable")
                 )
               )
-      ),
-      tabItem("rawdata",
-              numericInput("maxrows", "Rows to show", 25),
-              verbatimTextOutput("rawtable"),
-              downloadButton("downloadCsv", "Download as CSV")
       )
     )
   )
