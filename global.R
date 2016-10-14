@@ -50,7 +50,7 @@ serverCost <- function(pkgStream,numserver) {
   shinySignals::reducePast(pkgStream, function(memo, df) {
     if (is.null(df))
       return(0)
-    (numserver*nrow(pkgStream))/nrow(pkgStream)
+    (numserver+nrow(pkgStream))
   },0)
 }
 
