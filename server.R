@@ -38,12 +38,6 @@ packageStream <- function(session) {
   })
 }
 
-packageData <- function(pkgStream, timeWindow) {
-  shinySignals::reducePast(pkgStream, function(memo, value) {
-    rbind(memo, value) %>%
-      filter(received > as.numeric(Sys.time()) - timeWindow)
-  }, prototype)
-}
 
   # pkgStream is a reactive expression that represents a stream of
   # new package download data; up to once a second it may return a
