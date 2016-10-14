@@ -7,9 +7,9 @@ source("bloomfilter.R")
 
 # An empty prototype of the data frame we want to create
 prototype <- data.frame(date = character(), time = character(),
-                        size = numeric(), r_version = character(), r_arch = character(),
-                        r_os = character(), package = character(), version = character(),
-                        country = character(), ip_id = character(), received = numeric())
+  size = numeric(), r_version = character(), r_arch = character(),
+  r_os = character(), package = character(), version = character(),
+  country = character(), ip_id = character(), received = numeric())
 
 remainTime <- 7000
 
@@ -23,19 +23,19 @@ packageStream <- function(session) {
   session$onSessionEnded(function() {
     close(sock)
   })
-  
+
   # Returns new lines
   newLines <- reactive({
     invalidateLater(1000, session)
     readLines(sock)
   })
-  
+
   # Parses newLines() into data frame
   reactive({
     if (length(newLines()) == 0)
       return()
     read.csv(textConnection(newLines()), header=FALSE, stringsAsFactors=FALSE,
-             col.names = names(prototype)
+      col.names = names(prototype)
     ) %>% mutate(received = as.numeric(Sys.time()))
   })
 }
