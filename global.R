@@ -50,15 +50,6 @@ packageData <- function(pkgStream, timeWindow) {
 }
 
 
-# Count the total nrows of pkgStream
-timeRemain <- function(pkgStream,timeWindow,servercnt) {
-  shinySignals::reducePast(pkgStream, function(memo, value) {
-    remainTime <- remainTime - (as.numeric(Sys.time()) - timeWindow)*servercnt
-    return(remainTime)
-  }, 0)
-}
-
-
 # Server cost the total nrows of pkgStream
 serverCost <- function(pkgStream,numserver) {
   shinySignals::reducePast(pkgStream, function(memo, df) {
@@ -67,9 +58,6 @@ serverCost <- function(pkgStream,numserver) {
     1
   },0)
 }
-
-
-
 
 
 # Use a bloom filter to probabilistically track the number of unique
