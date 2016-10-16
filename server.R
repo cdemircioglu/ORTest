@@ -126,7 +126,7 @@ function(input, output, session) {
     p_marketInterest <- input$marketInterest
     p_perceivedValue <- iput$perceivedValue
     p_costtoDeliver <- input$costtoDeliver
-    system('/home/cem/RabbitMQ/send.py <ShinnyParameters><parameter name="servercnt">1</parameter><parameter name="marketInterest">INVESTING</parameter><parameter name="perceivedValue">30</parameter><parameter name="costtoDeliver">10</parameter></ShinnyParameters>')
+    system('/home/cem/RabbitMQ/send.py <ShinnyParameters><parameter name="servercnt">1</parameter>')
     
   })
   
