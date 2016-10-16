@@ -117,12 +117,16 @@ function(input, output, session) {
     return(rval)
   }
   
-  #######OBSERVE PARAMETERS
+  #######OBSERVE PARAMETERS#######
+  
   observe({
     # We'll use these multiple times, so use short var names for
     # convenience.
     p_servercnt <- input$servercnt
-    system('/home/cem/RabbitMQ/send.py aaa')
+    p_marketInterest <- input$marketInterest
+    p_perceivedValue <- iput$perceivedValue
+    p_costtoDeliver <- input$costtoDeliver
+    system('/home/cem/RabbitMQ/send.py <ShinnyParameters><parameter name="servercnt">1</parameter><parameter name="marketInterest">INVESTING</parameter><parameter name="perceivedValue">30</parameter><parameter name="costtoDeliver">10</parameter></ShinnyParameters>')
     
   })
   
