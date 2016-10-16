@@ -123,9 +123,9 @@ function(input, output, session) {
     # We'll use these multiple times, so use short var names for
     # convenience.
     p_servercnt <- input$servercnt
-    p_marketInterest <- input$marketInterest
-    p_perceivedValue <- iput$perceivedValue
-    p_costtoDeliver <- input$costtoDeliver
+    #p_marketInterest <- input$marketInterest
+    #p_perceivedValue <- iput$perceivedValue
+    #p_costtoDeliver <- input$costtoDeliver
     system('/home/cem/RabbitMQ/send.py ccc')
     
   })
