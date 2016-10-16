@@ -122,14 +122,14 @@ function(input, output, session) {
   observe({
     # We'll use these multiple times, so use short var names for
     # convenience.
-    parameterList <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
+    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
     parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver")
     
     # Command start
     cmdString <- '/home/cem/RabbitMQ/send.py "<ShinnyParameters>'
     
     # Build the xml parameters
-    for (i in 1:length(parameterList))
+    for (i in 1:length(parameterValue))
     {
       parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
       parameterString <- gsub("nnn",parameterName[i],parameterString)
