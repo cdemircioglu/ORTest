@@ -127,7 +127,7 @@ function(input, output, session) {
     p_perceivedValue <- input$perceivedValue
     p_costtoDeliver <- input$costtoDeliver
     
-    xmlString <- '/home/cem/RabbitMQ/send.py "<ShinnyParameters><parameter name="servercnt">aaa</parameter><parameter name="marketInterest">INVESTING</parameter><parameter name="perceivedValue">30</parameter><parameter name="costtoDeliver">10</parameter></ShinnyParameters>"'
+    xmlString <- '/home/cem/RabbitMQ/send.py aaa'
     xmlString <- gsub("aaa",p_servercnt,xmlString)
     system(p_servercnt)
     
