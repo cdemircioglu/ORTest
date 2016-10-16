@@ -117,6 +117,15 @@ function(input, output, session) {
     return(rval)
   }
   
+  #######OBSERVE PARAMETERS
+  observe({
+    # We'll use these multiple times, so use short var names for
+    # convenience.
+    p_servercnt <- input$servercnt
+    system('/home/cem/RabbitMQ/send.py aaa')
+    
+  })
+  
   
   #######OUTPUT SECTION#######    
   
