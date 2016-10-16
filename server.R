@@ -132,8 +132,8 @@ function(input, output, session) {
     for (i in 1:length(parameterList))
     {
       parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
-      parameterString <- gsub("nnn",parameterList[i],parameterString)
-      parameterString <- gsub("vvv",parameterName[i],parameterString)
+      parameterString <- gsub("nnn",parameterName[i],parameterString)
+      parameterString <- gsub("vvv",parameterValue[i],parameterString)
       cmdString <- paste(cmdString,parameterString,sep="")
     }
     
