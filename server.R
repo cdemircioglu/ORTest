@@ -122,17 +122,34 @@ function(input, output, session) {
   observe({
     # We'll use these multiple times, so use short var names for
     # convenience.
-    p_servercnt <- input$servercnt
-    p_marketInterest <- input$marketInterest
-    p_perceivedValue <- input$perceivedValue
-    p_costtoDeliver <- input$costtoDeliver
+    #parameterList <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
     
-    xmlString <- '/home/cem/RabbitMQ/send.py "<ShinnyParameters><parameter name="servercnt">aaa</parameter><parameter name="marketInterest">bbb</parameter><parameter name="perceivedValue">ccc</parameter><parameter name="costtoDeliver">ddd</parameter></ShinnyParameters>"'
-    xmlString <- gsub("aaa",p_servercnt,xmlString)
-    xmlString <- gsub("bbb",p_marketInterest,xmlString)
-    xmlString <- gsub("ccc",p_perceivedValue,xmlString)
-    xmlString <- gsub("ddd",p_costtoDeliver,xmlString)
-    system(xmlString)
+    #cmdString <- '/home/cem/RabbitMQ/send.py '
+    
+    #xmlString <- gsub("aaa",p_servercnt,xmlString)
+    #xmlString <- gsub("bbb",p_marketInterest,xmlString)
+    #xmlString <- gsub("ccc",p_perceivedValue,xmlString)
+    #xmlString <- gsub("ddd",p_costtoDeliver,xmlString)
+    #system(xmlString)
+    
+    
+    cmdString <- '/home/cem/RabbitMQ/send.py "<ShinnyParameters>'
+    parameterList <- c("a|1","b|eee","c|2","d|10")
+    
+    
+    for (parameter in parameterList)
+    {
+      parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
+      parameterString <- gsub("nnn",unlist(strsplit(parameter,split= "\\|"))[1],parameterString)
+      parameterString <- gsub("vvv",unlist(strsplit(parameter,split= "\\|"))[2],parameterString)
+      cmdString <- paste(cmdString,parameterString,sep="")
+    }
+    
+    cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
+    
+    system(cmdString)
+    
+    
     
   })
   
