@@ -128,7 +128,7 @@ function(input, output, session) {
     # Command start
     cmdString <- '/home/cem/RabbitMQ/send.py "<ShinnyParameters>'
     
-    for (i in length(parameterList)
+    for (i in length(parameterList))
     {
       parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
       parameterString <- gsub("nnn",parameterList[i],parameterString)
