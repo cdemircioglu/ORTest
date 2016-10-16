@@ -131,7 +131,7 @@ function(input, output, session) {
     parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver")
     
     # Command start
-    cmdString <- '/home/cem/RabbitMQ/send.py "<ShinnyParameters>'
+    cmdString <- '/home/cem/RabbitMQ/send.py \"<ShinnyParameters>'
     
     # Build the xml parameters
     for (i in 1:length(parameterValue))
@@ -143,7 +143,7 @@ function(input, output, session) {
     }
     
     # Command end
-    cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
+    cmdString <- paste(cmdString,'</ShinnyParameters>\"',sep="")
     
     # Send the message
     system(cmdString)
