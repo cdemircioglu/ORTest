@@ -129,7 +129,7 @@ function(input, output, session) {
     
     xmlString <- '/home/cem/RabbitMQ/send.py aaa'
     xmlString <- gsub("aaa",p_servercnt,xmlString)
-    system(p_servercnt)
+    system(xmlString)
     
   })
   
