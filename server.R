@@ -120,31 +120,24 @@ function(input, output, session) {
   #######OBSERVE PARAMETERS#######
   
   observe({
-    # We'll use these multiple times, so use short var names for
-    # convenience.
-    p1 <- input$servercnt
-    p2 <- input$marketInterest
-    p3 <- input$perceivedValue
-    p4 <- input$costtoDeliver
-    
-    #parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
+    # We'll use these multiple times, so use short var names for convenience.
+    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
     parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver")
     
     # Command start
-    #cmdString <- '/home/cem/RabbitMQ/send.py \"<ShinnyParameters>\"'
-    cmdString <- '/home/cem/RabbitMQ/send.py aaa'
+    cmdString <- '/home/cem/RabbitMQ/send.py \"<ShinnyParameters>\"'
     
     # Build the xml parameters
-    #for (i in 1:length(parameterValue))
-    #{
-    #  parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
-    #  parameterString <- gsub("nnn",parameterName[i],parameterString)
-    #  parameterString <- gsub("vvv",parameterValue[i],parameterString)
-    #  cmdString <- paste(cmdString,parameterString,sep="")
-    #}
+    for (i in 1:length(parameterValue))
+    {
+      parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
+      parameterString <- gsub("nnn",parameterName[i],parameterString)
+      parameterString <- gsub("vvv",parameterValue[i],parameterString)
+      cmdString <- paste(cmdString,parameterString,sep="")
+    }
     
     # Command end
-    #cmdString <- paste(cmdString,'</ShinnyParameters>\"',sep="")
+    cmdString <- paste(cmdString,'</ShinnyParameters>\"',sep="")
     
     # Send the message
     system(cmdString)
