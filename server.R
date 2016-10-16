@@ -122,7 +122,12 @@ function(input, output, session) {
   observe({
     # We'll use these multiple times, so use short var names for
     # convenience.
-    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
+    p1 <- input$servercnt
+    p2 <- input$marketInterest
+    p3 <- input$perceivedValue
+    p4 <- input$costtoDeliver
+    
+    #parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
     parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver")
     
     # Command start
