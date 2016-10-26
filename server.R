@@ -21,10 +21,10 @@ function(input, output, session) {
   
   packageStream <- function(session) {
     # Connect to data source
-    #sock <- socketConnection("cransim.rstudio.com", 6789, blocking = FALSE, open = "r")
+    sock <- socketConnection("cransim.rstudio.com", 6789, blocking = FALSE, open = "r")
     #sock <- socketConnection("localhost", 8081, blocking = FALSE, open = "r")
     #sock <- socketConnection(host="localhost", port = 8081, blocking=TRUE,server=FALSE, open="r")
-    sock <- socketConnection(host="localhost", port = 8081, blocking=FALSE,server=FALSE, open="r")
+    #sock <- socketConnection(host="localhost", port = 8081, blocking=FALSE,server=FALSE, open="r")
     
     # Clean up when session is over
     session$onSessionEnded(function() {
