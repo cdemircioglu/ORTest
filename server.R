@@ -198,15 +198,15 @@ function(input, output, session) {
     if (nrow(pkgData()) == 0)
       return()
     
-    order <- unique(pkgData()$r_os)
+    order <- unique(pkgData()$received)
     df <- pkgData() %>%
-      group_by(r_os) %>%
+      group_by(received) %>%
       tally() %>%
-      arrange(desc(n), tolower(r_os)) %>%
+      arrange(desc(n), tolower(received)) %>%
       # Just show the top 60, otherwise it gets hard to see
       head(60)
     
-    bubbles(df$n, df$r_os, key = df$r_os,color = cx(nrow(df)) )
+    bubbles(df$n, df$received, key = df$received,color = cx(nrow(df)) )
   })
   
   output$packageTable <- renderTable({
