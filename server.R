@@ -198,11 +198,11 @@ function(input, output, session) {
     if (nrow(pkgData()) == 0)
       return()
     
-    order <- unique(pkgData()$package)
+    order <- unique(pkgData()$r_os)
     df <- pkgData() %>%
-      group_by(package) %>%
+      group_by(r_os) %>%
       tally() %>%
-      arrange(desc(n), tolower(package)) %>%
+      arrange(desc(n), tolower(r_os)) %>%
       # Just show the top 60, otherwise it gets hard to see
       head(60)
     
