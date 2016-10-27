@@ -202,11 +202,11 @@ function(input, output, session) {
     df <- pkgData() %>%
       group_by(package) %>%
       tally() %>%
-      arrange(desc(n), tolower(r_os)) %>%
+      arrange(desc(n), tolower(package)) %>%
       # Just show the top 60, otherwise it gets hard to see
       head(60)
     
-    bubbles(df$n, df$r_os, key = df$r_os,color = cx(nrow(df)) )
+    bubbles(df$n, df$r_os, key = df$package,color = cx(nrow(df)) )
   })
   
   output$packageTable <- renderTable({
