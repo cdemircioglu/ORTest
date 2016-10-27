@@ -206,7 +206,7 @@ function(input, output, session) {
       # Just show the top 60, otherwise it gets hard to see
       head(60)
     
-    bubbles(df$n, df$size, key = df$size, color = cx(nrow(df)) )
+    bubbles(df$n, paste("$",df$size), key = df$size, color = cx(nrow(df)) )
   })
   
   output$packageTable <- renderTable({
