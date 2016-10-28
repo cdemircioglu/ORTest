@@ -160,7 +160,7 @@ function(input, output, session) {
       percent <- 100
     
     valueBox(
-      value = formatC((1-timeRequired/initialtimeRequired)*100, digits = 2, format = "f"),
+      value = formatC(percent, digits = 2, format = "f"),
       subtitle = "Percent completed",
       icon = icon("percent"),
       color = "yellow" 
