@@ -127,7 +127,7 @@ function(input, output, session) {
   
   observe({
     #Delete all rows in packages stream
-    prototype <- prototype[0,]
+    packageData <- packageData[0,]
     
     # We'll use these multiple times, so use short var names for convenience.
     parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
