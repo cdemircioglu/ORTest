@@ -126,8 +126,9 @@ function(input, output, session) {
   #######OBSERVE PARAMETERS#######
   
   observe({
-    #Delete all rows in packages stream
-    pkgData <- packageData(pkgStream, maxAgeSecs)
+    # Set the stream of session
+    prototype <- prototype[0,]
+    pkgStream <- packageStream(session)
     
     
     # We'll use these multiple times, so use short var names for convenience.
