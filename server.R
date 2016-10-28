@@ -155,6 +155,10 @@ function(input, output, session) {
   
   output$completePercent <- renderValueBox({
     invalidateLater(1000, session) 
+    percent <- (1-timeRequired/initialtimeRequired)*100
+    if (percent > 100)
+      percent <- 100
+    
     valueBox(
       value = formatC((1-timeRequired/initialtimeRequired)*100, digits = 2, format = "f"),
       subtitle = "Percent completed",
@@ -168,6 +172,8 @@ function(input, output, session) {
     elapsed <- as.numeric(Sys.time()) - startTime #Assumes a constant value to complete the job
     timeRequired <<- timeRequired - input$servercnt
     timeleft <- timeRequired/(input$servercnt)
+    if (timeleft > 0)
+      timeleft <- 0 
     
     valueBox(
       value = format(as.POSIXct('2016-01-01 00:00:00') + timeleft, "%H:%M:%S"),
