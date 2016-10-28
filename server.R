@@ -126,6 +126,9 @@ function(input, output, session) {
   #######OBSERVE PARAMETERS#######
   
   observe({
+    #Delete all rows in packages stream
+    prototype <- prototype[0,]
+    
     # We'll use these multiple times, so use short var names for convenience.
     parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
     parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver")
