@@ -172,7 +172,7 @@ function(input, output, session) {
     elapsed <- as.numeric(Sys.time()) - startTime #Assumes a constant value to complete the job
     timeRequired <<- timeRequired - input$servercnt
     timeleft <- timeRequired/(input$servercnt)
-    if (timeleft > 0)
+    if (timeleft < 0)
       timeleft <- 0 
     
     valueBox(
