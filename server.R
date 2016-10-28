@@ -10,7 +10,7 @@ function(input, output, session) {
   
   #######VARIABLES SECTION#######    
   
-  timeRequired <- 8000 #seconds to complete
+  timeRequired <- 300 #seconds to complete
   initialtimeRequired <- isolate(timeRequired) #initial time required to calc percent complete
   
   # Record the time that the session started.
@@ -40,6 +40,8 @@ function(input, output, session) {
     # Parses newLines() into data frame
     reactive({
       if (length(newLines()) == 0)
+        return()
+      if (timeRequired < 1)
         return()
       read.csv(textConnection(newLines()), header=FALSE, stringsAsFactors=FALSE,
                col.names = names(prototype)
