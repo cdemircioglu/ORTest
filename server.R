@@ -63,24 +63,17 @@ function(input, output, session) {
         
       } else
       {
+          #Insert dummy record to stop the rendering
           new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = character(), r_arch = character(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
           new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = "3.3.0", r_arch = "x86_64",r_os = "linux-gnu", package = "BH", version = "1.60.0-2",country = "DE", ip_id = "23657", received = 1000)
-        
-          rbind(new.prototype, prototype) 
+          print("aaa")
+          rbind(new.prototype, prototype) %>%
+          filter(received > as.numeric(Sys.time()) - timeWindow)
+          resetfactor <<- 0 #Reset the fuse
       }
       
     }, prototype)
   }
-  
-  ####Function definition
-  resetFrame <- function(pkgStream) {
-    resetfactor <- 1
-    }
-  
-  ####Call function
-  resetCount <- resetFrame(pkgStream)
-  
-  
   
   
   
@@ -125,6 +118,42 @@ function(input, output, session) {
   customerCount <- userCount(pkgStream)
   
   
+  
+  #######OBSERVE PARAMETERS#######
+  
+  observe({
+    # Set the stream of session
+    if (input$servercnt==5)
+    {
+      resetfactor <<- 1
+      total <<- 0
+      print(resetfactor)
+    }
+
+    # We'll use these multiple times, so use short var names for convenience.
+    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
+    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver")
+    
+    # Command start
+    cmdString <- '/home/cem/RabbitMQ/send.py "<ShinnyParameters>'
+    
+    # Build the xml parameters
+    for (i in 1:length(parameterValue))
+    {
+      parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
+      parameterString <- gsub("nnn",parameterName[i],parameterString)
+      parameterString <- gsub("vvv",parameterValue[i],parameterString)
+      cmdString <- paste(cmdString,parameterString,sep="")
+    }
+    
+    # Command end
+    cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
+    
+    # Send the message
+    system(cmdString)
+    
+  })
+  
   # Color function
   cx <- function (n, h = c(-243, 360), c = 91, l = c(61, 77), power = 0.833333333333333, 
                   fixup = TRUE, gamma = NULL, alpha = 1, ...) 
@@ -150,40 +179,8 @@ function(input, output, session) {
     return(rval)
   }
   
-  #######OBSERVE PARAMETERS#######
   
-  observe({
-    # Set the stream of session
-    if (input$servercnt==5)
-      resetCount()
     
-    
-    
-    # We'll use these multiple times, so use short var names for convenience.
-    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
-    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver")
-    
-    # Command start
-    cmdString <- '/home/cem/RabbitMQ/send.py "<ShinnyParameters>'
-    
-    # Build the xml parameters
-    for (i in 1:length(parameterValue))
-    {
-      parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
-      parameterString <- gsub("nnn",parameterName[i],parameterString)
-      parameterString <- gsub("vvv",parameterValue[i],parameterString)
-      cmdString <- paste(cmdString,parameterString,sep="")
-    }
-    
-    # Command end
-    cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
-    
-    # Send the message
-    system(cmdString)
-    
-  })
-  
-  
   #######OUTPUT SECTION#######    
   
   output$completePercent <- renderValueBox({
