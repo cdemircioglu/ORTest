@@ -51,11 +51,18 @@ function(input, output, session) {
   
   # Accumulates pkgStream rows over time; throws out any older than timeWindow
   # (assuming the presence of a "received" field)
-  packageData <- function(pkgStream, timeWindow) {
+  packageData <- function(pkgStream, timeWindow, myreset) {
     shinySignals::reducePast(pkgStream, function(memo, value) {
-      rbind(memo, value) %>%
-        ##filter(received > as.numeric(Sys.time()) - timeWindow)
-        filter(received > as.numeric(Sys.time()) + 100)
+      if(myreset == 0)
+      {
+          rbind(memo, value) %>%
+          filter(received > as.numeric(Sys.time()) - timeWindow)
+          ##filter(received > as.numeric(Sys.time()) + 100)
+      } else
+      {
+          ##Do nothing
+      }
+      
     }, prototype)
   }
   
@@ -67,7 +74,7 @@ function(input, output, session) {
   maxAgeSecs <- 60 * 5
   
   # Set package
-  pkgData <- packageData(pkgStream, maxAgeSecs)
+  pkgData <- packageData(pkgStream, maxAgeSecs,0)
   
   # Use a bloom filter to probabilistically track the number of unique
   # users we have seen; using bloom filter means we will not have a
@@ -129,7 +136,7 @@ function(input, output, session) {
   observe({
     # Set the stream of session
     if (input$servercnt==5)
-      packageData <- packageData[0,]
+      pkgData <- packageData(pkgStream, maxAgeSecs,1)
     
     
     # We'll use these multiple times, so use short var names for convenience.
