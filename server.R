@@ -55,15 +55,18 @@ function(input, output, session) {
   # (assuming the presence of a "received" field)
   packageData <- function(pkgStream, timeWindow) {
     shinySignals::reducePast(pkgStream, function(memo, value) {
+      
       if(resetfactor == 0)
       {
           rbind(memo, value) %>%
           filter(received > as.numeric(Sys.time()) - timeWindow)
-          ##filter(received > as.numeric(Sys.time()) + 100)
+        
       } else
       {
-          rbind(memo, value) %>%
-          filter(received < 0)
+          new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = character(), r_arch = character(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
+          new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = "3.3.0", r_arch = "x86_64",r_os = "linux-gnu", package = "BH", version = "1.60.0-2",country = "DE", ip_id = "23657", received = 1000)
+        
+          rbind(new.prototype, prototype) 
       }
       
     }, prototype)
