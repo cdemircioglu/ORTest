@@ -13,6 +13,8 @@ function(input, output, session) {
   timeRequired <- 300 #seconds to complete
   initialtimeRequired <- isolate(timeRequired) #initial time required to calc percent complete
   
+  resetfactor <- 0 
+  
   # Record the time that the session started.
   startTime <- as.numeric(Sys.time())
   
@@ -74,7 +76,7 @@ function(input, output, session) {
   maxAgeSecs <- 60 * 5
   
   # Set package
-  pkgData <- packageData(pkgStream, maxAgeSecs,0)
+  pkgData <- packageData(pkgStream, maxAgeSecs,resetfactor)
   
   # Use a bloom filter to probabilistically track the number of unique
   # users we have seen; using bloom filter means we will not have a
@@ -136,7 +138,7 @@ function(input, output, session) {
   observe({
     # Set the stream of session
     if (input$servercnt==5)
-      pkgData <- packageData(pkgStream, maxAgeSecs,1)
+      resetfactor == 1
     
     
     # We'll use these multiple times, so use short var names for convenience.
