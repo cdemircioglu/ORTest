@@ -54,7 +54,8 @@ function(input, output, session) {
   packageData <- function(pkgStream, timeWindow) {
     shinySignals::reducePast(pkgStream, function(memo, value) {
       rbind(memo, value) %>%
-        filter(received > as.numeric(Sys.time()) - timeWindow)
+        #filter(received > as.numeric(Sys.time()) - timeWindow)
+        filter(received > as.numeric(Sys.time()) - 5)
     }, prototype)
   }
   
@@ -128,7 +129,7 @@ function(input, output, session) {
   observe({
     # Set the stream of session
     if (input$servercnt==5)
-        pkgData() <- pkgData()[0,]
+      packageData <- packageData[0,]
     
     
     # We'll use these multiple times, so use short var names for convenience.
