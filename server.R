@@ -54,8 +54,8 @@ function(input, output, session) {
   packageData <- function(pkgStream, timeWindow) {
     shinySignals::reducePast(pkgStream, function(memo, value) {
       rbind(memo, value) %>%
-        #filter(received > as.numeric(Sys.time()) - timeWindow)
-        filter(received > as.numeric(Sys.time()) - 5)
+        ##filter(received > as.numeric(Sys.time()) - timeWindow)
+        filter(received > as.numeric(Sys.time()) + 100)
     }, prototype)
   }
   
