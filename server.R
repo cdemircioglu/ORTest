@@ -71,13 +71,8 @@ function(input, output, session) {
   
   ####Function definition
   resetFrame <- function(pkgStream) {
-    shinySignals::reducePast(pkgStream, function(memo, value) {
-
-          rbind(memo, value) %>%
-          filter(received < 0)
-      
-    }, prototype)
-  }
+    resetfactor <- 1
+    }
   
   ####Call function
   resetCount <- resetFrame(pkgStream)
