@@ -127,7 +127,7 @@ function(input, output, session) {
   
   observe({
     # Set the stream of session
-    pkgData <- packageData(pkgStream, 0)
+    pkgData() <- pkgData()[0,]
     
     
     # We'll use these multiple times, so use short var names for convenience.
