@@ -14,7 +14,11 @@ function(input, output, session) {
   initialtimeRequired <- isolate(timeRequired) #initial time required to calc percent complete
   
   resetfactor <- 0 
-  
+  lastservercnt <- 0
+  lastmarketInterest <<- "Dummy"
+  lastperceivedValue <<- -1
+  lastcosttoDeliver <<- -1
+      
   # Record the time that the session started.
   startTime <- as.numeric(Sys.time())
   
@@ -58,18 +62,27 @@ function(input, output, session) {
       
       if(resetfactor == 0)
       {
-          rbind(memo, value) %>%
-          filter(received > as.numeric(Sys.time()) - timeWindow)
+          result = tryCatch({
+              rbind(memo, value) %>%
+              filter(received > as.numeric(Sys.time()) - timeWindow)
+          }, error = function(e) {
+              #Insert dummy record to stop the rendering
+              new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = character(), r_arch = character(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
+              new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = "3.3.0", r_arch = "x86_64",r_os = "linux-gnu", package = "Loading", version = "1.60.0-2",country = "DE", ip_id = "23657", received = as.numeric(Sys.time())-299)
+              rbind(new.prototype, prototype) %>%
+              filter(received > as.numeric(Sys.time()) - timeWindow)
+              resetfactor <<- 0 #Trip the fuse
+            } 
+          )
         
       } else
       {
           #Insert dummy record to stop the rendering
           new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = character(), r_arch = character(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
-          new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = "3.3.0", r_arch = "x86_64",r_os = "linux-gnu", package = "BH", version = "1.60.0-2",country = "DE", ip_id = "23657", received = 1000)
-          print("aaa")
+          new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = "3.3.0", r_arch = "x86_64",r_os = "linux-gnu", package = "Loading", version = "1.60.0-2",country = "DE", ip_id = "23657", received = as.numeric(Sys.time())-299)
           rbind(new.prototype, prototype) %>%
           filter(received > as.numeric(Sys.time()) - timeWindow)
-          resetfactor <<- 0 #Reset the fuse
+          resetfactor <<- 0 #Trip the fuse
       }
       
     }, prototype)
@@ -107,6 +120,11 @@ function(input, output, session) {
         newIds <- !sapply(ids, bloomFilter$has)
         # Add the count of new IDs
         total <<- total + length(newIds)
+        
+        # Reset the total count
+        if (resetfactor != 0)
+          total <<- 0
+        
         # Add the new IDs so we know for next time
         sapply(ids[newIds], bloomFilter$set)
       }
@@ -117,18 +135,25 @@ function(input, output, session) {
   # Call function
   customerCount <- userCount(pkgStream)
   
-  
-  
   #######OBSERVE PARAMETERS#######
   
   observe({
-    # Set the stream of session
-    if (input$servercnt==5)
+    
+    
+    # Check the parameters, if they are changed reset the data frame. 
+    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver)
     {
-      resetfactor <<- 1
-      total <<- 0
-      print(resetfactor)
+      resetfactor <<- 1 #Reset the data frame
+      lastmarketInterest <<- input$marketInterest
+      lastperceivedValue <<- input$perceivedValue
+      lastcosttoDeliver <<- input$costtoDeliver
+      timeRequired <<- round(runif(1, 1, 500))
+      initialtimeRequired <<- timeRequired
     }
+
+    
+    
+    
 
     # We'll use these multiple times, so use short var names for convenience.
     parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
@@ -245,9 +270,13 @@ function(input, output, session) {
       head(60)
     
     bubbles(df$n, paste("$",df$size, "/", df$n, sep="" ), key = df$size, color = cx(nrow(df)) )
+    
   })
   
   output$packageTable <- renderTable({
+    if (nrow(pkgData()) == 0)
+      return()
+    
     pkgData() %>%
       group_by(package) %>%
       tally() %>%

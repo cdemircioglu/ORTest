@@ -15,6 +15,10 @@ dashboardPage(
     )
   ),
   dashboardBody(
+    
+    tags$style(type="text/css",
+               ".shiny-output-error { visibility: hidden; }",
+               ".shiny-output-error:before { visibility: hidden; }"),
     tabItems(
       tabItem("dashboard",
               # Boxes need to be put in a row (or column)
