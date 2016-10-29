@@ -63,6 +63,7 @@ function(input, output, session) {
       } else
       {
           ##Do nothing
+          memo <- memo[0,]
       }
       
     }, prototype)
@@ -211,7 +212,7 @@ function(input, output, session) {
   output$customersScanned <- renderValueBox({
     
     valueBox(
-      value =  customerCount(),
+      value =  nrow(prototype), ##customerCount(),
       subtitle = "Customers scanned",
       icon = icon("users")
     )
