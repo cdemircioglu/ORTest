@@ -13,7 +13,7 @@ function(input, output, session) {
   timeRequired <- 300 #seconds to complete
   initialtimeRequired <- isolate(timeRequired) #initial time required to calc percent complete
   
-  resetfactor <- 0 
+  resetfactor <- 1 
   
   # Record the time that the session started.
   startTime <- as.numeric(Sys.time())
