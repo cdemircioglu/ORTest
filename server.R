@@ -152,7 +152,7 @@ function(input, output, session) {
   observe({
     # Set the stream of session
     if (input$servercnt==5)
-        myvalue <- nrow(prototype)
+      resetCount()
     
     
     
@@ -226,7 +226,7 @@ function(input, output, session) {
   output$customersScanned <- renderValueBox({
     
     valueBox(
-      value =  nrow(prototype), ##customerCount(),
+      value = customerCount(),
       subtitle = "Customers scanned",
       icon = icon("users")
     )
