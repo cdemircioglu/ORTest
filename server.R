@@ -53,9 +53,9 @@ function(input, output, session) {
   
   # Accumulates pkgStream rows over time; throws out any older than timeWindow
   # (assuming the presence of a "received" field)
-  packageData <- function(pkgStream, timeWindow, myreset) {
+  packageData <- function(pkgStream, timeWindow) {
     shinySignals::reducePast(pkgStream, function(memo, value) {
-      if(myreset == 0)
+      if(resetfactor == 0)
       {
           rbind(memo, value) %>%
           filter(received > as.numeric(Sys.time()) - timeWindow)
@@ -69,6 +69,18 @@ function(input, output, session) {
     }, prototype)
   }
   
+  ####Function definition
+  resetFrame <- function(pkgStream) {
+    prototype <- prototype[0,]
+  }
+  
+  ####Call function
+  resetCount <- resetFrame(pkgStream)
+  
+  
+  
+  
+  
   
   # Set the stream of session
   pkgStream <- packageStream(session)
@@ -77,7 +89,7 @@ function(input, output, session) {
   maxAgeSecs <- 60 * 5
   
   # Set package
-  pkgData <- packageData(pkgStream, maxAgeSecs,resetfactor)
+  pkgData <- packageData(pkgStream, maxAgeSecs)
   
   # Use a bloom filter to probabilistically track the number of unique
   # users we have seen; using bloom filter means we will not have a
@@ -109,6 +121,7 @@ function(input, output, session) {
   # Call function
   customerCount <- userCount(pkgStream)
   
+  
   # Color function
   cx <- function (n, h = c(-243, 360), c = 91, l = c(61, 77), power = 0.833333333333333, 
                   fixup = TRUE, gamma = NULL, alpha = 1, ...) 
@@ -139,7 +152,8 @@ function(input, output, session) {
   observe({
     # Set the stream of session
     if (input$servercnt==5)
-      resetfactor == 1
+        myvalue <- nrow(prototype)
+    
     
     
     # We'll use these multiple times, so use short var names for convenience.
