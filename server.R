@@ -62,8 +62,8 @@ function(input, output, session) {
           ##filter(received > as.numeric(Sys.time()) + 100)
       } else
       {
-          ##Do nothing
-          memo <- memo[0,]
+          rbind(memo, value) %>%
+          filter(received < 0)
       }
       
     }, prototype)
