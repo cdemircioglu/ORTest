@@ -10,7 +10,10 @@ function(input, output, session) {
   
   #######VARIABLES SECTION#######    
   
-  timeRequired <- 300 #seconds to complete
+  df_duration <- data.frame(FOO=c("12726|ACCESSORIES","11406|ACCOUNTING","5458|ADD","28378|ADULT_EDUCATION","5040|ARTS_CRAFTS","9345|BARBECUES_GRILLING","1436|CHRISTIANITY","25115|EDUCATIONAL_INSTITUTIONS","20463|ENTERTAINMENT_NEWS_CELEBRITY_SITES","13987|ENTERTAINMENT_OTHER","15515|FINANCIAL_PLANNING","7303|HEALTH_LOWFAT_COOKING","20491|INVESTING","21276|LITERATURE_BOOKS","23751|MOVIES","17626|MUSIC","25585|PRIVATE_SCHOOL","4132|PSYCHOLOGY_PSYCHIATRY","24170|REFERENCE_MATERIALS_MAPS","2900|SMOKING_CESSATION","228|SPACE_ASTRONOMY","25213|SPECIAL_EDUCATION","13666|STREAMING_DOWNLOADABLE_VIDEO","9934|TAX_PLANNING","16284|TELEVISION","12826|TEXT_MESSAGING_SMS","16028|WIKIS","30684|YEAR_712_EDUCATION"))  
+  df_duration <- data.frame(do.call('rbind', strsplit(as.character(df_duration$FOO),'|',fixed=TRUE)))
+  
+  timeRequired <- df_duration[which(df_duration$X2 == marketInterest),1] #seconds to complete
   initialtimeRequired <- isolate(timeRequired) #initial time required to calc percent complete
   
   resetfactor <- 0 
@@ -138,8 +141,7 @@ function(input, output, session) {
   #######OBSERVE PARAMETERS#######
   
   observe({
-    
-    
+
     # Check the parameters, if they are changed reset the data frame. 
     if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver)
     {
@@ -147,7 +149,7 @@ function(input, output, session) {
       lastmarketInterest <<- input$marketInterest
       lastperceivedValue <<- input$perceivedValue
       lastcosttoDeliver <<- input$costtoDeliver
-      timeRequired <<- round(runif(1, 1, 500))
+      timeRequired <<- df_duration[which(df_duration$X2 == marketInterest),1]
       initialtimeRequired <<- timeRequired
     }
 
