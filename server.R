@@ -13,7 +13,8 @@ function(input, output, session) {
   df_duration <- data.frame(FOO=c("12726|ACCESSORIES","11406|ACCOUNTING","5458|ADD","28378|ADULT_EDUCATION","5040|ARTS_CRAFTS","9345|BARBECUES_GRILLING","1436|CHRISTIANITY","25115|EDUCATIONAL_INSTITUTIONS","20463|ENTERTAINMENT_NEWS_CELEBRITY_SITES","13987|ENTERTAINMENT_OTHER","15515|FINANCIAL_PLANNING","7303|HEALTH_LOWFAT_COOKING","20491|INVESTING","21276|LITERATURE_BOOKS","23751|MOVIES","17626|MUSIC","25585|PRIVATE_SCHOOL","4132|PSYCHOLOGY_PSYCHIATRY","24170|REFERENCE_MATERIALS_MAPS","2900|SMOKING_CESSATION","228|SPACE_ASTRONOMY","25213|SPECIAL_EDUCATION","13666|STREAMING_DOWNLOADABLE_VIDEO","9934|TAX_PLANNING","16284|TELEVISION","12826|TEXT_MESSAGING_SMS","16028|WIKIS","30684|YEAR_712_EDUCATION"))  
   df_duration <- data.frame(do.call('rbind', strsplit(as.character(df_duration$FOO),'|',fixed=TRUE)))
   
-  timeRequired <- df_duration[which(df_duration$X2 == marketInterest),1] #seconds to complete
+  #timeRequired <- df_duration[which(df_duration$X2 == marketInterest),1] #seconds to complete
+  timeRequired <- 7500 #seconds to complete
   initialtimeRequired <- isolate(timeRequired) #initial time required to calc percent complete
   
   resetfactor <- 0 
