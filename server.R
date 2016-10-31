@@ -99,7 +99,7 @@ function(input, output, session) {
   pkgStream <- packageStream(session)
   
   # Max age of data (5 minutes)
-  maxAgeSecs <- 60 * 5
+  maxAgeSecs <- 60 * 50
   
   # Set package
   pkgData <- packageData(pkgStream, maxAgeSecs)
@@ -151,7 +151,7 @@ function(input, output, session) {
       lastperceivedValue <<- input$perceivedValue
       lastcosttoDeliver <<- input$costtoDeliver
       currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
-      timeRequired <<- currentMarketInterest[1]
+      timeRequired <<- 7500
       initialtimeRequired <<- timeRequired
     }
 
