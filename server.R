@@ -150,8 +150,8 @@ function(input, output, session) {
       lastmarketInterest <<- input$marketInterest
       lastperceivedValue <<- input$perceivedValue
       lastcosttoDeliver <<- input$costtoDeliver
-      #timeRequired <<- df_duration[which(df_duration$X2 == "ACCOUNTING"),1]
-      timeRequired <<- 7500
+      timeRequired <<- df_duration[which(df_duration$X2 == "ACCOUNTING"),1]
+      #timeRequired <<- 7500
       initialtimeRequired <<- timeRequired
     }
 
