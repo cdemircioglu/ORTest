@@ -23,7 +23,7 @@ function(input, output, session) {
   startTime <- as.numeric(Sys.time())
   
   # An empty prototype of the data frame we want to create
-  prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = character(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
+  prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
   
   packageStream <- function(session) {
     # Connect to data source
@@ -67,8 +67,8 @@ function(input, output, session) {
               filter(received > as.numeric(Sys.time()) - timeWindow)
           }, error = function(e) {
               #Insert dummy record to stop the rendering
-              new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = character(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
-              new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = 1234, r_arch = "x86_64",r_os = "linux-gnu", package = "Loading", version = "1.60.0-2",country = "DE", ip_id = "23657", received = as.numeric(Sys.time())-299)
+              new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
+              new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = 1234, r_arch = 500,r_os = "linux-gnu", package = "Loading", version = "1.60.0-2",country = "DE", ip_id = "23657", received = as.numeric(Sys.time())-299)
               rbind(new.prototype, prototype) %>%
               filter(received > as.numeric(Sys.time()) - timeWindow)
               resetfactor <<- 0 #Trip the fuse
@@ -78,8 +78,8 @@ function(input, output, session) {
       } else
       {
           #Insert dummy record to stop the rendering
-          new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = character(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
-          new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = 12345, r_arch = "x86_64",r_os = "linux-gnu", package = "Loading", version = "1.60.0-2",country = "DE", ip_id = "23657", received = as.numeric(Sys.time())-299)
+          new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = character(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
+          new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = 12345, r_arch = 500,r_os = "linux-gnu", package = "Loading", version = "1.60.0-2",country = "DE", ip_id = "23657", received = as.numeric(Sys.time())-299)
           rbind(new.prototype, prototype) %>%
           filter(received > as.numeric(Sys.time()) - timeWindow)
           resetfactor <<- 0 #Trip the fuse
