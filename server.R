@@ -112,7 +112,7 @@ function(input, output, session) {
     # the filter, we'll have a 1% chance of false positive on the next
     # user to be queried.
     bloomFilter <- BloomFilter$new(5000, 0.01)
-    total <- 0
+    #total <- 0
     reactive({
       df <- pkgStream()
       if (!is.null(df) && nrow(df) > 0) {
