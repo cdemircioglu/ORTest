@@ -19,6 +19,7 @@ function(input, output, session) {
   
   resetfactor <- 0 
   lastservercnt <- 0
+  total <- 0
   lastmarketInterest <<- "Dummy"
   lastperceivedValue <<- -1
   lastcosttoDeliver <<- -1
