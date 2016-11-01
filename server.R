@@ -153,7 +153,7 @@ function(input, output, session) {
       lastperceivedValue <<- input$perceivedValue
       lastcosttoDeliver <<- input$costtoDeliver
       currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
-      timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1000
+      timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*250
       initialtimeRequired <<- timeRequired
     }
 
