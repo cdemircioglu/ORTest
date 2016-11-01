@@ -116,21 +116,22 @@ function(input, output, session) {
     reactive({
       df <- pkgStream()
       if (!is.null(df) && nrow(df) > 0) {
-        # ip_id is only unique on a per-day basis. To make them unique
-        # across days, include the date. And call unique() to make sure
-        # we don't double-count dupes in the current data frame.
-        ids <- paste(df$date, df$ip_id) %>% unique()
-        # Get indices of IDs we haven't seen before
-        newIds <- !sapply(ids, bloomFilter$has)
-        # Add the count of new IDs
-        total <<- total + length(newIds)
-        
+        ## ip_id is only unique on a per-day basis. To make them unique
+        ## across days, include the date. And call unique() to make sure
+        ## we don't double-count dupes in the current data frame.
+        #ids <- paste(df$date, df$ip_id) %>% unique()
+        ## Get indices of IDs we haven't seen before
+        #newIds <- !sapply(ids, bloomFilter$has)
+        ## Add the count of new IDs
+        #total <<- total + length(newIds)
+        total <<- 500 ##total + sum(df$r_version)
         # Reset the total count
         if (resetfactor != 0)
           total <<- 0
         
+        
         # Add the new IDs so we know for next time
-        sapply(ids[newIds], bloomFilter$set)
+        #sapply(ids[newIds], bloomFilter$set)
       }
       total
     })
