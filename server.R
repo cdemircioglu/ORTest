@@ -124,7 +124,7 @@ function(input, output, session) {
         #newIds <- !sapply(ids, bloomFilter$has)
         ## Add the count of new IDs
         #total <<- total + length(newIds)
-        total <<- 500 ##total + sum(df$r_version)
+        #total <<- 500 ##total + sum(df$r_version)
         # Reset the total count
         if (resetfactor != 0)
           total <<- 0
@@ -275,7 +275,7 @@ function(input, output, session) {
       arrange(desc(size), tolower(size)) %>%
       # Just show the top 60, otherwise it gets hard to see
       head(60)
-    
+      total <<- sum(df$cmsisdn)      
     bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
     
   })
