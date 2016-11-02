@@ -368,7 +368,7 @@ function(input, output, session) {
       mutate(percentage = n / nrow(pkgData()) * 100) %>%
       select("Web site" = package, "% of activity" = percentage) %>%
       as.data.frame() %>%
-      head(15)
+      head(10)
   }, digits = 1)
   
   
