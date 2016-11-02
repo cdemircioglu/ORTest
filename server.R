@@ -343,6 +343,7 @@ function(input, output, session) {
     
     hist(df$size, 
          warn.unused = FALSE,
+         main="",
          col=tcol,
          border=tcol,
          xlab="",
