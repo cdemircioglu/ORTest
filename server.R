@@ -338,10 +338,10 @@ function(input, output, session) {
     tcol="orange"      # fill colors
     acol="orangered"   # color for added samples
     tscale=1;          # label rescaling factor
-    suvs <- c(4,4,6,6,16)
+    df <- pkgData()
+      
     
-    hist(suvs, 
-         main="Revenue Distribution",
+    hist(df$size, 
          warn.unused = FALSE,
          col=tcol,
          border=tcol,
