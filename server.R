@@ -301,9 +301,14 @@ function(input, output, session) {
   })
   
   output$customersScanned <- renderValueBox({
+    invalidateLater(1000, session) 
+    percent <- (1-timeRequired/initialtimeRequired)*100
+    if (percent > 100)
+      percent <- 100
     
     valueBox(
-      value = customerCount(),
+      #value = customerCount(),
+      value = percent*10000000,
       subtitle = "Customers scanned",
       icon = icon("users")
     )
