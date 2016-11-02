@@ -333,6 +333,28 @@ function(input, output, session) {
       
   })
   
+  output$plot <- renderPlot({
+  
+    tcol="orange"      # fill colors
+    acol="orangered"   # color for added samples
+    tscale=1;          # label rescaling factor
+    suvs <- c(4,4,6,6,16)
+    
+    hist(suvs, 
+         main="Revenue Distribution",
+         warn.unused = FALSE,
+         col=tcol,
+         border=tcol,
+         xlab="",
+         cex.lab=tscale,
+         cex.axis=tscale,
+         cex.main=tscale,
+         cex.sub=tscale
+    )
+    
+      
+  })
+  
   output$packageTable <- renderTable({
     if (nrow(pkgData()) == 0)
       return()

@@ -38,7 +38,13 @@ dashboardPage(
                   width = 4, status = "info",
                   title = "Top web sites visited",
                   tableOutput("packageTable")
+                ),
+                box(
+                  width = 4, status = "info",
+                  title = "Revenue Distribution",
+                  plotOutput("plot")
                 )
+                
               )
       ) #tab item
     ) #tab items
