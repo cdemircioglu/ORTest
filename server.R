@@ -308,7 +308,7 @@ function(input, output, session) {
     
     valueBox(
       #value = customerCount(),
-      value = percent*10000000,
+      value = prettyNum(percent*100000, scientific=FALSE, big.mark=','),
       subtitle = "Customers scanned",
       icon = icon("users")
     )
