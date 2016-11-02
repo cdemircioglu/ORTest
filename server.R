@@ -100,7 +100,7 @@ function(input, output, session) {
   pkgStream <- packageStream(session)
   
   # Max age of data (5 minutes)
-  maxAgeSecs <- 60 * 50
+  maxAgeSecs <- 60 * 500
   
   # Set package
   pkgData <- packageData(pkgStream, maxAgeSecs)
@@ -210,7 +210,7 @@ function(input, output, session) {
     return(rval)
   }
   
-  cn <- function (n, h = c(370, 280), c. = c(80, 5), l = c(25, 95), power = c(0.7,1.3), fixup = TRUE, gamma = NULL, alpha = 1, ...) 
+  cn <- function (n, h = c(360, 293), c. = c(80, 26), l = c(34, 95), power = c(0.7, 1.3), fixup = TRUE, gamma = NULL, alpha = 1,...) 
   {
     if (!is.null(gamma)) 
       warning("'gamma' is deprecated and has no effect")
@@ -232,6 +232,7 @@ function(input, output, session) {
     }
     return(rval)
   }
+  
   
   cp <- function (n, h = 155, c. = c(67, 0), l = c(40, 95), power = 0.533333333333333, 
                   fixup = TRUE, gamma = NULL, alpha = 1, ...) 
