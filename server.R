@@ -326,7 +326,7 @@ function(input, output, session) {
       ) %>%
       arrange(desc(size), tolower(size)) %>%
       # Just show the top 60, otherwise it gets hard to see
-      head(60)
+      head(100)
       total <<- sum(df$cmsisdn)      
       #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
       bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = c(cp(nrow(df[which(df$size>=0),])),cn(nrow(df[which(df$size<0),]))) )
