@@ -174,6 +174,7 @@ function(input, output, session) {
       currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
       timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*100
       initialtimeRequired <<- timeRequired
+      mcv_df <<- mcv_df[0,]
     }
 
     
