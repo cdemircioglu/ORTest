@@ -58,22 +58,32 @@ function(input, output, session) {
       #Read the stream
       str <- textConnection(newLines())
       str <- readLines(str)
-      str <- strsplit(as.character(str), split="_MM_")
-      str <- unlist(str)
+      qstr <- ""
       
-      #Hold on to the MC values
-      mcv <- as.numeric(unlist(strsplit(str[1], split=" ")))
-      
-      #Create the data frame
-      if(exists("mcv_df"))
-      {
-        mcv_df <<- rbind(mcv_df,data.frame(mcv))
+      #This is the check for MC
+      if(grepl("_MM_", str)) {
+        str <- strsplit(as.character(str), split="_MM_")
+        str <- unlist(str)
+        
+        #Hold on to the MC values
+        mcv <- as.numeric(unlist(strsplit(str[1], split=" ")))
+        
+        #Create the data frame
+        if(exists("mcv_df"))
+        {
+          mcv_df <<- rbind(mcv_df,data.frame(mcv))
+        } else {
+          mcv_df <<- data.frame(mcv)
+        }
+        
+        qstr <- str[2]
+        
       } else {
-        mcv_df <<- data.frame(mcv)
+        qstr <- str
       }
       
       #read.csv(textConnection(newLines()), header=FALSE, stringsAsFactors=FALSE,
-      read.csv(text=str[2], header=FALSE, stringsAsFactors=FALSE,
+      read.csv(text=qstr, header=FALSE, stringsAsFactors=FALSE,
                col.names = names(prototype)
       ) %>% mutate(received = as.numeric(Sys.time()))
     })
