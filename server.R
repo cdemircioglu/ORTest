@@ -57,6 +57,7 @@ function(input, output, session) {
       
       #Read the stream
       str <- textConnection(newLines())
+      str <- readLines(str)
       str <- strsplit(as.character(str), split="_MM_")
       str <- unlist(str)
       
