@@ -78,7 +78,7 @@ function(input, output, session) {
           mcv_df <<- data.frame(mcv)
         }
         
-        qstr <- str[-1]
+        qstr <- paste(str[-1],collapse="\n")
       
       } else {
         qstr <- str
