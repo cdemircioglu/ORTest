@@ -58,11 +58,12 @@ function(input, output, session) {
       #Read the stream
       strcon <- textConnection(newLines())
       str <- readLines(strcon)
-      str <- unlist(str)
+      #str <- unlist(str)
       qstr <- ""
       
       #This is the check for MC
       if(grepl("_MM_", str)) {
+        str <- unlist(str)
         str <- strsplit(as.character(str), split="_MM_")
         str <- unlist(str)
         
