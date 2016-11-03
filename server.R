@@ -85,7 +85,7 @@ function(input, output, session) {
       
       
       #read.csv(textConnection(newLines()), header=FALSE, stringsAsFactors=FALSE,
-      read.csv(text=str[2], header=FALSE, stringsAsFactors=FALSE,
+      read.csv(text=qstr, header=FALSE, stringsAsFactors=FALSE,
                col.names = names(prototype)
       ) %>% mutate(received = as.numeric(Sys.time()))
     })
