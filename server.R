@@ -56,8 +56,8 @@ function(input, output, session) {
         return()
       
       #Read the stream
-      str <- textConnection(newLines())
-      str <- readLines(str)
+      strcon <- textConnection(newLines())
+      str <- readLines(strcon)
       str <- unlist(str)
       qstr <- ""
       
