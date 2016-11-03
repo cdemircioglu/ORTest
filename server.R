@@ -54,7 +54,25 @@ function(input, output, session) {
         return()
       if (timeRequired < 1)
         return()
-      read.csv(textConnection(newLines()), header=FALSE, stringsAsFactors=FALSE,
+      
+      #Read the stream
+      str <- textConnection(newLines())
+      str <- strsplit(str, split="_MM_")
+      str <- unlist(str)
+      
+      #Hold on to the MC values
+      mcv <- as.numeric(unlist(strsplit(str[1], split=" ")))
+      
+      #Create the data frame
+      if(exists("mcv_df"))
+      {
+        mcv_df <<- rbind(mcv_df,data.frame(mcv))
+      } else {
+        mcv_df <<- data.frame(mcv)
+      }
+      
+      #read.csv(textConnection(newLines()), header=FALSE, stringsAsFactors=FALSE,
+      read.csv(text=str[2], header=FALSE, stringsAsFactors=FALSE,
                col.names = names(prototype)
       ) %>% mutate(received = as.numeric(Sys.time()))
     })
@@ -341,9 +359,9 @@ function(input, output, session) {
     df <- pkgData()
       
     
-    hist(df$size, 
+    hist(mcv_df$mcv, 
          warn.unused = FALSE,
-         breaks=21,
+         #breaks=21,
          main="",
          col=tcol,
          border=tcol,
