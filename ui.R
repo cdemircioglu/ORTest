@@ -7,11 +7,11 @@ dashboardPage(
   dashboardSidebar(
     sliderInput("servercnt", "Number of computers",min = 0, max = 20, value = 3, step = 1),
     selectInput("marketInterest","Market Interest",selected ="INVESTING", c("ACCESSORIES","ACCOUNTING","ADD","ADULT_EDUCATION","ARTS_CRAFTS","BARBECUES_GRILLING","CHRISTIANITY","EDUCATIONAL_INSTITUTIONS","ENTERTAINMENT_NEWS_CELEBRITY_SITES","ENTERTAINMENT_OTHER","FINANCIAL_PLANNING","HEALTH_LOWFAT_COOKING","INVESTING","LITERATURE_BOOKS","MOVIES","MUSIC","PRIVATE_SCHOOL","PSYCHOLOGY_PSYCHIATRY","REFERENCE_MATERIALS_MAPS","SMOKING_CESSATION","SPACE_ASTRONOMY","SPECIAL_EDUCATION","STREAMING_DOWNLOADABLE_VIDEO","TAX_PLANNING","TELEVISION","TEXT_MESSAGING_SMS","WIKIS","YEAR_712_EDUCATION")),
-    sliderInput("perceivedValue", "Perceived value",min = 0, max = 50, value = 40, step = 10),
+    sliderInput("perceivedValue", "Revenue to carrier",min = 0, max = 50, value = 40, step = 10),
     sliderInput("costtoDeliver", "Cost to deliver",min = 0, max = 50, value = 10, step = 5),
     sidebarMenu(
-      menuItem("Dashboard", tabName = "dashboard"),
-      menuItem("Raw data", tabName = "rawdata")
+      menuItem("Dashboard", tabName = "dashboard")
+      #,menuItem("Raw data", tabName = "rawdata")
     )
   ),
   dashboardBody(
