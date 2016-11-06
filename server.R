@@ -84,7 +84,7 @@ function(input, output, session) {
           {
             mcv_df <<- mcv_df[0,]
           }
-          
+          return()
         }
         
         #Create the data frame
