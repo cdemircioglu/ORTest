@@ -12,7 +12,8 @@ function(input, output, session) {
   
   df_duration <- data.frame(FOO=c("12726|ACCESSORIES","11406|ACCOUNTING","5458|ADD","28378|ADULT_EDUCATION","5040|ARTS_CRAFTS","9345|BARBECUES_GRILLING","1436|CHRISTIANITY","25115|EDUCATIONAL_INSTITUTIONS","20463|ENTERTAINMENT_NEWS_CELEBRITY_SITES","13987|ENTERTAINMENT_OTHER","15515|FINANCIAL_PLANNING","7303|HEALTH_LOWFAT_COOKING","20491|INVESTING","21276|LITERATURE_BOOKS","23751|MOVIES","17626|MUSIC","25585|PRIVATE_SCHOOL","4132|PSYCHOLOGY_PSYCHIATRY","24170|REFERENCE_MATERIALS_MAPS","2900|SMOKING_CESSATION","228|SPACE_ASTRONOMY","25213|SPECIAL_EDUCATION","13666|STREAMING_DOWNLOADABLE_VIDEO","9934|TAX_PLANNING","16284|TELEVISION","12826|TEXT_MESSAGING_SMS","16028|WIKIS","30684|YEAR_712_EDUCATION"))  
   df_duration <- data.frame(do.call('rbind', strsplit(as.character(df_duration$FOO),'|',fixed=TRUE)))
-  
+  runCheck <- 1
+    
   #timeRequired <- df_duration[which(df_duration$X2 == marketInterest),1] #seconds to complete
   timeRequired <- 7500 #seconds to complete
   initialtimeRequired <- isolate(timeRequired) #initial time required to calc percent complete
@@ -28,7 +29,7 @@ function(input, output, session) {
   startTime <- as.numeric(Sys.time())
   
   # An empty prototype of the data frame we want to create
-  prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = numeric(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
+  prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = numeric(), package = character(), version = character(),country = character(), runCheckDF = numeric(), received = numeric())
   
   packageStream <- function(session) {
     # Connect to data source
@@ -70,6 +71,22 @@ function(input, output, session) {
         #Hold on to the MC values
         mcv <- as.numeric(unlist(strsplit(str[1], split=" ")))
       
+        #Get the runCheck
+        currentrunCheck <- as.numeric(str[2])
+        
+        #Check the runCheck if it is greater
+        if (currentrunCheck > runCheck)
+        {
+          runCheck <<- currentrunCheck #Assign the current check
+          
+          #Delete the data frame
+          if(exists("mcv_df"))
+          {
+            mcv_df <<- mcv_df[0,]
+          }
+          
+        }
+        
         #Create the data frame
         if(exists("mcv_df"))
         {
@@ -101,13 +118,13 @@ function(input, output, session) {
       {
           result = tryCatch({
               rbind(memo, value) %>%
-              filter(received > as.numeric(Sys.time()) - timeWindow)
+              filter(runCheckDF == runCheck)
           }, error = function(e) {
               #Insert dummy record to stop the rendering
-              new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = numeric(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
-              new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = 1234, r_arch = 500,r_os = 64, package = "Loading", version = "1.60.0-2",country = "DE", ip_id = "23657", received = as.numeric(Sys.time())-299)
+              new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = numeric(), package = character(), version = character(),country = character(), runCheckDF = numeric(), received = numeric())
+              new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = 1234, r_arch = 500,r_os = 64, package = "Loading", version = "1.60.0-2",country = "DE", runCheckDF = 23657, received = as.numeric(Sys.time())-299)
               rbind(new.prototype, prototype) %>%
-              filter(received > as.numeric(Sys.time()) - timeWindow)
+              filter(runCheckDF == runCheck)
               resetfactor <<- 0 #Trip the fuse
             } 
           )
@@ -115,8 +132,8 @@ function(input, output, session) {
       } else
       {
           #Insert dummy record to stop the rendering
-          new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = numeric(), package = character(), version = character(),country = character(), ip_id = character(), received = numeric())
-          new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = 12345, r_arch = 500,r_os = 64, package = "Loading", version = "1.60.0-2",country = "DE", ip_id = "23657", received = as.numeric(Sys.time())-299)
+          new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = numeric(), package = character(), version = character(),country = character(), runCheckDF = numeric(), received = numeric())
+          new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = 12345, r_arch = 500,r_os = 64, package = "Loading", version = "1.60.0-2",country = "DE", runCheckDF = 23657, received = as.numeric(Sys.time())-299)
           rbind(new.prototype, prototype) %>%
           filter(received > as.numeric(Sys.time()) - timeWindow)
           resetfactor <<- 0 #Trip the fuse
@@ -149,10 +166,10 @@ function(input, output, session) {
     reactive({
       df <- pkgStream()
       if (!is.null(df) && nrow(df) > 0) {
-        ## ip_id is only unique on a per-day basis. To make them unique
+        ## runCheck is only unique on a per-day basis. To make them unique
         ## across days, include the date. And call unique() to make sure
         ## we don't double-count dupes in the current data frame.
-        #ids <- paste(df$date, df$ip_id) %>% unique()
+        #ids <- paste(df$date, df$runCheck) %>% unique()
         ## Get indices of IDs we haven't seen before
         #newIds <- !sapply(ids, bloomFilter$has)
         ## Add the count of new IDs
@@ -187,6 +204,7 @@ function(input, output, session) {
       currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
       timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*100
       initialtimeRequired <<- timeRequired
+      runCheck <<- as.numeric(as.character(Sys.time(),format="%H%M%S"))
       #Delete the data frame
       if(exists("mcv_df"))
       {
@@ -200,8 +218,8 @@ function(input, output, session) {
     
 
     # We'll use these multiple times, so use short var names for convenience.
-    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver)
-    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver")
+    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck)
+    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck")
     
     # Command start
     cmdString <- '/home/cem/RabbitMQ/send.py "<ShinnyParameters>'
