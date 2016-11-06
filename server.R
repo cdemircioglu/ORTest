@@ -402,6 +402,7 @@ function(input, output, session) {
          #breaks=21,
          main="",
          col=tcol,
+         ylim=c(0,10000)
          border=tcol,
          xlab="",
          cex.lab=tscale,
