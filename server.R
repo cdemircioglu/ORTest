@@ -45,7 +45,7 @@ function(input, output, session) {
     
     # Returns new lines
     newLines <- reactive({
-      invalidateLater(1000, session)
+      invalidateLater(2000/ifelse(input$marketInterest==0,0.01,input$marketInterest), session)
       readLines(sock)
     })
     
@@ -402,7 +402,7 @@ function(input, output, session) {
          #breaks=21,
          main="",
          col=tcol,
-         ylim=c(0,1500),
+         ylim=c(0,2500),
          border=tcol,
          xlab="",
          cex.lab=tscale,
