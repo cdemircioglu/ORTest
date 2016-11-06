@@ -87,6 +87,12 @@ function(input, output, session) {
           return()
         }
         
+        #Check the runCheck if it is greater
+        if (currentrunCheck != runCheck)
+        {
+          return()
+        }
+        
         #Create the data frame
         if(exists("mcv_df"))
         {
