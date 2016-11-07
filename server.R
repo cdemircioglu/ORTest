@@ -380,14 +380,15 @@ function(input, output, session) {
     invalidateLater(1000, session) 
     df <- pkgData() %>%
       summarise( 
-        cmsisdn = sum(r_version)*1000
+        cmsisdn = sum(r_version)
       )
       
     
     
     valueBox(
       #value = customerCount(),
-      value = prettyNum(df$cmsisdn, scientific=FALSE, big.mark=','),
+      #value = prettyNum(df$cmsisdn, scientific=FALSE, big.mark=','),
+      value = df$cmsisdn,
       subtitle = "Customers in the market",
       icon = icon("users")
     )
