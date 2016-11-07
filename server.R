@@ -387,8 +387,8 @@ function(input, output, session) {
     
     valueBox(
       #value = customerCount(),
-      #value = prettyNum(df$cmsisdn, scientific=FALSE, big.mark=','),
-      value = df$cmsisdn,
+      value = prettyNum(df$cmsisdn*10, scientific=FALSE, big.mark=','),
+      #value = df$cmsisdn,
       subtitle = "Customers in the market",
       icon = icon("users")
     )
