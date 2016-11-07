@@ -440,6 +440,8 @@ function(input, output, session) {
          main="",
          col=tcol,
          ylim=c(0,5000),
+         xlim=c(0,40),
+         
          border=tcol,
          xlab="",
          cex.lab=tscale,
