@@ -382,14 +382,27 @@ function(input, output, session) {
       summarise( 
         cmsisdn = sum(r_version)
       )
-      
-    valueBox(
-      #value = customerCount(),
-      value = paste(prettyNum(df$cmsisdn/100, scientific=FALSE, big.mark=','),"K",sep=""),
-      #value = df$cmsisdn,
-      subtitle = "Customers within the market",
-      icon = icon("users")
-    )
+    
+    if(exists("df"))
+    {
+      valueBox(
+        #value = customerCount(),
+        value = paste(prettyNum(df$cmsisdn/100, scientific=FALSE, big.mark=','),"K",sep=""),
+        #value = df$cmsisdn,
+        subtitle = "Customers within the market",
+        icon = icon("users")
+      )
+    } else {
+      valueBox(
+        #value = customerCount(),
+        value = paste(prettyNum(0, scientific=FALSE, big.mark=','),"K",sep=""),
+        #value = df$cmsisdn,
+        subtitle = "Customers within the market",
+        icon = icon("users")
+      )
+    } 
+    
+    
   })
   
   
@@ -406,7 +419,7 @@ function(input, output, session) {
       ) %>%
       arrange(desc(size), tolower(size)) %>%
       # Just show the top 60, otherwise it gets hard to see
-      head(100)
+      head(40)
       total <<- sum(df$cmsisdn)      
       #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
       bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn/100,"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(df$size>=0),])),rev(cn(nrow(df[which(df$size<0),])))) )
@@ -426,7 +439,7 @@ function(input, output, session) {
          #breaks=21,
          main="",
          col=tcol,
-         ylim=c(0,2500),
+         ylim=c(0,5000),
          border=tcol,
          xlab="",
          cex.lab=tscale,
