@@ -432,9 +432,9 @@ function(input, output, session) {
     acol="orangered"   # color for added samples
     tscale=1;          # label rescaling factor
     df <- pkgData()
-      
+    myfulldata <- merge(mcv_df, mcv_df)
     
-    hist(mcv_df$mcv*(abs(input$perceivedValue*1.011-input$costtoDeliver)/50), 
+    hist(myfulldata$mcv*(abs(input$perceivedValue*1.011-input$costtoDeliver)/50), 
          warn.unused = FALSE,
          #breaks=21,
          main="",
@@ -448,7 +448,7 @@ function(input, output, session) {
          cex.main=tscale,
          cex.sub=tscale
     )
-    lines(density(mcv_df$mcv*(abs(input$perceivedValue*1.011-input$costtoDeliver)/50)))
+    
     
       
   })
