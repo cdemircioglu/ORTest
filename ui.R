@@ -31,17 +31,17 @@ dashboardPage(
               ),
               fluidRow(
                 box(
-                  width = 10, status = "info", solidHeader = TRUE,
+                  width = 9, status = "info", solidHeader = TRUE,
                   title = "Revenue by group size (green better - red worse)",
                   bubblesOutput("packagePlot", width = "100%", height = 600)
                 ),
                 box(
-                  width = 4, status = "info",
+                  width = 3, status = "info",
                   title = "Revenue Distribution",
                   plotOutput("plot")
                 ),
                 box(
-                  width = 4, status = "info",
+                  width = 3, status = "info",
                   title = "Top web sites visited",
                   tableOutput("packageTable")
                 )
