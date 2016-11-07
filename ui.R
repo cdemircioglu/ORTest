@@ -23,15 +23,15 @@ dashboardPage(
       tabItem("dashboard",
               # Boxes need to be put in a row (or column)
               fluidRow(
-                valueBoxOutput("completePercent", width=3),
-                valueBoxOutput("timetoComplete", width=3),
-                valueBoxOutput("costPerHour", width=3),
-                valueBoxOutput("totalcustomersScanned", width=3),
-                valueBoxOutput("customersScanned", width=3)
+                valueBoxOutput("completePercent", width=2),
+                valueBoxOutput("timetoComplete", width=2),
+                valueBoxOutput("costPerHour", width=2),
+                valueBoxOutput("totalcustomersScanned", width=2),
+                valueBoxOutput("customersScanned", width=2)
               ),
               fluidRow(
                 box(
-                  width = 11, status = "info", solidHeader = TRUE,
+                  width = 10, status = "info", solidHeader = TRUE,
                   title = "Revenue by group size (green better - red worse)",
                   bubblesOutput("packagePlot", width = "100%", height = 600)
                 ),
