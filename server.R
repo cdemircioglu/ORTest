@@ -448,6 +448,7 @@ function(input, output, session) {
          cex.main=tscale,
          cex.sub=tscale
     )
+    lines(mcv_df$mcv*(abs(input$perceivedValue*1.011-input$costtoDeliver)/50))
     
       
   })
