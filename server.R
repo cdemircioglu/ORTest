@@ -432,9 +432,9 @@ function(input, output, session) {
     acol="orangered"   # color for added samples
     tscale=1;          # label rescaling factor
     df <- pkgData()
-    myfulldata <- merge(mcv_df, mcv_df)
+      
     
-    hist(myfulldata$mcv*(abs(input$perceivedValue*1.011-input$costtoDeliver)/50), 
+    hist(mcv_df$mcv*(abs(input$perceivedValue*1.011-input$costtoDeliver)/50), 
          warn.unused = FALSE,
          #breaks=21,
          main="",
