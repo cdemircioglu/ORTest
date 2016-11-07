@@ -383,13 +383,11 @@ function(input, output, session) {
         cmsisdn = sum(r_version)
       )
       
-    
-    
     valueBox(
       #value = customerCount(),
-      value = prettyNum(df$cmsisdn*10, scientific=FALSE, big.mark=','),
+      value = paste(prettyNum(df$cmsisdn/100, scientific=FALSE, big.mark=','),"K",sep=""),
       #value = df$cmsisdn,
-      subtitle = "Customers in the market",
+      subtitle = "Customers within the market",
       icon = icon("users")
     )
   })
