@@ -434,7 +434,7 @@ function(input, output, session) {
     df <- pkgData()
       
     
-    hist(mcv_df$mcv, 
+    hist(mcv_df$mcv/25, 
          warn.unused = FALSE,
          #breaks=21,
          main="",
