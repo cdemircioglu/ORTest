@@ -380,7 +380,7 @@ function(input, output, session) {
     invalidateLater(1000, session) 
     df <- pkgData() %>%
       summarise( 
-        cmsisdn = sum(r_version)
+        cmsisdn = sum(r_version)*1000
       )
       
     
