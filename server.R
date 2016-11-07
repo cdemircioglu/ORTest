@@ -434,7 +434,7 @@ function(input, output, session) {
     df <- pkgData()
       
     
-    hist(mcv_df$mcv*(abs(input$perceivedValue-input$costtoDeliver)/10), 
+    hist(mcv_df$mcv*(abs(input$perceivedValue*1.011-input$costtoDeliver)/10), 
          warn.unused = FALSE,
          #breaks=21,
          main="",
