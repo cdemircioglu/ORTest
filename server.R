@@ -208,7 +208,7 @@ function(input, output, session) {
       lastperceivedValue <<- input$perceivedValue
       lastcosttoDeliver <<- input$costtoDeliver
       currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
-      timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1000
+      timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1028
       initialtimeRequired <<- timeRequired
       runCheck <<- as.numeric(as.character(Sys.time(),format="%H%M%S"))
       #Delete the data frame
@@ -375,7 +375,26 @@ function(input, output, session) {
       icon = icon("users")
     )
   })
+
+  output$totalcustomersScanned <- renderValueBox({
+    invalidateLater(1000, session) 
+    df <- pkgData() %>%
+      summarise( 
+        cmsisdn = sum(r_version)
+      )
+      
+    
+    
+    valueBox(
+      #value = customerCount(),
+      value = prettyNum(df$cmsisdn, scientific=FALSE, big.mark=','),
+      subtitle = "Customers in the market",
+      icon = icon("users")
+    )
+  })
   
+  
+    
   output$packagePlot <- renderBubbles({
     if (nrow(pkgData()) == 0)
       return()
