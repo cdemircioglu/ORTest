@@ -26,8 +26,8 @@ dashboardPage(
                 valueBoxOutput("completePercent", width=2),
                 valueBoxOutput("timetoComplete", width=2),
                 valueBoxOutput("costPerHour", width=2),
-                valueBoxOutput("totalcustomersScanned", width=2),
-                valueBoxOutput("customersScanned", width=2)
+                valueBoxOutput("customersScanned", width=2),
+                valueBoxOutput("totalcustomersScanned", width=2)
               ),
               fluidRow(
                 box(
