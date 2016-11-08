@@ -383,7 +383,7 @@ function(input, output, session) {
         cmsisdn = sum(r_version)
       )
     
-    validate(need(df$r_version,"Dataframe not found")) # changed as well
+    validate(need(df$cmsisdn,"Dataframe not found")) # changed as well
       valueBox(
         #value = customerCount(),
         value = paste(prettyNum(df$cmsisdn/100, scientific=FALSE, big.mark=','),"K",sep=""),
