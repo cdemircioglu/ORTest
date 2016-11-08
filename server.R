@@ -383,7 +383,8 @@ function(input, output, session) {
         cmsisdn = sum(r_version)
       )
     
-    
+    if(exists("df"))
+    {
       valueBox(
         #value = customerCount(),
         value = paste(prettyNum(df$cmsisdn/100, scientific=FALSE, big.mark=','),"K",sep=""),
@@ -391,7 +392,15 @@ function(input, output, session) {
         subtitle = "Customers within the market",
         icon = icon("users")
       )
-     
+    } else {
+      valueBox(
+        #value = customerCount(),
+        value = paste(prettyNum(0, scientific=FALSE, big.mark=','),"K",sep=""),
+        #value = df$cmsisdn,
+        subtitle = "Customers within the market",
+        icon = icon("users")
+      )
+    } 
     
     
   })
