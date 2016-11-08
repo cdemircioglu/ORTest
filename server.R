@@ -383,8 +383,7 @@ function(input, output, session) {
         cmsisdn = sum(r_version)
       )
     
-    if(exists("df"))
-    {
+    validate(need(df$r_version,"Dataframe not found")) # changed as well
       valueBox(
         #value = customerCount(),
         value = paste(prettyNum(df$cmsisdn/100, scientific=FALSE, big.mark=','),"K",sep=""),
@@ -392,15 +391,7 @@ function(input, output, session) {
         subtitle = "Customers within the market",
         icon = icon("users")
       )
-    } else {
-      valueBox(
-        #value = customerCount(),
-        value = paste(prettyNum(0, scientific=FALSE, big.mark=','),"K",sep=""),
-        #value = df$cmsisdn,
-        subtitle = "Customers within the market",
-        icon = icon("users")
-      )
-    } 
+     
     
     
   })
