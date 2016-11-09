@@ -18,7 +18,7 @@ function(input, output, session) {
   timeRequired <- 7500 #seconds to complete
   initialtimeRequired <- isolate(timeRequired) #initial time required to calc percent complete
   
-  resetfactor <- 0 
+  resetfactor <- 1 
   lastservercnt <- 0
   total <- 0
   lastmarketInterest <<- "Dummy"
@@ -413,7 +413,7 @@ function(input, output, session) {
     
     order <- unique(pkgData()$size)
     df <- pkgData() %>%
-      group_by(floor((size/4))) %>%
+      group_by(size) %>%
       summarise( 
         cmsisdn = sum(r_version)
       ) %>%
@@ -461,7 +461,7 @@ function(input, output, session) {
       group_by(package) %>%
       tally() %>%
       arrange(desc(n), tolower(package)) %>%
-      mutate(percentage = n / nrow(pkgData()) * 10) %>%
+      mutate(percentage = n / nrow(pkgData()) * 100) %>%
       select("Web site" = package, "% of activity" = percentage) %>%
       as.data.frame() %>%
       head(10)
