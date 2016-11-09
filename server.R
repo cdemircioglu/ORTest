@@ -387,7 +387,7 @@ function(input, output, session) {
     {
       valueBox(
         #value = customerCount(),
-        value = paste(prettyNum(floor(df$cmsisdn/100), scientific=FALSE, big.mark=','),"K",sep=""),
+        value = paste(prettyNum(floor(df$cmsisdn/1000), scientific=FALSE, big.mark=','),"K",sep=""),
         #value = df$cmsisdn,
         subtitle = "Customers within the market",
         icon = icon("users")
