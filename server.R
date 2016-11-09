@@ -413,7 +413,7 @@ function(input, output, session) {
     
     order <- unique(pkgData()$size)
     df <- pkgData() %>%
-      group_by(floor(size/4)) %>%
+      group_by(size) %>%
       summarise( 
         cmsisdn = sum(r_version)
       ) %>%
