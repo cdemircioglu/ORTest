@@ -422,7 +422,7 @@ function(input, output, session) {
       head(50)
       total <<- sum(df$cmsisdn)     
       #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
-      bubbles(df$cmsisdn, paste("$",floor((df$size)-input$costtoDeliver), "/", df$cmsisdn/300,"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size)-input$costtoDeliver)<0),])))) )
+      bubbles(df$cmsisdn, paste("$",floor((df$size)-input$costtoDeliver), "/", df$cmsisdn/200,"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size)-input$costtoDeliver)<0),])))) )
       
   })
   
