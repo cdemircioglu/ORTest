@@ -32,7 +32,7 @@ dashboardPage(
               fluidRow(
                 box(
                   width = 9, status = "info", solidHeader = TRUE,
-                  title = "Revenue by group size (green better - red worse)",
+                  title = "Profit by group size (green better - red worse)",
                   bubblesOutput("packagePlot", width = "100%", height = 600)
                 ),
                 box(
