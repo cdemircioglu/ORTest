@@ -370,7 +370,7 @@ function(input, output, session) {
     
     valueBox(
       #value = customerCount(),
-      value = prettyNum(floor(percent*100000), scientific=FALSE, big.mark=','),
+      value = prettyNum(paste(floor(percent*100),"K",sep=""), scientific=FALSE, big.mark=','),
       subtitle = "Customers scanned",
       icon = icon("users")
     )
@@ -441,6 +441,7 @@ function(input, output, session) {
          col=tcol,
          ylim=c(0,5000),
          ylab="Frequency (1K)",
+         xlab="Revenue",
          border=tcol,
          xlab="",
          cex.lab=tscale,
