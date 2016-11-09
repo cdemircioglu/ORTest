@@ -461,7 +461,7 @@ function(input, output, session) {
       group_by(package) %>%
       tally() %>%
       arrange(desc(n), tolower(package)) %>%
-      mutate(percentage = n / nrow(pkgData()) * 100) %>%
+      mutate(percentage = n / nrow(pkgData()) * 10) %>%
       select("Web site" = package, "% of activity" = percentage) %>%
       as.data.frame() %>%
       head(10)
