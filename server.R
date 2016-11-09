@@ -441,7 +441,7 @@ function(input, output, session) {
          col=tcol,
          ylim=c(0,5000),
          ylab="Frequency (1K)",
-         xlab="Revenue",
+         #xlab="Revenue",
          border=tcol,
          xlab="",
          cex.lab=tscale,
