@@ -10,7 +10,7 @@ function(input, output, session) {
   
   #######VARIABLES SECTION#######    
   
-  df_duration <- data.frame(FOO=c("127260|ACCESSORIES","114060|ACCOUNTING","54580|ADD","283780|ADULT_EDUCATION","50400|ARTS_CRAFTS","93450|BARBECUES_GRILLING","14360|CHRISTIANITY","251150|EDUCATIONAL_INSTITUTIONS","204630|ENTERTAINMENT_NEWS_CELEBRITY_SITES","139870|ENTERTAINMENT_OTHER","155150|FINANCIAL_PLANNING","73030|HEALTH_LOWFAT_COOKING","204910|INVESTING","212760|LITERATURE_BOOKS","237510|MOVIES","176260|MUSIC","255850|PRIVATE_SCHOOL","41320|PSYCHOLOGY_PSYCHIATRY","241700|REFERENCE_MATERIALS_MAPS","29000|SMOKING_CESSATION","22800|SPACE_ASTRONOMY","252130|SPECIAL_EDUCATION","136660|STREAMING_DOWNLOADABLE_VIDEO","99340|TAX_PLANNING","162840|TELEVISION","128260|TEXT_MESSAGING_SMS","160280|WIKIS","306840|YEAR_712_EDUCATION"))  
+  df_duration <- data.frame(FOO=c("114060|ACCOUNTING","54580|ADD","50400|ARTS_CRAFTS","93450|BARBECUES_GRILLING","251150|EDUCATIONAL_INSTITUTIONS","204630|ENTERTAINMENT_NEWS_CELEBRITY_SITES","139870|ENTERTAINMENT_OTHER","73030|HEALTH_LOWFAT_COOKING","204910|INVESTING","212760|LITERATURE_BOOKS","237510|MOVIES","176260|MUSIC","255850|PRIVATE_SCHOOL","41320|PSYCHOLOGY_PSYCHIATRY","241700|REFERENCE_MATERIALS_MAPS","29000|SMOKING_CESSATION","22800|SPACE_ASTRONOMY","252130|SPECIAL_EDUCATION","136660|STREAMING_DOWNLOADABLE_VIDEO","99340|TAX_PLANNING","162840|TELEVISION","128260|TEXT_MESSAGING_SMS","160280|WIKIS","306840|YEAR_712_EDUCATION"))  
   df_duration <- data.frame(do.call('rbind', strsplit(as.character(df_duration$FOO),'|',fixed=TRUE)))
   runCheck <- 1
     
@@ -419,8 +419,8 @@ function(input, output, session) {
       ) %>%
       arrange(desc(size), tolower(size)) %>%
       # Just show the top 60, otherwise it gets hard to see
-      head(40)
-      total <<- sum(df$cmsisdn)*1.4     
+      head(45)
+      total <<- sum(df$cmsisdn)*1.5     
       #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
       bubbles(df$cmsisdn, paste("$",((df$size/4)-input$costtoDeliver), "/", df$cmsisdn/100,"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size/4)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size/4)-input$costtoDeliver)<0),])))) )
       
