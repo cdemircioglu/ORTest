@@ -84,13 +84,13 @@ function(input, output, session) {
           {
             mcv_df <<- mcv_df[0,]
           }
-          return()
+          #return()
         }
         
         #Check the runCheck if it is greater
         if (currentrunCheck != runCheck)
         {
-          return()
+          #return()
         }
         
         #Create the data frame
@@ -387,7 +387,7 @@ function(input, output, session) {
     {
       valueBox(
         #value = customerCount(),
-        value = paste(prettyNum(df$cmsisdn/100, scientific=FALSE, big.mark=','),"K",sep=""),
+        value = paste(prettyNum(floor(df$cmsisdn/100), scientific=FALSE, big.mark=','),"K",sep=""),
         #value = df$cmsisdn,
         subtitle = "Customers within the market",
         icon = icon("users")

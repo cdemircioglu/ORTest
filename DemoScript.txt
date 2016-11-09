@@ -1,0 +1,23 @@
+
+
+Demo script
+============
+
+1)	Run 
+		*Market Interest at Movies
+		*Revenue to carrier at 40
+		*Cost to deliver at 10
+
+One server it is taking 4 hours to complete the analysis.
+
+
+2)	Run
+		*Increase the number of servers to 10, the run time reduced to half an hour.
+		*Increase the Cost to deliver to 25
+		*Tell the cost of servers increase to $15/hr, equals $18,000.
+
+Running the monte carlo simulation. 
+
+
+		
+
