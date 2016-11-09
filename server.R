@@ -438,7 +438,7 @@ function(input, output, session) {
          warn.unused = FALSE,
          #breaks=21,
          main="",
-         col=tcol,         /
+         col=tcol,         
          ylim=c(0,5000),
          ylab="Frequency (1K)",
          border=tcol,
