@@ -413,17 +413,16 @@ function(input, output, session) {
     
     order <- unique(pkgData()$size)
     df <- pkgData() %>%
-      group_by(floor(size/4)) %>%
+      group_by(size) %>%
       summarise( 
         cmsisdn = sum(r_version)
       ) %>%
       arrange(desc(size), tolower(size)) %>%
       # Just show the top 60, otherwise it gets hard to see
       head(40)
-      
       total <<- sum(df$cmsisdn)      
       #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
-      bubbles(df$cmsisdn, paste("$",floor((df$size/4)-input$costtoDeliver), "/", df$cmsisdn/100,"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size/4)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size/4)-input$costtoDeliver)<0),])))) )
+      bubbles(df$cmsisdn, paste("$",((df$size/4)-input$costtoDeliver), "/", df$cmsisdn/100,"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size/4)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size/4)-input$costtoDeliver)<0),])))) )
       
   })
   
