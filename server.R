@@ -387,7 +387,7 @@ function(input, output, session) {
     {
       valueBox(
         #value = customerCount(),
-        value = paste(prettyNum(floor(df$cmsisdn/300), scientific=FALSE, big.mark=','),"K",sep=""),
+        value = paste(prettyNum(floor(df$cmsisdn/400), scientific=FALSE, big.mark=','),"K",sep=""),
         #value = df$cmsisdn,
         subtitle = "Customers within the market",
         icon = icon("users")
@@ -422,7 +422,7 @@ function(input, output, session) {
       head(50)
       total <<- sum(df$cmsisdn)     
       #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
-      bubbles(df$cmsisdn, paste("$",floor((df$size)-input$costtoDeliver), "/", format(round(df$cmsisdn/304,2), nsmall = 2),"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size)-input$costtoDeliver)<0),])))) )
+      bubbles(df$cmsisdn, paste("$",floor((df$size)-input$costtoDeliver), "/", format(round(df$cmsisdn/404,2), nsmall = 2),"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size)-input$costtoDeliver)<0),])))) )
       
   })
   
