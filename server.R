@@ -413,6 +413,7 @@ function(input, output, session) {
     
     order <- unique(pkgData()$size)
     df <- pkgData() %>%
+      size <- floor(size/4) %>%
       group_by(size) %>%
       summarise( 
         cmsisdn = sum(r_version)
@@ -422,7 +423,8 @@ function(input, output, session) {
       head(40)
       total <<- sum(df$cmsisdn)*1.4     
       #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
-      bubbles(df$cmsisdn, paste("$",((df$size/4)-input$costtoDeliver), "/", df$cmsisdn/100,"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size/4)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size/4)-input$costtoDeliver)<0),])))) )
+      #bubbles(df$cmsisdn, paste("$",((df$size/4)-input$costtoDeliver), "/", df$cmsisdn/100,"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size/4)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size/4)-input$costtoDeliver)<0),])))) )
+      bubbles(df$cmsisdn, paste("$",((df$size)-input$costtoDeliver), "/", df$cmsisdn/100,"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size/4)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size)-input$costtoDeliver)<0),])))) )
       
   })
   
