@@ -159,41 +159,41 @@ function(input, output, session) {
   
   # Set package
   pkgData <- packageData(pkgStream, maxAgeSecs)
-  
-  # Use a bloom filter to probabilistically track the number of unique
-  # users we have seen; using bloom filter means we will not have a
-  # perfectly accurate count, but the memory usage will be bounded.
-  userCount <- function(pkgStream) {
-    # These parameters estimate that with 5000 unique users added to
-    # the filter, we'll have a 1% chance of false positive on the next
-    # user to be queried.
-    bloomFilter <- BloomFilter$new(5000, 0.01)
-    #total <- 0
-    reactive({
-      df <- pkgStream()
-      if (!is.null(df) && nrow(df) > 0) {
-        ## runCheck is only unique on a per-day basis. To make them unique
-        ## across days, include the date. And call unique() to make sure
-        ## we don't double-count dupes in the current data frame.
-        #ids <- paste(df$date, df$runCheck) %>% unique()
-        ## Get indices of IDs we haven't seen before
-        #newIds <- !sapply(ids, bloomFilter$has)
-        ## Add the count of new IDs
-        #total <<- total + length(newIds)
-        #total <<- 500 ##total + sum(df$r_version)
-        # Reset the total count
-        if (resetfactor != 0)
-          total <<- 0
-        
-        
-        # Add the new IDs so we know for next time
-        #sapply(ids[newIds], bloomFilter$set)
-      }
-      total
-    })
-  }
-  
-  # Call function
+#  
+#  # Use a bloom filter to probabilistically track the number of unique
+#  # users we have seen; using bloom filter means we will not have a
+#  # perfectly accurate count, but the memory usage will be bounded.
+#  userCount <- function(pkgStream) {
+#    # These parameters estimate that with 5000 unique users added to
+#    # the filter, we'll have a 1% chance of false positive on the next
+#    # user to be queried.
+#    bloomFilter <- BloomFilter$new(5000, 0.01)
+#    #total <- 0
+#    reactive({
+#      df <- pkgStream()
+#      if (!is.null(df) && nrow(df) > 0) {
+#        ## runCheck is only unique on a per-day basis. To make them unique
+#        ## across days, include the date. And call unique() to make sure
+#        ## we don't double-count dupes in the current data frame.
+#        #ids <- paste(df$date, df$runCheck) %>% unique()
+#        ## Get indices of IDs we haven't seen before
+#        #newIds <- !sapply(ids, bloomFilter$has)
+#        ## Add the count of new IDs
+#        #total <<- total + length(newIds)
+#        #total <<- 500 ##total + sum(df$r_version)
+#        # Reset the total count
+#        if (resetfactor != 0)
+#          total <<- 0
+#        
+#        
+#        # Add the new IDs so we know for next time
+#        #sapply(ids[newIds], bloomFilter$set)
+#      }
+#      total
+#    })
+#  }
+#  
+#  # Call function
 #  customerCount <- userCount(pkgStream)
 #  
 #  #######OBSERVE PARAMETERS#######
