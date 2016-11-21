@@ -194,10 +194,10 @@ function(input, output, session) {
   }
   
   # Call function
-  customerCount <- userCount(pkgStream)
-  
-  #######OBSERVE PARAMETERS#######
-  
+#  customerCount <- userCount(pkgStream)
+#  
+#  #######OBSERVE PARAMETERS#######
+#  
 #  observe({
 #
 #    # Check the parameters, if they are changed reset the data frame. 
