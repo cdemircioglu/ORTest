@@ -36,7 +36,7 @@ function(input, output, session) {
     #sock <- socketConnection("cransim.rstudio.com", 6789, blocking = FALSE, open = "r")
     #sock <- socketConnection("localhost", 8081, blocking = FALSE, open = "r")
     #sock <- socketConnection(host="localhost", port = 8081, blocking=TRUE,server=FALSE, open="r")
-    sock <- socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r")
+    sock <- socketConnection(host="localhost", port = 8091, blocking=FALSE,server=FALSE, open="r")
     
     # Clean up when session is over
     session$onSessionEnded(function() {
@@ -228,7 +228,7 @@ function(input, output, session) {
     parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck")
     
     # Command start
-    cmdString <- '/home/cem/RabbitMQ/send.py "<ShinnyParameters>'
+    cmdString <- '/home/cem/ui/send.py "<ShinnyParameters>'
     
     # Build the xml parameters
     for (i in 1:length(parameterValue))
