@@ -29,7 +29,7 @@ function(input, output, session) {
   startTime <- as.numeric(Sys.time())
   
   # An empty prototype of the data frame we want to create
-  prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric())
+  prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric(), received = numeric())
   
   packageStream <- function(session) {
     # Connect to data source
@@ -124,13 +124,13 @@ function(input, output, session) {
       {
           result = tryCatch({
               rbind(memo, value) %>%
-              filter(runCheckDF == runCheck)
+              filter(runCheck == runcheck)
           }, error = function(e) {
               #Insert dummy record to stop the rendering
-              new.prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric())
-              new.prototype <- data.frame(runnumber = 1,bucket = 1,rcount = 1,runtime = 1,website = "na.com",runcheck = 1)
+              new.prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric(), received = numeric())
+              new.prototype <- data.frame(runnumber = 1,bucket = 1,rcount = 1,runtime = 1,website = "na.com",runcheck = 1,received = as.numeric(Sys.time())-299)
               rbind(new.prototype, prototype) %>%
-              filter(runCheckDF == runCheck)
+              filter(runCheck == runcheck)
               resetfactor <<- 0 #Trip the fuse
             } 
           )
@@ -138,8 +138,8 @@ function(input, output, session) {
       } else
       {
           #Insert dummy record to stop the rendering
-          new.prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric())
-          new.prototype <- data.frame(runnumber = 1,bucket = 1,rcount = 1,runtime = 1,website = "na.com",runcheck = 1)
+          new.prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric(), received = numeric())
+          new.prototype <- data.frame(runnumber = 1,bucket = 1,rcount = 1,runtime = 1,website = "na.com",runcheck = 1,received = as.numeric(Sys.time())-299)
           rbind(new.prototype, prototype) %>%
           filter(received > as.numeric(Sys.time()) - timeWindow)
           resetfactor <<- 0 #Trip the fuse
@@ -156,9 +156,9 @@ function(input, output, session) {
   
   # Max age of data (5 minutes)
   maxAgeSecs <- 60 * 500
-#  
-#  # Set package
-#  pkgData <- packageData(pkgStream, maxAgeSecs)
+  
+  # Set package
+  pkgData <- packageData(pkgStream, maxAgeSecs)
 #  
 #  # Use a bloom filter to probabilistically track the number of unique
 #  # users we have seen; using bloom filter means we will not have a
