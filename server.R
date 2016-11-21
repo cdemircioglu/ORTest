@@ -10,7 +10,7 @@ function(input, output, session) {
   
   #######VARIABLES SECTION#######    
   
-  df_duration <- data.frame(FOO=c("414060|ACCOUNTING","354580|ADD","250400|ARTS_CRAFTS","293450|BARBECUES_GRILLING","451150|EDUCATIONAL_INSTITUTIONS","664630|ENTERTAINMENT_NEWS_CELEBRITY_SITES","439870|ENTERTAINMENT_OTHER","473030|HEALTH_LOWFAT_COOKING","204910|INVESTING","412760|LITERATURE_BOOKS","4237510|MOVIES","776260|MUSIC","41320|PSYCHOLOGY_PSYCHIATRY","241700|REFERENCE_MATERIALS_MAPS","29000|SMOKING_CESSATION","252130|SPECIAL_EDUCATION","199340|TAX_PLANNING","328260|TEXT_MESSAGING_SMS","160280|WIKIS","306840|YEAR_712_EDUCATION"))  
+  df_duration <- data.frame(FOO=c("414060|ACCESSORIES","354580|ACCOUNTING","250400|ARTS","293450|ASTRONOMY","451150|CHRISTIANITY","664630|EDUCATION","439870|ENTERTAINMENT","473030|FINANCE","304910|HEALTH","412760|INVESTING","4237510|MOVIES","4037510|MUSIC","4637510|SPORTS","4437510|TECHNOLOGY","4737510|TELEVISION"))  
   df_duration <- data.frame(do.call('rbind', strsplit(as.character(df_duration$FOO),'|',fixed=TRUE)))
   runCheck <- 1
     
@@ -29,14 +29,14 @@ function(input, output, session) {
   startTime <- as.numeric(Sys.time())
   
   # An empty prototype of the data frame we want to create
-  prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = numeric(), package = character(), version = character(),country = character(), runCheckDF = numeric(), received = numeric())
+  prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric())
   
   packageStream <- function(session) {
     # Connect to data source
     #sock <- socketConnection("cransim.rstudio.com", 6789, blocking = FALSE, open = "r")
     #sock <- socketConnection("localhost", 8081, blocking = FALSE, open = "r")
     #sock <- socketConnection(host="localhost", port = 8081, blocking=TRUE,server=FALSE, open="r")
-    sock <- socketConnection(host="localhost", port = 8081, blocking=FALSE,server=FALSE, open="r")
+    sock <- socketConnection(host="localhost", port = 8091, blocking=FALSE,server=FALSE, open="r")
     
     # Clean up when session is over
     session$onSessionEnded(function() {
@@ -127,8 +127,8 @@ function(input, output, session) {
               filter(runCheckDF == runCheck)
           }, error = function(e) {
               #Insert dummy record to stop the rendering
-              new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = numeric(), package = character(), version = character(),country = character(), runCheckDF = numeric(), received = numeric())
-              new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = 1234, r_arch = 500,r_os = 64, package = "Loading", version = "1.60.0-2",country = "DE", runCheckDF = 23657, received = as.numeric(Sys.time())-299)
+              new.prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric())
+              new.prototype <- data.frame(runnumber = 1,bucket = 1,rcount = 1,runtime = 1,website = "na.com",runcheck = 1)
               rbind(new.prototype, prototype) %>%
               filter(runCheckDF == runCheck)
               resetfactor <<- 0 #Trip the fuse
@@ -138,8 +138,8 @@ function(input, output, session) {
       } else
       {
           #Insert dummy record to stop the rendering
-          new.prototype <- data.frame(date = character(), time = character(),size = numeric(), r_version = numeric(), r_arch = numeric(),r_os = numeric(), package = character(), version = character(),country = character(), runCheckDF = numeric(), received = numeric())
-          new.prototype <- data.frame(date = "2016-09-27", time = "07:57:22",size = 9263737, r_version = 12345, r_arch = 500,r_os = 64, package = "Loading", version = "1.60.0-2",country = "DE", runCheckDF = 23657, received = as.numeric(Sys.time())-299)
+          new.prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric())
+          new.prototype <- data.frame(runnumber = 1,bucket = 1,rcount = 1,runtime = 1,website = "na.com",runcheck = 1)
           rbind(new.prototype, prototype) %>%
           filter(received > as.numeric(Sys.time()) - timeWindow)
           resetfactor <<- 0 #Trip the fuse
@@ -380,7 +380,7 @@ function(input, output, session) {
     invalidateLater(1000, session) 
     df <- pkgData() %>%
       summarise( 
-        cmsisdn = sum(r_version)
+        cmsisdn = sum(rcount)
       )
     
     if(exists("df"))
@@ -411,18 +411,18 @@ function(input, output, session) {
     if (nrow(pkgData()) == 0)
       return()
     
-    order <- unique(pkgData()$size)
+    order <- unique(pkgData()$bucket)
     df <- pkgData() %>%
-      group_by(size = floor((size/4))) %>%
+      group_by(bucket = floor((bucket/4))) %>%
       summarise( 
-        cmsisdn = sum(r_version)
+        cmsisdn = sum(rcount)
       ) %>%
-      arrange(desc(size), tolower(size)) %>%
+      arrange(desc(bucket), tolower(bucket)) %>%
       # Just show the top 60, otherwise it gets hard to see
       head(50)
       total <<- sum(df$cmsisdn)     
       #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
-      bubbles(df$cmsisdn, paste("$",floor((df$size)-input$costtoDeliver), "/", format(round(df$cmsisdn/404,2), nsmall = 2),"K",sep="" ), key = df$size, color = c(cp(nrow(df[which(floor((df$size)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$size)-input$costtoDeliver)<0),])))) )
+      bubbles(df$cmsisdn, paste("$",floor((df$bucket)-input$costtoDeliver), "/", format(round(df$cmsisdn/404,2), nsmall = 2),"K",sep="" ), key = df$bucket, color = c(cp(nrow(df[which(floor((df$bucket)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$bucket)-input$costtoDeliver)<0),])))) )
       
   })
   
