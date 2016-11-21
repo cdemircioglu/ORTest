@@ -198,140 +198,139 @@ function(input, output, session) {
   
   #######OBSERVE PARAMETERS#######
   
-#  observe({
-#
-#    # Check the parameters, if they are changed reset the data frame. 
-#    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver)
-#    {
-#      resetfactor <<- 1 #Reset the data frame
-#      lastmarketInterest <<- input$marketInterest
-#      lastperceivedValue <<- input$perceivedValue
-#      lastcosttoDeliver <<- input$costtoDeliver
-#      currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
-#      timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1028
-#      initialtimeRequired <<- timeRequired
-#      runCheck <<- as.numeric(as.character(Sys.time(),format="%H%M%S"))
-#      #Delete the data frame
-#      if(exists("mcv_df"))
-#      {
-#        mcv_df <<- mcv_df[0,]
-#      }
-#      
-#    }
+  observe({
 
-#    # We'll use these multiple times, so use short var names for convenience.
-#    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck)
-#    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck")
-#    
-#    # Command start
-#    cmdString <- '/home/cem/ui/send.py "<ShinnyParameters>'
-#    
-#    # Build the xml parameters
-#    for (i in 1:length(parameterValue))
-#    {
-#      parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
-#      parameterString <- gsub("nnn",parameterName[i],parameterString)
-#      parameterString <- gsub("vvv",parameterValue[i],parameterString)
-#      cmdString <- paste(cmdString,parameterString,sep="")
-#    }
-#    
-#    # Command end
-#    cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
-#    
-#    # Send the message
-#    system(cmdString)
-#    
-#  })
-#  
-#  # Color function
-#  cx <- function (n, h = c(-243, 360), c = 91, l = c(61, 77), power = 0.833333333333333, 
-#                  fixup = TRUE, gamma = NULL, alpha = 1, ...) 
-#  {
-#    if (!is.null(gamma)) 
-#      warning("'gamma' is deprecated and has no effect")
-#    if (n < 1L) 
-#      return(character(0L))
-#    h <- rep(h, length.out = 2L)
-#    c <- c[1L]
-#    l <- rep(l, length.out = 2L)
-#    power <- rep(power, length.out = 2L)
-#    rval <- seq(1, -1, length = n)
-#    rval <- hex(polarLUV(L = l[2L] - diff(l) * abs(rval)^power[2L], 
-#                         C = c * abs(rval)^power[1L], H = ifelse(rval > 0, h[1L], 
-#                                                                 h[2L])), fixup = fixup, ...)
-#    if (!missing(alpha)) {
-#      alpha <- pmax(pmin(alpha, 1), 0)
-#      alpha <- format(as.hexmode(round(alpha * 255 + 1e-04)), 
-#                      width = 2L, upper.case = TRUE)
-#      rval <- paste(rval, alpha, sep = "")
-#    }
-#    return(rval)
-#  }
+    # Check the parameters, if they are changed reset the data frame. 
+    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver)
+    {
+      resetfactor <<- 1 #Reset the data frame
+      lastmarketInterest <<- input$marketInterest
+      lastperceivedValue <<- input$perceivedValue
+      lastcosttoDeliver <<- input$costtoDeliver
+      currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
+      timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1028
+      initialtimeRequired <<- timeRequired
+      runCheck <<- as.numeric(as.character(Sys.time(),format="%H%M%S"))
+      #Delete the data frame
+      if(exists("mcv_df"))
+      {
+        mcv_df <<- mcv_df[0,]
+      }
+      
+    }
+    # We'll use these multiple times, so use short var names for convenience.
+    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck)
+    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck")
+    
+    # Command start
+    cmdString <- '/home/cem/ui/send.py "<ShinnyParameters>'
+    
+    # Build the xml parameters
+    for (i in 1:length(parameterValue))
+    {
+      parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
+      parameterString <- gsub("nnn",parameterName[i],parameterString)
+      parameterString <- gsub("vvv",parameterValue[i],parameterString)
+      cmdString <- paste(cmdString,parameterString,sep="")
+    }
+    
+    # Command end
+    cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
+    
+    # Send the message
+    system(cmdString)
+    
+  })
   
-#  cn <- function (n, h = c(360, 293), c. = c(80, 26), l = c(34, 95), power = c(0.7, 1.3), fixup = TRUE, gamma = NULL, alpha = 1,...) 
-#  {
-#    if (!is.null(gamma)) 
-#      warning("'gamma' is deprecated and has no effect")
-#    if (n < 1L) 
-#      return(character(0L))
-#    h <- rep(h, length.out = 2L)
-#    c <- rep(c., length.out = 2L)
-#    l <- rep(l, length.out = 2L)
-#    power <- rep(power, length.out = 2L)
-#    rval <- seq(1, 0, length = n)
-#    rval <- hex(polarLUV(L = l[2L] - diff(l) * rval^power[2L], 
-#                         C = c[2L] - diff(c) * rval^power[1L], H = h[2L] - diff(h) * 
-#                           rval), fixup = fixup, ...)
-#    if (!missing(alpha)) {
-#      alpha <- pmax(pmin(alpha, 1), 0)
-#      alpha <- format(as.hexmode(round(alpha * 255 + 1e-04)), 
-#                      width = 2L, upper.case = TRUE)
-#      rval <- paste(rval, alpha, sep = "")
-#    }
-#    return(rval)
-#  }
+  # Color function
+  cx <- function (n, h = c(-243, 360), c = 91, l = c(61, 77), power = 0.833333333333333, 
+                  fixup = TRUE, gamma = NULL, alpha = 1, ...) 
+  {
+    if (!is.null(gamma)) 
+      warning("'gamma' is deprecated and has no effect")
+    if (n < 1L) 
+      return(character(0L))
+    h <- rep(h, length.out = 2L)
+    c <- c[1L]
+    l <- rep(l, length.out = 2L)
+    power <- rep(power, length.out = 2L)
+    rval <- seq(1, -1, length = n)
+    rval <- hex(polarLUV(L = l[2L] - diff(l) * abs(rval)^power[2L], 
+                         C = c * abs(rval)^power[1L], H = ifelse(rval > 0, h[1L], 
+                                                                 h[2L])), fixup = fixup, ...)
+    if (!missing(alpha)) {
+      alpha <- pmax(pmin(alpha, 1), 0)
+      alpha <- format(as.hexmode(round(alpha * 255 + 1e-04)), 
+                      width = 2L, upper.case = TRUE)
+      rval <- paste(rval, alpha, sep = "")
+    }
+    return(rval)
+  }
+
+  cn <- function (n, h = c(360, 293), c. = c(80, 26), l = c(34, 95), power = c(0.7, 1.3), fixup = TRUE, gamma = NULL, alpha = 1,...) 
+  {
+    if (!is.null(gamma)) 
+      warning("'gamma' is deprecated and has no effect")
+    if (n < 1L) 
+      return(character(0L))
+    h <- rep(h, length.out = 2L)
+    c <- rep(c., length.out = 2L)
+    l <- rep(l, length.out = 2L)
+    power <- rep(power, length.out = 2L)
+    rval <- seq(1, 0, length = n)
+    rval <- hex(polarLUV(L = l[2L] - diff(l) * rval^power[2L], 
+                         C = c[2L] - diff(c) * rval^power[1L], H = h[2L] - diff(h) * 
+                           rval), fixup = fixup, ...)
+    if (!missing(alpha)) {
+      alpha <- pmax(pmin(alpha, 1), 0)
+      alpha <- format(as.hexmode(round(alpha * 255 + 1e-04)), 
+                      width = 2L, upper.case = TRUE)
+      rval <- paste(rval, alpha, sep = "")
+    }
+    return(rval)
+  }
+
   
-  
-#  cp <- function (n, h = c(130, 30), c. = c(65, 0), l = c(45, 90), power = c(0.5, 1.5), fixup = TRUE, gamma = NULL, alpha = 1, ...) 
-#  {
-#    if (!is.null(gamma)) 
-#      warning("'gamma' is deprecated and has no effect")
-#    if (n < 1L) 
-#      return(character(0L))
-#    h <- rep(h, length.out = 2L)
-#    c <- rep(c., length.out = 2L)
-#    l <- rep(l, length.out = 2L)
-#    power <- rep(power, length.out = 2L)
-#    rval <- seq(1, 0, length = n)
-#    rval <- hex(polarLUV(L = l[2L] - diff(l) * rval^power[2L], 
-#                         C = c[2L] - diff(c) * rval^power[1L], H = h[2L] - diff(h) * 
-#                           rval), fixup = fixup, ...)
-#    if (!missing(alpha)) {
-#      alpha <- pmax(pmin(alpha, 1), 0)
-#      alpha <- format(as.hexmode(round(alpha * 255 + 1e-04)), 
-#                      width = 2L, upper.case = TRUE)
-#      rval <- paste(rval, alpha, sep = "")
-#    }
-#    return(rval)
-#  }
+  cp <- function (n, h = c(130, 30), c. = c(65, 0), l = c(45, 90), power = c(0.5, 1.5), fixup = TRUE, gamma = NULL, alpha = 1, ...) 
+  {
+    if (!is.null(gamma)) 
+      warning("'gamma' is deprecated and has no effect")
+    if (n < 1L) 
+      return(character(0L))
+    h <- rep(h, length.out = 2L)
+    c <- rep(c., length.out = 2L)
+    l <- rep(l, length.out = 2L)
+    power <- rep(power, length.out = 2L)
+    rval <- seq(1, 0, length = n)
+    rval <- hex(polarLUV(L = l[2L] - diff(l) * rval^power[2L], 
+                         C = c[2L] - diff(c) * rval^power[1L], H = h[2L] - diff(h) * 
+                           rval), fixup = fixup, ...)
+    if (!missing(alpha)) {
+      alpha <- pmax(pmin(alpha, 1), 0)
+      alpha <- format(as.hexmode(round(alpha * 255 + 1e-04)), 
+                      width = 2L, upper.case = TRUE)
+      rval <- paste(rval, alpha, sep = "")
+    }
+    return(rval)
+  }
   
     
   #######OUTPUT SECTION#######    
   
-#  output$completePercent <- renderValueBox({
-#    invalidateLater(1000, session) 
-#    percent <- (1-timeRequired/initialtimeRequired)*100
-#    if (percent > 100)
-#      percent <- 100
-#    
-#    valueBox(
-#      value = formatC(percent, digits = 2, format = "f"),
-#      subtitle = "Percent completed",
-#      icon = icon("percent"),
-#      color = "yellow" 
-#    )
-#  })
-#  
+  output$completePercent <- renderValueBox({
+    invalidateLater(1000, session) 
+    percent <- (1-timeRequired/initialtimeRequired)*100
+    if (percent > 100)
+      percent <- 100
+    
+    valueBox(
+      value = formatC(percent, digits = 2, format = "f"),
+      subtitle = "Percent completed",
+      icon = icon("percent"),
+      color = "yellow" 
+    )
+  })
+  
 #  output$timetoComplete <- renderValueBox({
 #    invalidateLater(1000, session) 
 #    elapsed <- as.numeric(Sys.time()) - startTime #Assumes a constant value to complete the job
