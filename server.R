@@ -151,14 +151,14 @@ function(input, output, session) {
   
   
   
-  # Set the stream of session
-  pkgStream <- packageStream(session)
-  
-  # Max age of data (5 minutes)
-  maxAgeSecs <- 60 * 500
-  
-  # Set package
-  pkgData <- packageData(pkgStream, maxAgeSecs)
+#  # Set the stream of session
+#  pkgStream <- packageStream(session)
+#  
+#  # Max age of data (5 minutes)
+#  maxAgeSecs <- 60 * 500
+#  
+#  # Set package
+#  pkgData <- packageData(pkgStream, maxAgeSecs)
 #  
 #  # Use a bloom filter to probabilistically track the number of unique
 #  # users we have seen; using bloom filter means we will not have a
