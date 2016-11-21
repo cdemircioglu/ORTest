@@ -322,59 +322,59 @@ function(input, output, session) {
     
   #######OUTPUT SECTION#######    
   
-  output$completePercent <- renderValueBox({
-    invalidateLater(1000, session) 
-    percent <- (1-timeRequired/initialtimeRequired)*100
-    if (percent > 100)
-      percent <- 100
-    
-    valueBox(
-      value = formatC(percent, digits = 2, format = "f"),
-      subtitle = "Percent completed",
-      icon = icon("percent"),
-      color = "yellow" 
-    )
-  })
+#  output$completePercent <- renderValueBox({
+#    invalidateLater(1000, session) 
+#    percent <- (1-timeRequired/initialtimeRequired)*100
+#    if (percent > 100)
+#      percent <- 100
+#    
+#    valueBox(
+#      value = formatC(percent, digits = 2, format = "f"),
+#      subtitle = "Percent completed",
+#      icon = icon("percent"),
+#      color = "yellow" 
+#    )
+#  })
+#  
+#  output$timetoComplete <- renderValueBox({
+#    invalidateLater(1000, session) 
+#    elapsed <- as.numeric(Sys.time()) - startTime #Assumes a constant value to complete the job
+#    timeRequired <<- timeRequired - input$servercnt
+#    timeleft <- timeRequired/(input$servercnt)
+#    if (timeleft < 0)
+#      timeleft <- 0 
+#    
+#    valueBox(
+#      value = format(as.POSIXct('2016-01-01 00:00:00') + timeleft, "%H:%M:%S"),
+#      subtitle = "Time to complete",
+#      icon = icon("clock-o")
+#    )
+#  })
   
-  output$timetoComplete <- renderValueBox({
-    invalidateLater(1000, session) 
-    elapsed <- as.numeric(Sys.time()) - startTime #Assumes a constant value to complete the job
-    timeRequired <<- timeRequired - input$servercnt
-    timeleft <- timeRequired/(input$servercnt)
-    if (timeleft < 0)
-      timeleft <- 0 
-    
-    valueBox(
-      value = format(as.POSIXct('2016-01-01 00:00:00') + timeleft, "%H:%M:%S"),
-      subtitle = "Time to complete",
-      icon = icon("clock-o")
-    )
-  })
+#  output$costPerHour <- renderValueBox({
+#    invalidateLater(1000, session) 
+#    costRate <- input$servercnt*1.50 #Based on Azure pricing calculator, does not include storage
+#    
+#    valueBox(
+#      value =  formatC(costRate, digits = 2, format = "f"),
+#      subtitle = "Cost per hour",
+#      icon = icon("usd")
+#    )
+#  })
   
-  output$costPerHour <- renderValueBox({
-    invalidateLater(1000, session) 
-    costRate <- input$servercnt*1.50 #Based on Azure pricing calculator, does not include storage
-    
-    valueBox(
-      value =  formatC(costRate, digits = 2, format = "f"),
-      subtitle = "Cost per hour",
-      icon = icon("usd")
-    )
-  })
-  
-  output$customersScanned <- renderValueBox({
-    invalidateLater(1000, session) 
-    percent <- (1-timeRequired/initialtimeRequired)*100
-    if (percent > 100)
-      percent <- 100
-    
-    valueBox(
-      #value = customerCount(),
-      value = prettyNum(paste(floor(percent*100),"K",sep=""), scientific=FALSE, big.mark=','),
-      subtitle = "Customers scanned",
-      icon = icon("users")
-    )
-  })
+#  output$customersScanned <- renderValueBox({
+#    invalidateLater(1000, session) 
+#    percent <- (1-timeRequired/initialtimeRequired)*100
+#    if (percent > 100)
+#      percent <- 100
+#    
+#    valueBox(
+#      #value = customerCount(),
+#      value = prettyNum(paste(floor(percent*100),"K",sep=""), scientific=FALSE, big.mark=','),
+#      subtitle = "Customers scanned",
+#      icon = icon("users")
+#    )
+#  })
 
 #  output$totalcustomersScanned <- renderValueBox({
 #    invalidateLater(1000, session) 
