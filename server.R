@@ -101,7 +101,7 @@ function(input, output, session) {
           mcv_df <<- data.frame(mcv)
         }
         
-        qstr <- paste(str[-1],collapse="\n")
+        qstr <- paste(str[-c(1,2)],collapse="\n")
       
       } else {
         qstr <- str
@@ -115,51 +115,51 @@ function(input, output, session) {
     })
   }
   
-  # Accumulates pkgStream rows over time; throws out any older than timeWindow
-  # (assuming the presence of a "received" field)
-  packageData <- function(pkgStream, timeWindow) {
-    shinySignals::reducePast(pkgStream, function(memo, value) {
-      
-      if(resetfactor == 0)
-      {
-          result = tryCatch({
-              rbind(memo, value) %>%
-              filter(runCheckDF == runCheck)
-          }, error = function(e) {
-              #Insert dummy record to stop the rendering
-              new.prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric())
-              new.prototype <- data.frame(runnumber = 1,bucket = 1,rcount = 1,runtime = 1,website = "na.com",runcheck = 1)
-              rbind(new.prototype, prototype) %>%
-              filter(runCheckDF == runCheck)
-              resetfactor <<- 0 #Trip the fuse
-            } 
-          )
-        
-      } else
-      {
-          #Insert dummy record to stop the rendering
-          new.prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric())
-          new.prototype <- data.frame(runnumber = 1,bucket = 1,rcount = 1,runtime = 1,website = "na.com",runcheck = 1)
-          rbind(new.prototype, prototype) %>%
-          filter(received > as.numeric(Sys.time()) - timeWindow)
-          resetfactor <<- 0 #Trip the fuse
-      }
-      
-    }, prototype)
-  }
-  
-  
-  
-  
-  # Set the stream of session
-  pkgStream <- packageStream(session)
-  
-  # Max age of data (5 minutes)
-  maxAgeSecs <- 60 * 500
-  
-  # Set package
-  pkgData <- packageData(pkgStream, maxAgeSecs)
-  
+#  # Accumulates pkgStream rows over time; throws out any older than timeWindow
+#  # (assuming the presence of a "received" field)
+#  packageData <- function(pkgStream, timeWindow) {
+#    shinySignals::reducePast(pkgStream, function(memo, value) {
+#      
+#      if(resetfactor == 0)
+#      {
+#          result = tryCatch({
+#              rbind(memo, value) %>%
+#              filter(runCheckDF == runCheck)
+#          }, error = function(e) {
+#              #Insert dummy record to stop the rendering
+#              new.prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric())
+#              new.prototype <- data.frame(runnumber = 1,bucket = 1,rcount = 1,runtime = 1,website = "na.com",runcheck = 1)
+#              rbind(new.prototype, prototype) %>%
+#              filter(runCheckDF == runCheck)
+#              resetfactor <<- 0 #Trip the fuse
+#            } 
+#          )
+#        
+#      } else
+#      {
+#          #Insert dummy record to stop the rendering
+#          new.prototype <- data.frame(runnumber = numeric(),bucket = numeric(),rcount = numeric(),runtime = numeric(),website = character(),runcheck = numeric())
+#          new.prototype <- data.frame(runnumber = 1,bucket = 1,rcount = 1,runtime = 1,website = "na.com",runcheck = 1)
+#          rbind(new.prototype, prototype) %>%
+#          filter(received > as.numeric(Sys.time()) - timeWindow)
+#          resetfactor <<- 0 #Trip the fuse
+#      }
+#      
+#    }, prototype)
+#  }
+#  
+#  
+#  
+#  
+#  # Set the stream of session
+#  pkgStream <- packageStream(session)
+#  
+#  # Max age of data (5 minutes)
+#  maxAgeSecs <- 60 * 500
+#  
+#  # Set package
+#  pkgData <- packageData(pkgStream, maxAgeSecs)
+#  
 #  # Use a bloom filter to probabilistically track the number of unique
 #  # users we have seen; using bloom filter means we will not have a
 #  # perfectly accurate count, but the memory usage will be bounded.
