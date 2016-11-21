@@ -151,8 +151,8 @@ function(input, output, session) {
   
   
   
-#  # Set the stream of session
-#  pkgStream <- packageStream(session)
+  # Set the stream of session
+  pkgStream <- packageStream(session)
 #  
 #  # Max age of data (5 minutes)
 #  maxAgeSecs <- 60 * 500
