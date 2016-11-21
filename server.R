@@ -317,19 +317,19 @@ function(input, output, session) {
     
   #######OUTPUT SECTION#######    
   
-  output$completePercent <- renderValueBox({
-    invalidateLater(1000, session) 
-    percent <- (1-timeRequired/initialtimeRequired)*100
-    if (percent > 100)
-      percent <- 100
-    
-    valueBox(
-      value = formatC(percent, digits = 2, format = "f"),
-      subtitle = "Percent completed",
-      icon = icon("percent"),
-      color = "yellow" 
-    )
-  })
+#  output$completePercent <- renderValueBox({
+#    invalidateLater(1000, session) 
+#    percent <- (1-timeRequired/initialtimeRequired)*100
+#    if (percent > 100)
+#      percent <- 100
+#    
+#    valueBox(
+#      value = formatC(percent, digits = 2, format = "f"),
+#      subtitle = "Percent completed",
+#      icon = icon("percent"),
+#      color = "yellow" 
+#    )
+#  })
   
 #  output$timetoComplete <- renderValueBox({
 #    invalidateLater(1000, session) 
