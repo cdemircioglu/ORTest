@@ -36,7 +36,7 @@ function(input, output, session) {
     #sock <- socketConnection("cransim.rstudio.com", 6789, blocking = FALSE, open = "r")
     #sock <- socketConnection("localhost", 8081, blocking = FALSE, open = "r")
     #sock <- socketConnection(host="localhost", port = 8081, blocking=TRUE,server=FALSE, open="r")
-    sock <- socketConnection(host="localhost", port = 8091, blocking=FALSE,server=FALSE, open="r")
+    sock <- socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r")
     
     # Clean up when session is over
     session$onSessionEnded(function() {
@@ -376,83 +376,83 @@ function(input, output, session) {
     )
   })
 
-  output$totalcustomersScanned <- renderValueBox({
-    invalidateLater(1000, session) 
-    df <- pkgData() %>%
-      summarise( 
-        cmsisdn = sum(rcount)
-      )
-    
-    if(exists("df"))
-    {
-      valueBox(
-        #value = customerCount(),
-        value = paste(prettyNum(floor(df$cmsisdn/400), scientific=FALSE, big.mark=','),"K",sep=""),
-        #value = df$cmsisdn,
-        subtitle = "Customers within the market",
-        icon = icon("users")
-      )
-    } else {
-      valueBox(
-        #value = customerCount(),
-        value = paste(prettyNum(0, scientific=FALSE, big.mark=','),"K",sep=""),
-        #value = df$cmsisdn,
-        subtitle = "Customers within the market",
-        icon = icon("users")
-      )
-    } 
-    
-    
-  })
+#  output$totalcustomersScanned <- renderValueBox({
+#    invalidateLater(1000, session) 
+#    df <- pkgData() %>%
+#      summarise( 
+#        cmsisdn = sum(rcount)
+#      )
+#    
+#    if(exists("df"))
+#    {
+#        valueBox(
+#        #value = customerCount(),
+#        value = paste(prettyNum(floor(df$cmsisdn/400), scientific=FALSE, big.mark=','),"K",sep=""),
+#        #value = df$cmsisdn,
+#        subtitle = "Customers within the market",
+#        icon = icon("users")
+#      )
+#    } else {
+#      valueBox(
+#        #value = customerCount(),
+#        value = paste(prettyNum(0, scientific=FALSE, big.mark=','),"K",sep=""),
+#        #value = df$cmsisdn,
+#        subtitle = "Customers within the market",
+#        icon = icon("users")
+#      )
+#    } 
+#    
+#    
+#  })
   
   
     
-  output$packagePlot <- renderBubbles({
-    if (nrow(pkgData()) == 0)
-      return()
-    
-    order <- unique(pkgData()$bucket)
-    df <- pkgData() %>%
-      group_by(bucket = floor((bucket/4))) %>%
-      summarise( 
-        cmsisdn = sum(rcount)
-      ) %>%
-      arrange(desc(bucket), tolower(bucket)) %>%
-      # Just show the top 60, otherwise it gets hard to see
-      head(50)
-      total <<- sum(df$cmsisdn)     
-      #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
-      bubbles(df$cmsisdn, paste("$",floor((df$bucket)-input$costtoDeliver), "/", format(round(df$cmsisdn/404,2), nsmall = 2),"K",sep="" ), key = df$bucket, color = c(cp(nrow(df[which(floor((df$bucket)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$bucket)-input$costtoDeliver)<0),])))) )
+#  output$packagePlot <- renderBubbles({
+#    if (nrow(pkgData()) == 0)
+#      return()
+#    
+#    order <- unique(pkgData()$bucket)
+#    df <- pkgData() %>%
+#      group_by(bucket = floor((bucket/4))) %>%
+#     summarise( 
+#        cmsisdn = sum(rcount)
+#     ) %>%
+#      arrange(desc(bucket), tolower(bucket)) %>%
+#      # Just show the top 60, otherwise it gets hard to see
+#      head(50)
+#      total <<- sum(df$cmsisdn)     
+#      #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
+#      bubbles(df$cmsisdn, paste("$",floor((df$bucket)-input$costtoDeliver), "/", format(round(df$cmsisdn/404,2), nsmall = 2),"K",sep="" ), key = df$bucket, color = c(cp(nrow(df[which(floor((df$bucket)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$bucket)-input$costtoDeliver)<0),])))) )
+#      
+#  })
+  
+  
+#  output$plot <- renderPlot({
+#  
+#    tcol="orange"      # fill colors
+#    acol="orangered"   # color for added samples
+#    tscale=1;          # label rescaling factor
+#    df <- pkgData()
       
-  })
-  
-  
-  output$plot <- renderPlot({
-  
-    tcol="orange"      # fill colors
-    acol="orangered"   # color for added samples
-    tscale=1;          # label rescaling factor
-    df <- pkgData()
-      
     
-    hist(mcv_df$mcv*((input$perceivedValue*1.011-input$costtoDeliver*1.32)/50), 
-         warn.unused = FALSE,
-         #breaks=21,
-         main="",
-         col=tcol,         
-         ylim=c(0,5000),
-         ylab="Frequency (1K)",
-         border=tcol,
-         xlab="Revenue",
-         cex.lab=tscale,
-         cex.axis=tscale,
-         cex.main=tscale,
-         cex.sub=tscale
-    )
-    
-    
-      
-  })
+#    hist(mcv_df$mcv*((input$perceivedValue*1.011-input$costtoDeliver*1.32)/50), 
+#         warn.unused = FALSE,
+#         #breaks=21,
+#         main="",
+#         col=tcol,         
+#         ylim=c(0,5000),
+#         ylab="Frequency (1K)",
+#         border=tcol,
+#         xlab="Revenue",
+#         cex.lab=tscale,
+#         cex.axis=tscale,
+#         cex.main=tscale,
+#         cex.sub=tscale
+#    )
+#    
+#    
+#      
+#  })
   
   output$packageTable <- renderTable({
     if (nrow(pkgData()) == 0)
