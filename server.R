@@ -198,50 +198,51 @@ function(input, output, session) {
   
   #######OBSERVE PARAMETERS#######
   
-  observe({
+#  observe({
+#
+#    # Check the parameters, if they are changed reset the data frame. 
+#    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver)
+#    {
+#      resetfactor <<- 1 #Reset the data frame
+#      lastmarketInterest <<- input$marketInterest
+#      lastperceivedValue <<- input$perceivedValue
+#      lastcosttoDeliver <<- input$costtoDeliver
+#      currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
+#      timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1028
+#      initialtimeRequired <<- timeRequired
+#      runCheck <<- as.numeric(as.character(Sys.time(),format="%H%M%S"))
+#      #Delete the data frame
+#      if(exists("mcv_df"))
+#      {
+#        mcv_df <<- mcv_df[0,]
+#      }
+#      
+#    }
 
-    # Check the parameters, if they are changed reset the data frame. 
-    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver)
-    {
-      resetfactor <<- 1 #Reset the data frame
-      lastmarketInterest <<- input$marketInterest
-      lastperceivedValue <<- input$perceivedValue
-      lastcosttoDeliver <<- input$costtoDeliver
-      currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
-      timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1028
-      initialtimeRequired <<- timeRequired
-      runCheck <<- as.numeric(as.character(Sys.time(),format="%H%M%S"))
-      #Delete the data frame
-      if(exists("mcv_df"))
-      {
-        mcv_df <<- mcv_df[0,]
-      }
-      
-    }
-    # We'll use these multiple times, so use short var names for convenience.
-    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck)
-    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck")
-    
-    # Command start
-    cmdString <- '/home/cem/ui/send.py "<ShinnyParameters>'
-    
-    # Build the xml parameters
-    for (i in 1:length(parameterValue))
-    {
-      parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
-      parameterString <- gsub("nnn",parameterName[i],parameterString)
-      parameterString <- gsub("vvv",parameterValue[i],parameterString)
-      cmdString <- paste(cmdString,parameterString,sep="")
-    }
-    
-    # Command end
-    cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
-    
-    # Send the message
-    #system(cmdString)
-    
-  })
-  
+#    # We'll use these multiple times, so use short var names for convenience.
+#    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck)
+#    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck")
+#    
+#    # Command start
+#    cmdString <- '/home/cem/ui/send.py "<ShinnyParameters>'
+#    
+#    # Build the xml parameters
+#    for (i in 1:length(parameterValue))
+#    {
+#      parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
+#      parameterString <- gsub("nnn",parameterName[i],parameterString)
+#      parameterString <- gsub("vvv",parameterValue[i],parameterString)
+#      cmdString <- paste(cmdString,parameterString,sep="")
+#    }
+#    
+#    # Command end
+#    cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
+#    
+#    # Send the message
+#    system(cmdString)
+#    
+#  })
+#  
 #  # Color function
 #  cx <- function (n, h = c(-243, 360), c = 91, l = c(61, 77), power = 0.833333333333333, 
 #                  fixup = TRUE, gamma = NULL, alpha = 1, ...) 
