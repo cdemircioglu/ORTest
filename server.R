@@ -32,7 +32,7 @@ function(input, output, session) {
   
   packageStream <- function(session) {
     # Connect to data source
-    sock <- socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r", timeout=5000)
+    sock <- socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r", timeout=10000)
     
     # Clean up when session is over
     session$onSessionEnded(function() {
