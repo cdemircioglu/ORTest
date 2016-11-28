@@ -1,7 +1,6 @@
 function(input, output, session) {
   
   #######VARIABLES SECTION#######    
-  
   df_duration <- data.frame(FOO=c("414060|ACCESSORIES","354580|ACCOUNTING","250400|ARTS","293450|ASTRONOMY","451150|CHRISTIANITY","664630|EDUCATION","439870|ENTERTAINMENT","473030|FINANCE","304910|HEALTH","412760|INVESTING","4237510|MOVIES","4037510|MUSIC","4637510|SPORTS","4437510|TECHNOLOGY","4737510|TELEVISION"))  
   df_duration <- data.frame(do.call('rbind', strsplit(as.character(df_duration$FOO),'|',fixed=TRUE)))
   runCheck <- 1
@@ -16,7 +15,15 @@ function(input, output, session) {
   lastmarketInterest <<- "Dummy"
   lastperceivedValue <<- -1
   lastcosttoDeliver <<- -1
-      
+
+  #Delete the data frame
+  if(exists("mcv_df"))
+  {
+    if(nrow(mcv_df) > 0)
+      mcv_df <<- mcv_df[0,]
+  }
+  
+        
   # Record the time that the session started.
   startTime <- as.numeric(Sys.time())
   
@@ -25,10 +32,6 @@ function(input, output, session) {
   
   packageStream <- function(session) {
     # Connect to data source
-    #sock <- socketConnection("cransim.rstudio.com", 6789, blocking = FALSE, open = "r")
-    #sock <- socketConnection("localhost", 8081, blocking = FALSE, open = "r")
-    #sock <- socketConnection(host="localhost", port = 8081, blocking=TRUE,server=FALSE, open="r")
-    #sock <- socketConnection(host="localhost", port = 8091, blocking=FALSE,server=FALSE, open="r")
     sock <- socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r", timeout=5000)
     
     # Clean up when session is over
@@ -63,20 +66,24 @@ function(input, output, session) {
         
         #Hold on to the MC values
         mcv <- as.numeric(unlist(strsplit(str[1], split=" ")))
-      
+        print(mcv)
+        
         #Get the runCheck
         currentrunCheck <- as.numeric(str[2])
         
+        print(currentrunCheck)
+        print(runCheck)
         #Check the runCheck if it is greater
         if (currentrunCheck > runCheck)
         {
           runCheck <<- currentrunCheck #Assign the current check
           
           #Delete the data frame
-          #if(exists("mcv_df"))
-          #{
-          #  mcv_df <<- mcv_df[0,]
-          #}
+          if(exists("mcv_df"))
+          {
+            if(nrow(mcv_df) > 0)
+              mcv_df <<- mcv_df[0,]
+          }
           #return()
         }
         
@@ -93,6 +100,8 @@ function(input, output, session) {
         } else {
           mcv_df <<- data.frame(mcv)
         }
+        
+        print(paste(str[-c(1,2)],collapse="\n"))
         
         qstr <- paste(str[-c(1,2)],collapse="\n")
       
@@ -205,10 +214,11 @@ function(input, output, session) {
       initialtimeRequired <<- timeRequired
       runCheck <<- as.numeric(as.character(Sys.time(),format="%H%M%S"))
       #Delete the data frame
-      #if(exists("mcv_df"))
-      #{
-      #  mcv_df <<- mcv_df[0,]
-      #}
+      if(exists("mcv_df"))
+      {
+        if(nrow(mcv_df) > 0)
+          mcv_df <<- mcv_df[0,]
+      }
       
     }
 
@@ -345,37 +355,36 @@ function(input, output, session) {
       head(50)
       total <<- sum(df$cmsisdn)     
       #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
-      bubbles(df$cmsisdn, paste("$",floor((df$bucket)-input$costtoDeliver), "/", format(round(df$cmsisdn/404,2), nsmall = 2),"K",sep="" ), key = df$bucket, color = c(cp(nrow(df[which(floor((df$bucket)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$bucket)-input$costtoDeliver)<0),])))) )
+      bubbles(df$cmsisdn, paste("$",df$bucket, "/", format(round(df$cmsisdn/1000,2), nsmall = 2),"K",sep="" ), key = df$bucket, 
+                                color = c(cp(nrow(df[which(floor((df$bucket))>=0),])),rev(cn(nrow(df[which(floor((df$bucket))<0),])))) )
       
   })
   
   
-#  output$plot <- renderPlot({
-#  
-#    tcol="orange"      # fill colors
-#    acol="orangered"   # color for added samples
-#    tscale=1;          # label rescaling factor
-#    df <- pkgData()
+  output$plot <- renderPlot({
+  
+    tcol="orange"      # fill colors
+    acol="orangered"   # color for added samples
+    tscale=1;          # label rescaling factor
+    #df <- pkgData()
+    invalidateLater(500, session) 
       
-    
-#    hist(mcv_df$mcv*((input$perceivedValue*1.011-input$costtoDeliver*1.32)/50), 
-#         warn.unused = FALSE,
-#         #breaks=21,
-#         main="",
-#         col=tcol,         
-#         ylim=c(0,5000),
-#         ylab="Frequency (1K)",
-#         border=tcol,
-#         xlab="Revenue",
-#         cex.lab=tscale,
-#         cex.axis=tscale,
-#         cex.main=tscale,
-#         cex.sub=tscale
-#    )
-#    
-#    
-#      
-#  })
+    #hist(mcv_df$mcv*((input$perceivedValue*1.011-input$costtoDeliver*1.32)/50),
+    hist(mcv_df$mcv, 
+         warn.unused = FALSE,
+         #breaks=21,
+         main="",
+         col=tcol,         
+         ylim=c(0,5000),
+         ylab="Frequency (1K)",
+         border=tcol,
+         xlab="Revenue",
+         cex.lab=tscale,
+         cex.axis=tscale,
+         cex.main=tscale,
+         cex.sub=tscale
+    )
+  })
   
 #  output$packageTable <- renderTable({
 #    if (nrow(pkgData()) == 0)
