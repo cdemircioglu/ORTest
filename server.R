@@ -242,9 +242,9 @@ function(input, output, session) {
     if(length(grep("C:",getwd()))>0) 
       cmdString <- paste('c:\\Python27\\python.exe send.py ', cmdString, sep="")
     else 
-      cmdString <- paste('/home/cem/ui/send.py ', cmdString, sep="")
+      cmdString <- paste('python /home/cem/ui/send.py ', cmdString, sep="")
     
-    print(cmdString)
+    #print(cmdString)
     # Send the message
     system(cmdString)
     
