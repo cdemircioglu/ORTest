@@ -6,6 +6,9 @@ library(shinydashboard)
 library(bubbles)
 source("bloomfilter.R")
 
+#Turn warnings off
+options(warn=-1)
+
 # Color function
 cx <- function (n, h = c(-243, 360), c = 91, l = c(61, 77), power = 0.833333333333333, 
                 fixup = TRUE, gamma = NULL, alpha = 1, ...) 

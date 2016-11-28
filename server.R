@@ -3,7 +3,7 @@ function(input, output, session) {
   #######VARIABLES SECTION#######    
   df_duration <- data.frame(FOO=c("414060|ACCESSORIES","354580|ACCOUNTING","250400|ARTS","293450|ASTRONOMY","451150|CHRISTIANITY","664630|EDUCATION","439870|ENTERTAINMENT","473030|FINANCE","304910|HEALTH","412760|INVESTING","4237510|MOVIES","4037510|MUSIC","4637510|SPORTS","4437510|TECHNOLOGY","4737510|TELEVISION"))  
   df_duration <- data.frame(do.call('rbind', strsplit(as.character(df_duration$FOO),'|',fixed=TRUE)))
-  runCheck <- 1
+  runCheck <- as.numeric(as.character(Sys.time(),format="%H%M%S"))
     
   #timeRequired <- df_duration[which(df_duration$X2 == marketInterest),1] #seconds to complete
   timeRequired <- 7500 #seconds to complete
@@ -19,8 +19,8 @@ function(input, output, session) {
   #Delete the data frame
   if(exists("mcv_df"))
   {
-    if(nrow(mcv_df) > 0)
-      mcv_df <<- mcv_df[0,]
+    if(is.data.frame(mcv_df))
+      try(mcv_df <<- mcv_df[0,])
   }
   
         
@@ -57,7 +57,7 @@ function(input, output, session) {
       str <- readLines(strcon)
       str <- unlist(str)
       qstr <- ""
-      
+      print("str begin")
       #This is the check for MC
       if(grepl("_MM_", str)) {
         str <- unlist(str)
@@ -66,13 +66,12 @@ function(input, output, session) {
         
         #Hold on to the MC values
         mcv <- as.numeric(unlist(strsplit(str[1], split=" ")))
-        print(mcv)
+        
         
         #Get the runCheck
         currentrunCheck <- as.numeric(str[2])
         
-        print(currentrunCheck)
-        print(runCheck)
+        print(paste("Current run check is ", currentrunCheck, "  and runcheck is ", runCheck,sep=""))
         #Check the runCheck if it is greater
         if (currentrunCheck > runCheck)
         {
@@ -81,18 +80,17 @@ function(input, output, session) {
           #Delete the data frame
           if(exists("mcv_df"))
           {
-            if(nrow(mcv_df) > 0)
-              mcv_df <<- mcv_df[0,]
+            if(is.data.frame(mcv_df))
+              try(mcv_df <<- mcv_df[0,])
           }
-          #return()
+          return()
         }
         
-        #Check the runCheck if it is greater
-        if (currentrunCheck != runCheck)
+        if (currentrunCheck != runCheck) #Wait until the new runcheck is valid. 
         {
-          #return()
+          return()
         }
-        
+                
         #Create the data frame
         if(exists("mcv_df"))
         {
@@ -101,7 +99,6 @@ function(input, output, session) {
           mcv_df <<- data.frame(mcv)
         }
         
-        print(paste(str[-c(1,2)],collapse="\n"))
         
         qstr <- paste(str[-c(1,2)],collapse="\n")
       
@@ -109,7 +106,7 @@ function(input, output, session) {
         qstr <- str
       }
       
-      
+      print("str end")
       #read.csv(textConnection(newLines()), header=FALSE, stringsAsFactors=FALSE,
       read.csv(text=qstr, header=FALSE, stringsAsFactors=FALSE,
                col.names = names(prototype)
@@ -216,8 +213,8 @@ function(input, output, session) {
       #Delete the data frame
       if(exists("mcv_df"))
       {
-        if(nrow(mcv_df) > 0)
-          mcv_df <<- mcv_df[0,]
+        if(is.data.frame(mcv_df))
+          try(mcv_df <<- mcv_df[0,])
       }
       
     }
@@ -324,7 +321,7 @@ function(input, output, session) {
         #value = customerCount(),
         value = paste(prettyNum(floor(df$cmsisdn/400), scientific=FALSE, big.mark=','),"K",sep=""),
         #value = df$cmsisdn,
-        subtitle = "Customers within the market",
+        subtitle = "Within the market",
         icon = icon("users")
       )
     } else {
@@ -344,9 +341,13 @@ function(input, output, session) {
     if (nrow(pkgData()) == 0)
       return()
     
+    
+    # Write CSV in R
+    #write.csv(pkgData(), file = "MyData.csv")
+    
     order <- unique(pkgData()$bucket)
     df <- pkgData() %>%
-      group_by(bucket = floor((bucket/4))) %>%
+      group_by(bucket) %>%
      summarise( 
         cmsisdn = sum(rcount)
      ) %>%
