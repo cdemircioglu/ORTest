@@ -1,11 +1,3 @@
-library(colorspace)
-library(shiny)
-library(shinySignals)
-library(dplyr)
-library(shinydashboard)
-library(bubbles)
-source("bloomfilter.R")
-  
 function(input, output, session) {
   
   #######VARIABLES SECTION#######    
@@ -36,7 +28,8 @@ function(input, output, session) {
     #sock <- socketConnection("cransim.rstudio.com", 6789, blocking = FALSE, open = "r")
     #sock <- socketConnection("localhost", 8081, blocking = FALSE, open = "r")
     #sock <- socketConnection(host="localhost", port = 8081, blocking=TRUE,server=FALSE, open="r")
-    sock <- socketConnection(host="localhost", port = 8091, blocking=FALSE,server=FALSE, open="r")
+    #sock <- socketConnection(host="localhost", port = 8091, blocking=FALSE,server=FALSE, open="r")
+    sock <- socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r", timeout=5000)
     
     # Clean up when session is over
     session$onSessionEnded(function() {
@@ -80,10 +73,10 @@ function(input, output, session) {
           runCheck <<- currentrunCheck #Assign the current check
           
           #Delete the data frame
-          if(exists("mcv_df"))
-          {
-            mcv_df <<- mcv_df[0,]
-          }
+          #if(exists("mcv_df"))
+          #{
+          #  mcv_df <<- mcv_df[0,]
+          #}
           #return()
         }
         
@@ -194,233 +187,167 @@ function(input, output, session) {
   }
   
   # Call function
-#  customerCount <- userCount(pkgStream)
-#  
-#  #######OBSERVE PARAMETERS#######
-#  
-#  observe({
-#
-#    # Check the parameters, if they are changed reset the data frame. 
-#    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver)
-#    {
-#      resetfactor <<- 1 #Reset the data frame
-#      lastmarketInterest <<- input$marketInterest
-#      lastperceivedValue <<- input$perceivedValue
-#      lastcosttoDeliver <<- input$costtoDeliver
-#      currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
-#      timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1028
-#      initialtimeRequired <<- timeRequired
-#      runCheck <<- as.numeric(as.character(Sys.time(),format="%H%M%S"))
-#      #Delete the data frame
-#      if(exists("mcv_df"))
-#      {
-#        mcv_df <<- mcv_df[0,]
-#      }
-#      
-#    }
+  customerCount <- userCount(pkgStream)
+  
+  #######OBSERVE PARAMETERS#######
+  
+  observe({
 
-#    # We'll use these multiple times, so use short var names for convenience.
-#    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck)
-#    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck")
-#    
-#    # Command start
-#    cmdString <- '/home/cem/ui/send.py "<ShinnyParameters>'
-#    
-#    # Build the xml parameters
-#    for (i in 1:length(parameterValue))
-#    {
-#      parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
-#      parameterString <- gsub("nnn",parameterName[i],parameterString)
-#      parameterString <- gsub("vvv",parameterValue[i],parameterString)
-#      cmdString <- paste(cmdString,parameterString,sep="")
-#    }
-#    
-#    # Command end
-#    cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
-#    
-#    # Send the message
-#    system(cmdString)
-#    
-#  })
-#  
-#  # Color function
-#  cx <- function (n, h = c(-243, 360), c = 91, l = c(61, 77), power = 0.833333333333333, 
-#                  fixup = TRUE, gamma = NULL, alpha = 1, ...) 
-#  {
-#    if (!is.null(gamma)) 
-#      warning("'gamma' is deprecated and has no effect")
-#    if (n < 1L) 
-#      return(character(0L))
-#    h <- rep(h, length.out = 2L)
-#    c <- c[1L]
-#    l <- rep(l, length.out = 2L)
-#    power <- rep(power, length.out = 2L)
-#    rval <- seq(1, -1, length = n)
-#    rval <- hex(polarLUV(L = l[2L] - diff(l) * abs(rval)^power[2L], 
-#                         C = c * abs(rval)^power[1L], H = ifelse(rval > 0, h[1L], 
-#                                                                 h[2L])), fixup = fixup, ...)
-#    if (!missing(alpha)) {
-#      alpha <- pmax(pmin(alpha, 1), 0)
-#      alpha <- format(as.hexmode(round(alpha * 255 + 1e-04)), 
-#                      width = 2L, upper.case = TRUE)
-#      rval <- paste(rval, alpha, sep = "")
-#    }
-#    return(rval)
-#  }
+    # Check the parameters, if they are changed reset the data frame. 
+    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver)
+    {
+      resetfactor <<- 1 #Reset the data frame
+      lastmarketInterest <<- input$marketInterest
+      lastperceivedValue <<- input$perceivedValue
+      lastcosttoDeliver <<- input$costtoDeliver
+      currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
+      timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1028
+      initialtimeRequired <<- timeRequired
+      runCheck <<- as.numeric(as.character(Sys.time(),format="%H%M%S"))
+      #Delete the data frame
+      #if(exists("mcv_df"))
+      #{
+      #  mcv_df <<- mcv_df[0,]
+      #}
+      
+    }
+
+    # We'll use these multiple times, so use short var names for convenience.
+    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck)
+    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck")
+    
+    # Command start
+    #cmdString <- '/home/cem/ui/send.py "<ShinnyParameters>'
+    cmdString <- '"<ShinnyParameters>'
+    
+    # Build the xml parameters
+    for (i in 1:length(parameterValue))
+    {
+      parameterString <- '<parameter><name>nnn</name><value>vvv</value></parameter>'
+      parameterString <- gsub("nnn",parameterName[i],parameterString)
+      parameterString <- gsub("vvv",parameterValue[i],parameterString)
+      cmdString <- paste(cmdString,parameterString,sep="")
+    }
+    
+    # Command end
+    cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
+    
+    if(length(grep("C:",getwd()))>0) 
+      cmdString <- paste('c:\\Python27\\python.exe send.py ', cmdString, sep="")
+    else 
+      cmdString <- paste('/home/cem/ui/send.py ', cmdString, sep="")
+    
+    print(cmdString)
+    # Send the message
+    system(cmdString)
+    
+  })
   
-#  cn <- function (n, h = c(360, 293), c. = c(80, 26), l = c(34, 95), power = c(0.7, 1.3), fixup = TRUE, gamma = NULL, alpha = 1,...) 
-#  {
-#    if (!is.null(gamma)) 
-#      warning("'gamma' is deprecated and has no effect")
-#    if (n < 1L) 
-#      return(character(0L))
-#    h <- rep(h, length.out = 2L)
-#    c <- rep(c., length.out = 2L)
-#    l <- rep(l, length.out = 2L)
-#    power <- rep(power, length.out = 2L)
-#    rval <- seq(1, 0, length = n)
-#    rval <- hex(polarLUV(L = l[2L] - diff(l) * rval^power[2L], 
-#                         C = c[2L] - diff(c) * rval^power[1L], H = h[2L] - diff(h) * 
-#                           rval), fixup = fixup, ...)
-#    if (!missing(alpha)) {
-#      alpha <- pmax(pmin(alpha, 1), 0)
-#      alpha <- format(as.hexmode(round(alpha * 255 + 1e-04)), 
-#                      width = 2L, upper.case = TRUE)
-#      rval <- paste(rval, alpha, sep = "")
-#    }
-#    return(rval)
-#  }
-  
-  
-#  cp <- function (n, h = c(130, 30), c. = c(65, 0), l = c(45, 90), power = c(0.5, 1.5), fixup = TRUE, gamma = NULL, alpha = 1, ...) 
-#  {
-#    if (!is.null(gamma)) 
-#      warning("'gamma' is deprecated and has no effect")
-#    if (n < 1L) 
-#      return(character(0L))
-#    h <- rep(h, length.out = 2L)
-#    c <- rep(c., length.out = 2L)
-#    l <- rep(l, length.out = 2L)
-#    power <- rep(power, length.out = 2L)
-#    rval <- seq(1, 0, length = n)
-#    rval <- hex(polarLUV(L = l[2L] - diff(l) * rval^power[2L], 
-#                         C = c[2L] - diff(c) * rval^power[1L], H = h[2L] - diff(h) * 
-#                           rval), fixup = fixup, ...)
-#    if (!missing(alpha)) {
-#      alpha <- pmax(pmin(alpha, 1), 0)
-#      alpha <- format(as.hexmode(round(alpha * 255 + 1e-04)), 
-#                      width = 2L, upper.case = TRUE)
-#      rval <- paste(rval, alpha, sep = "")
-#    }
-#    return(rval)
-#  }
-  
+
     
   #######OUTPUT SECTION#######    
   
-#  output$completePercent <- renderValueBox({
-#    invalidateLater(1000, session) 
-#    percent <- (1-timeRequired/initialtimeRequired)*100
-#    if (percent > 100)
-#      percent <- 100
-#    
-#    valueBox(
-#      value = formatC(percent, digits = 2, format = "f"),
-#      subtitle = "Percent completed",
-#      icon = icon("percent"),
-#      color = "yellow" 
-#    )
-#  })
-#  
-#  output$timetoComplete <- renderValueBox({
-#    invalidateLater(1000, session) 
-#    elapsed <- as.numeric(Sys.time()) - startTime #Assumes a constant value to complete the job
-#    timeRequired <<- timeRequired - input$servercnt
-#    timeleft <- timeRequired/(input$servercnt)
-#    if (timeleft < 0)
-#      timeleft <- 0 
-#    
-#    valueBox(
-#      value = format(as.POSIXct('2016-01-01 00:00:00') + timeleft, "%H:%M:%S"),
-#      subtitle = "Time to complete",
-#      icon = icon("clock-o")
-#    )
-#  })
+  output$completePercent <- renderValueBox({
+    invalidateLater(1000, session) 
+    percent <- (1-timeRequired/initialtimeRequired)*100
+    if (percent > 100)
+      percent <- 100
+    
+    valueBox(
+      value = formatC(percent, digits = 2, format = "f"),
+      subtitle = "Percent completed",
+      icon = icon("percent"),
+      color = "yellow" 
+    )
+  })
   
-#  output$costPerHour <- renderValueBox({
-#    invalidateLater(1000, session) 
-#    costRate <- input$servercnt*1.50 #Based on Azure pricing calculator, does not include storage
-#    
-#    valueBox(
-#      value =  formatC(costRate, digits = 2, format = "f"),
-#      subtitle = "Cost per hour",
-#      icon = icon("usd")
-#    )
-#  })
-  
-#  output$customersScanned <- renderValueBox({
-#    invalidateLater(1000, session) 
-#    percent <- (1-timeRequired/initialtimeRequired)*100
-#    if (percent > 100)
-#      percent <- 100
-#    
-#    valueBox(
-#      #value = customerCount(),
-#      value = prettyNum(paste(floor(percent*100),"K",sep=""), scientific=FALSE, big.mark=','),
-#      subtitle = "Customers scanned",
-#      icon = icon("users")
-#    )
-#  })
+  output$timetoComplete <- renderValueBox({
+    invalidateLater(1000, session) 
+    elapsed <- as.numeric(Sys.time()) - startTime #Assumes a constant value to complete the job
+    timeRequired <<- timeRequired - input$servercnt
+    timeleft <- timeRequired/(input$servercnt)
+    if (timeleft < 0)
+      timeleft <- 0 
+    
+    valueBox(
+      value = format(as.POSIXct('2016-01-01 00:00:00') + timeleft, "%H:%M:%S"),
+      subtitle = "Time to complete",
+      icon = icon("clock-o")
+    )
+  })
 
-#  output$totalcustomersScanned <- renderValueBox({
-#    invalidateLater(1000, session) 
-#    df <- pkgData() %>%
-#      summarise( 
-#        cmsisdn = sum(rcount)
-#      )
-#    
-#    if(exists("df"))
-#    {
-#        valueBox(
-#        #value = customerCount(),
-#        value = paste(prettyNum(floor(df$cmsisdn/400), scientific=FALSE, big.mark=','),"K",sep=""),
-#        #value = df$cmsisdn,
-#        subtitle = "Customers within the market",
-#        icon = icon("users")
-#      )
-#    } else {
-#      valueBox(
-#        #value = customerCount(),
-#        value = paste(prettyNum(0, scientific=FALSE, big.mark=','),"K",sep=""),
-#        #value = df$cmsisdn,
-#        subtitle = "Customers within the market",
-#        icon = icon("users")
-#      )
-#    } 
-#    
-#    
-#  })
+  output$costPerHour <- renderValueBox({
+    invalidateLater(1000, session) 
+    costRate <- input$servercnt*1.50 #Based on Azure pricing calculator, does not include storage
+    
+    valueBox(
+      value =  formatC(costRate, digits = 2, format = "f"),
+      subtitle = "Cost per hour",
+      icon = icon("usd")
+    )
+  })
+  
+  output$customersScanned <- renderValueBox({
+    invalidateLater(1000, session) 
+    percent <- (1-timeRequired/initialtimeRequired)*100
+    if (percent > 100)
+      percent <- 100
+    
+    valueBox(
+      #value = customerCount(),
+      value = prettyNum(paste(floor(percent*100),"K",sep=""), scientific=FALSE, big.mark=','),
+      subtitle = "Customers scanned",
+      icon = icon("users")
+    )
+  })
+
+  output$totalcustomersScanned <- renderValueBox({
+    invalidateLater(1000, session) 
+    df <- pkgData() %>%
+      summarise( 
+        cmsisdn = sum(rcount)
+      )
+    
+    if(exists("df"))
+    {
+        valueBox(
+        #value = customerCount(),
+        value = paste(prettyNum(floor(df$cmsisdn/400), scientific=FALSE, big.mark=','),"K",sep=""),
+        #value = df$cmsisdn,
+        subtitle = "Customers within the market",
+        icon = icon("users")
+      )
+    } else {
+      valueBox(
+        #value = customerCount(),
+        value = paste(prettyNum(0, scientific=FALSE, big.mark=','),"K",sep=""),
+        #value = df$cmsisdn,
+        subtitle = "Customers within the market",
+        icon = icon("users")
+      )
+    } 
+  })
   
   
     
-#  output$packagePlot <- renderBubbles({
-#    if (nrow(pkgData()) == 0)
-#      return()
-#    
-#    order <- unique(pkgData()$bucket)
-#    df <- pkgData() %>%
-#      group_by(bucket = floor((bucket/4))) %>%
-#     summarise( 
-#        cmsisdn = sum(rcount)
-#     ) %>%
-#      arrange(desc(bucket), tolower(bucket)) %>%
-#      # Just show the top 60, otherwise it gets hard to see
-#      head(50)
-#      total <<- sum(df$cmsisdn)     
-#      #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
-#      bubbles(df$cmsisdn, paste("$",floor((df$bucket)-input$costtoDeliver), "/", format(round(df$cmsisdn/404,2), nsmall = 2),"K",sep="" ), key = df$bucket, color = c(cp(nrow(df[which(floor((df$bucket)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$bucket)-input$costtoDeliver)<0),])))) )
-#      
-#  })
+  output$packagePlot <- renderBubbles({
+    if (nrow(pkgData()) == 0)
+      return()
+    
+    order <- unique(pkgData()$bucket)
+    df <- pkgData() %>%
+      group_by(bucket = floor((bucket/4))) %>%
+     summarise( 
+        cmsisdn = sum(rcount)
+     ) %>%
+      arrange(desc(bucket), tolower(bucket)) %>%
+      # Just show the top 60, otherwise it gets hard to see
+      head(50)
+      total <<- sum(df$cmsisdn)     
+      #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
+      bubbles(df$cmsisdn, paste("$",floor((df$bucket)-input$costtoDeliver), "/", format(round(df$cmsisdn/404,2), nsmall = 2),"K",sep="" ), key = df$bucket, color = c(cp(nrow(df[which(floor((df$bucket)-input$costtoDeliver)>=0),])),rev(cn(nrow(df[which(floor((df$bucket)-input$costtoDeliver)<0),])))) )
+      
+  })
   
   
 #  output$plot <- renderPlot({
@@ -450,22 +377,17 @@ function(input, output, session) {
 #      
 #  })
   
-  output$packageTable <- renderTable({
-    if (nrow(pkgData()) == 0)
-      return()
-    
-    pkgData() %>%
-      group_by(package) %>%
-      tally() %>%
-      arrange(desc(n), tolower(package)) %>%
-      mutate(percentage = n / nrow(pkgData()) * 100) %>%
-      select("Web site" = package, "% of activity" = percentage) %>%
-      as.data.frame() %>%
-      head(10)
-  }, digits = 1)
-  
-  
-  
-  
-  
+#  output$packageTable <- renderTable({
+#    if (nrow(pkgData()) == 0)
+#      return()
+#    
+#    pkgData() %>%
+#      group_by(package) %>%
+#      tally() %>%
+#      arrange(desc(n), tolower(package)) %>%
+#      mutate(percentage = n / nrow(pkgData()) * 100) %>%
+#      select("Web site" = package, "% of activity" = percentage) %>%
+#      as.data.frame() %>%
+#      head(10)
+#  }, digits = 1)
 }
