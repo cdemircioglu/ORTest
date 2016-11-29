@@ -2,6 +2,7 @@ library(shiny)
 library(shinydashboard)
 library(bubbles)
 
+
 dashboardPage(
   dashboardHeader(title = "Open ROADS Community"),
   dashboardSidebar(
@@ -23,20 +24,20 @@ dashboardPage(
       tabItem("dashboard",
               # Boxes need to be put in a row (or column)
               fluidRow(
-                valueBoxOutput("completePercent", width=2),
-                valueBoxOutput("timetoComplete", width=2),
+                valueBoxOutput("completePercent", width=3),
+                valueBoxOutput("timetoComplete", width=3),
                 valueBoxOutput("costPerHour", width=2),
                 valueBoxOutput("customersScanned", width=2),
                 valueBoxOutput("totalcustomersScanned", width=2)
               ),
               fluidRow(
                 box(
-                  width = 9, height = 550, status = "info", solidHeader = TRUE,
+                  width = 9, height = 600, status = "info", solidHeader = TRUE,
                   title = "Profit by group size (green better - red worse)",
                   bubblesOutput("packagePlot", width = "100%")
                 ),
                 box(
-                  width = 3, status = "info", height = 550, solidHeader = TRUE,
+                  width = 3, status = "info", height = 600, solidHeader = TRUE,
                   title = "Revenue distribution",
                   plotOutput("plot")
                 )

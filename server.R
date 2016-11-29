@@ -57,7 +57,7 @@ function(input, output, session) {
       str <- readLines(strcon)
       str <- unlist(str)
       qstr <- ""
-      print("str begin")
+      #print("str begin")
       #This is the check for MC
       if(grepl("_MM_", str)) {
         str <- unlist(str)
@@ -71,7 +71,7 @@ function(input, output, session) {
         #Get the runCheck
         currentrunCheck <- as.numeric(str[2])
         
-        print(paste("Current run check is ", currentrunCheck, "  and runcheck is ", runCheck,sep=""))
+        #print(paste("Current run check is ", currentrunCheck, "  and runcheck is ", runCheck,sep=""))
         #Check the runCheck if it is greater
         if (currentrunCheck > runCheck)
         {
@@ -106,7 +106,7 @@ function(input, output, session) {
         qstr <- str
       }
       
-      print("str end")
+      #print("str end")
       #read.csv(textConnection(newLines()), header=FALSE, stringsAsFactors=FALSE,
       read.csv(text=qstr, header=FALSE, stringsAsFactors=FALSE,
                col.names = names(prototype)
@@ -338,27 +338,35 @@ function(input, output, session) {
   
     
   output$packagePlot <- renderBubbles({
-    if (nrow(pkgData()) == 0)
-      return()
+    
+    dc <- pkgData()
     
     
-    # Write CSV in R
-    #write.csv(pkgData(), file = "MyData.csv")
-    
-    order <- unique(pkgData()$bucket)
-    df <- pkgData() %>%
-      group_by(bucket) %>%
-     summarise( 
-        cmsisdn = sum(rcount)
-     ) %>%
-      arrange(desc(bucket), tolower(bucket)) %>%
-      # Just show the top 60, otherwise it gets hard to see
-      head(50)
-      total <<- sum(df$cmsisdn)     
-      #bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
-      bubbles(df$cmsisdn, paste("$",df$bucket, "/", format(round(df$cmsisdn/1000,2), nsmall = 2),"K",sep="" ), key = df$bucket, 
-                                color = c(cp(nrow(df[which(floor((df$bucket))>=0),])),rev(cn(nrow(df[which(floor((df$bucket))<0),])))) )
+    if (!is.data.frame(dc)) #If no data found, display loading. 
+    {
+        bubbles(value = runif(1), label = "Loading", color="white")
+       #return()
+    }
+    else
+    {
+      # Write CSV in R
+      #write.csv(pkgData(), file = "MyData.csv")
       
+      order <- unique(pkgData()$bucket)
+      df<-pkgData() %>%
+        group_by(bucket) %>%
+         summarise( 
+            cmsisdn = sum(rcount)
+         ) %>%
+        arrange(desc(bucket), tolower(bucket)) %>%
+        # Just show the top 60, otherwise it gets hard to see
+        head(50)
+        total <<- sum(df$cmsisdn)     
+        ####bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
+        bubbles(df$cmsisdn, paste("$",df$bucket, "/", format(round(df$cmsisdn/1000,2), nsmall = 2),"K",sep="" ),         key = df$bucket, color = c(cp(nrow(df[which(floor((df$bucket))>=0),])),rev(cn(nrow(df[which(floor((df$bucket))<0),])))) 
+        )
+    } 
+    
   })
   
   
