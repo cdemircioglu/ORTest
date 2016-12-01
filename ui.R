@@ -32,17 +32,24 @@ dashboardPage(
               ),
               fluidRow(
                 box(
-                  width = 9, height = 600, status = "info", solidHeader = TRUE,
+                  width = 9, height = 660, status = "info", solidHeader = TRUE,
                   title = "Profit by group size (green better - red worse)",
                   bubblesOutput("packagePlot", width = "100%")
                 ),
                 box(
-                  width = 3, status = "info", height = 600, solidHeader = TRUE,
+                  width = 3, status = "info", height = 660, solidHeader = TRUE,
                   title = "Revenue distribution",
                   plotOutput("plot")
                 )
-                
+              ),
+              fluidRow(
+                box(
+                  width = 12, status = "info", height = 500, solidHeader = TRUE,
+                  title = "Market interest distribution",
+                  plotOutput("plotMarketInterest")
+                )
               )
+              
       ) #tab item
     ) #tab items
   )

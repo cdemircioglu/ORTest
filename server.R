@@ -394,7 +394,29 @@ function(input, output, session) {
          cex.sub=tscale
     )
   })
+
   
+  output$plotMarketInterest <- renderPlot({
+    invalidateLater(1000, session) 
+    
+    con <-  dbConnect(RMySQL::MySQL(),username = "root", password = "KaraburunCe2", host = "hwcontrol.cloudapp.net", port = 3306, dbname = "openroads")
+    
+    #Create the query for xdr records
+    src_query <- ("SELECT B.MARKETINTEREST, A.MARKETCOUNT FROM dim_marketinterest B INNER JOIN (SELECT MARKETINTERESTID, SUM(MARKETCOUNT) AS MARKETCOUNT FROM fct_marketinterestgroup GROUP BY MARKETINTERESTID) A ON A.MARKETINTERESTID = B.MARKETINTERESTID ORDER BY B.MARKETINTEREST DESC")
+    
+    #Get the records for xdr
+    src_xdr <- dbGetQuery(con, src_query)
+    
+    #Disconnect from the database
+    dbDisconnect(con)
+    
+    bp <- ggplot(src_xdr, aes(x=src_xdr$MARKETINTEREST, y=src_xdr$MARKETCOUNT/1000)) +
+      geom_bar(stat="identity",fill="orange") +
+      coord_flip() +
+      labs(x='Market Interest',y='Activity Count (in thousands)')
+    bp
+    
+  })    
 #  output$packageTable <- renderTable({
 #    if (nrow(pkgData()) == 0)
 #      return()
@@ -407,5 +429,5 @@ function(input, output, session) {
 #      select("Web site" = package, "% of activity" = percentage) %>%
 #      as.data.frame() %>%
 #      head(10)
-#  }, digits = 1)
+#  })
 }
