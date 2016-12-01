@@ -414,7 +414,7 @@ function(input, output, session) {
       geom_bar(stat="identity",fill="orange") +
       coord_flip() +
       labs(x='Market Interest',y='Activity Count (in thousands)')
-    bp
+    print(bp)
     
   })    
 #  output$packageTable <- renderTable({
