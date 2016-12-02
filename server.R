@@ -403,7 +403,7 @@ function(input, output, session) {
 
   
   output$plotMarketInterest <- renderPlot({
-    #invalidateLater(1000, session) 
+    invalidateLater(1000, session) 
     
     #Create the query for xdr records
     src_query <- ("SELECT B.MARKETINTEREST, A.MARKETCOUNT FROM dim_marketinterest B INNER JOIN (SELECT MARKETINTERESTID, SUM(MARKETCOUNT) AS MARKETCOUNT FROM fct_marketinterestgroup GROUP BY MARKETINTERESTID) A ON A.MARKETINTERESTID = B.MARKETINTERESTID ORDER BY B.MARKETINTEREST DESC")
