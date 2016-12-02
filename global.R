@@ -4,6 +4,7 @@ library(shinySignals)
 library(dplyr)
 library(shinydashboard)
 library(bubbles)
+library(RMySQL)
 source("bloomfilter.R")
 
 #Turn warnings off
