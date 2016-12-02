@@ -33,7 +33,8 @@ function(input, output, session) {
   
   packageStream <- function(session) {
     # Connect to data source
-    sock <- socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r", timeout=10000)
+    #sock <- socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r", timeout=10000)
+    sock <- socketConnection(host="hwcontrol.cloudapp.net", port = 8191, blocking=FALSE,server=FALSE, open="r", timeout=10000)
     
     # Clean up when session is over
     session$onSessionEnded(function() {
@@ -241,7 +242,8 @@ function(input, output, session) {
     cmdString <- paste(cmdString,'</ShinnyParameters>"',sep="")
     
     if(length(grep("C:",getwd()))>0) 
-      cmdString <- paste('c:\\Python27\\python.exe send.py ', cmdString, sep="")
+      #cmdString <- paste('c:\\Python27\\python.exe send.py ', cmdString, sep="")
+      cmdString <- paste('c:\\Python27\\python.exe send_test.py ', cmdString, sep="")
     else 
       cmdString <- paste('python /home/cem/ui/send.py ', cmdString, sep="")
     
@@ -411,6 +413,7 @@ function(input, output, session) {
     
     bp <- ggplot(src_xdr, aes(x=src_xdr$MARKETINTEREST, y=src_xdr$MARKETCOUNT/1000)) +
       geom_bar(stat="identity",fill="orange") +
+      scale_y_continuous(limits = c(0, 1000))+
       coord_flip() +
       labs(x='Market Interest',y='Activity Count (in thousands)')
     print(bp)
