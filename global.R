@@ -5,6 +5,7 @@ library(dplyr)
 library(shinydashboard)
 library(bubbles)
 library(RMySQL)
+library(ggplot2)
 source("bloomfilter.R")
 
 #Turn warnings off
