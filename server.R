@@ -4,7 +4,8 @@ function(input, output, session) {
   df_duration <- data.frame(FOO=c("414060|ACCESSORIES","354580|ACCOUNTING","250400|ARTS","293450|ASTRONOMY","451150|CHRISTIANITY","664630|EDUCATION","439870|ENTERTAINMENT","473030|FINANCE","304910|HEALTH","412760|INVESTING","4237510|MOVIES","4037510|MUSIC","4637510|SPORTS","4437510|TECHNOLOGY","4737510|TELEVISION"))  
   df_duration <- data.frame(do.call('rbind', strsplit(as.character(df_duration$FOO),'|',fixed=TRUE)))
   runCheck <- as.numeric(as.character(Sys.time(),format="%H%M%S"))
-    
+  con <-  dbConnect(RMySQL::MySQL(),username = "root", password = "KaraburunCe2", host = "hwcontrol.cloudapp.net", port = 3306, dbname = "openroads")
+  
   #timeRequired <- df_duration[which(df_duration$X2 == marketInterest),1] #seconds to complete
   timeRequired <- 7500 #seconds to complete
   initialtimeRequired <- isolate(timeRequired) #initial time required to calc percent complete
@@ -399,8 +400,6 @@ function(input, output, session) {
   output$plotMarketInterest <- renderPlot({
     invalidateLater(1000, session) 
     
-    con <-  dbConnect(RMySQL::MySQL(),username = "root", password = "KaraburunCe2", host = "hwcontrol.cloudapp.net", port = 3306, dbname = "openroads")
-    
     #Create the query for xdr records
     src_query <- ("SELECT B.MARKETINTEREST, A.MARKETCOUNT FROM dim_marketinterest B INNER JOIN (SELECT MARKETINTERESTID, SUM(MARKETCOUNT) AS MARKETCOUNT FROM fct_marketinterestgroup GROUP BY MARKETINTERESTID) A ON A.MARKETINTERESTID = B.MARKETINTERESTID ORDER BY B.MARKETINTEREST DESC")
     
@@ -408,7 +407,7 @@ function(input, output, session) {
     src_xdr <- dbGetQuery(con, src_query)
     
     #Disconnect from the database
-    dbDisconnect(con)
+    #dbDisconnect(con)
     
     bp <- ggplot(src_xdr, aes(x=src_xdr$MARKETINTEREST, y=src_xdr$MARKETCOUNT/1000)) +
       geom_bar(stat="identity",fill="orange") +
