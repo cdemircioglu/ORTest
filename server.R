@@ -1,5 +1,7 @@
 library(RMySQL)
 con <-  dbConnect(RMySQL::MySQL(),username = "root", password = "KaraburunCe2", host = "hwcontrol.cloudapp.net", port = 3306, dbname = "openroads")
+strquery <<- "SELECT D.MARKETINTEREST, COUNT(1)*100 / (SELECT COUNT(DISTINCT MSISDN) FROM (SELECT MSISDN FROM fct_marketinterestraw LIMIT 0,100000) A) AS MARKETCOUNT FROM (SELECT MARKETINTERESTID FROM fct_marketinterestraw LIMIT 0,100000) A INNER JOIN dim_marketinterest D ON A.MARKETINTERESTID = D.MARKETINTERESTID GROUP BY D.MARKETINTEREST ORDER BY D.MARKETINTEREST"
+rcount <<- 100
 
 function(input, output, session) {
   
@@ -381,7 +383,6 @@ function(input, output, session) {
     tcol="orange"      # fill colors
     acol="orangered"   # color for added samples
     tscale=1;          # label rescaling factor
-    #df <- pkgData()
     invalidateLater(500, session) 
       
     #hist(mcv_df$mcv*((input$perceivedValue*1.011-input$costtoDeliver*1.32)/50),
@@ -399,29 +400,27 @@ function(input, output, session) {
          cex.main=tscale,
          cex.sub=tscale
     )
-  })
+  },height = 280, width = 300)
 
-  
   output$plotMarketInterest <- renderPlot({
-    invalidateLater(1000, session) 
+    invalidateLater(2000, session) 
+    rcount <<- rcount + floor(runif(1, 0, 100)) #This many records are added every second on query.
+    rcount <<- if (exists("rcount") && rcount>10000000) 10000000 else rcount
     
     #Create the query for xdr records
-    src_query <- ("SELECT B.MARKETINTEREST, A.MARKETCOUNT FROM dim_marketinterest B INNER JOIN (SELECT MARKETINTERESTID, SUM(MARKETCOUNT) AS MARKETCOUNT FROM fct_marketinterestgroup GROUP BY MARKETINTERESTID) A ON A.MARKETINTERESTID = B.MARKETINTERESTID ORDER BY B.MARKETINTEREST DESC")
-    
+    query <- gsub("100000", rcount, strquery)
+        
     #Get the records for xdr
-    src_ggplot <- dbGetQuery(con, src_query)
+    src_ggplot <- dbGetQuery(con, query)
     
-    #Disconnect from the database
-    #dbDisconnect(con)
-    
-    bp <- ggplot(src_ggplot, aes(x=src_ggplot$MARKETINTEREST, y=src_ggplot$MARKETCOUNT/1000)) +
+    bp <- ggplot(src_ggplot, aes(x=src_ggplot$MARKETINTEREST, y=src_ggplot$MARKETCOUNT)) +
       geom_bar(stat="identity",fill="orange") +
-      scale_y_continuous(limits = c(0, 1000))+
+      scale_y_continuous(limits = c(0, 30))+
       coord_flip() +
-      labs(x='Market Interest',y='Activity Count (in thousands)')
+      labs(x='Market Interest',y='Percent Distribution')
     print(bp)
     
-  })    
+  },height = 258, width = 300)    
 #  output$packageTable <- renderTable({
 #    if (nrow(pkgData()) == 0)
 #      return()

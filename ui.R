@@ -32,19 +32,17 @@ dashboardPage(
               ),
               fluidRow(
                 box(
-                  width = 9, height = 660, status = "info", solidHeader = TRUE,
+                  width = 8, height = 660, status = "info", solidHeader = TRUE,
                   title = "Profit by group size (green better - red worse)",
                   bubblesOutput("packagePlot", width = "100%")
                 ),
                 box(
-                  width = 3, status = "info", height = 660, solidHeader = TRUE,
+                  width = 4, status = "info", height = 330, solidHeader = TRUE, align="center", style='padding:0px;',
                   title = "Revenue distribution",
                   plotOutput("plot")
-                )
-              ),
-              fluidRow(
+                ),
                 box(
-                  width = 12, status = "info", height = 500, solidHeader = TRUE,
+                  width = 4, status = "info", height = 311, solidHeader = TRUE, align="center",
                   title = "Market interest distribution",
                   plotOutput("plotMarketInterest")
                 )
