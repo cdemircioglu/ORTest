@@ -46,9 +46,9 @@ function(input, output, session) {
     
     #Test or production
     sock <- if (grepl("openroads",myloc))
-      socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r", timeout=10000)
-    else
       socketConnection(host="hwcontrol.cloudapp.net", port = 8191, blocking=FALSE,server=FALSE, open="r", timeout=10000)
+    else
+      socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r", timeout=10000)
     
     # Clean up when session is over
     session$onSessionEnded(function() {
