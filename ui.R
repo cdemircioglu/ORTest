@@ -8,8 +8,10 @@ dashboardPage(
   dashboardSidebar(
     sliderInput("servercnt", "Number of computers",min = 0, max = 10, value = 1, step = 1),
     selectInput("marketInterest","Market Interest",selected ="MOVIES", c("ACCESSORIES","ACCOUNTING","ARTS","ASTRONOMY","CHRISTIANITY","EDUCATION","ENTERTAINMENT","FINANCE","HEALTH","INVESTING","MOVIES","MUSIC","SPORTS","TECHNOLOGY","TELEVISION")),
-    sliderInput("perceivedValue", "Revenue to carrier",min = 0, max = 50, value = 40, step = 10),
-    sliderInput("costtoDeliver", "Cost to deliver",min = 0, max = 50, value = 10, step = 10),
+    sliderInput("perceivedValue", "Monthly Price",min = 0, max = 50, value = 40, step = 10),
+    sliderInput("costtoDeliver", "Monthly Cost",min = 0, max = 50, value = 10, step = 10),
+    sliderInput("promotionalCost", "Promotional Cost",min = 0, max = 10, value = 1, step = 1),
+    sliderInput("captiveMonths", "Captive Months",min = 0, max = 24, value = 12, step = 2),
     sidebarMenu(
       menuItem("Dashboard", tabName = "dashboard")
       #,menuItem("Raw data", tabName = "rawdata")
@@ -38,7 +40,7 @@ dashboardPage(
                 ),
                 box(
                   width = 4, status = "info", height = 330, solidHeader = TRUE, align="center", style='padding:0px;',
-                  title = "Revenue distribution",
+                  title = "Economic benefit distribution",
                   plotOutput("plot")
                 ),
                 box(

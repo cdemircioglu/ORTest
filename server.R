@@ -21,7 +21,10 @@ function(input, output, session) {
   lastmarketInterest <<- "Dummy"
   lastperceivedValue <<- -1
   lastcosttoDeliver <<- -1
-
+  
+  lastpromotionalCost <<- -1
+  lastcaptiveMonths <<- -1
+  
   #Delete the data frame
   if(exists("mcv_df"))
   {
@@ -45,10 +48,11 @@ function(input, output, session) {
     myloc <- getwd()
     
     #Test or production
-    sock <- if (grepl("openroads",myloc))
-      socketConnection(host="hwcontrol.cloudapp.net", port = 8191, blocking=FALSE,server=FALSE, open="r", timeout=10000)
-    else
+    sock <- if (grepl("!openroads",myloc))
       socketConnection(host="hwcontrol.cloudapp.net", port = 8091, blocking=FALSE,server=FALSE, open="r", timeout=10000)
+    else
+      socketConnection(host="hwcontrol.cloudapp.net", port = 8191, blocking=FALSE,server=FALSE, open="r", timeout=10000)
+      
     
     # Clean up when session is over
     session$onSessionEnded(function() {
@@ -216,12 +220,15 @@ function(input, output, session) {
   observe({
 
     # Check the parameters, if they are changed reset the data frame. 
-    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver)
+    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver || lastpromotionalCost != input$promotionalCost || lastcaptiveMonths != input$captiveMonths)
     {
       resetfactor <<- 1 #Reset the data frame
       lastmarketInterest <<- input$marketInterest
       lastperceivedValue <<- input$perceivedValue
       lastcosttoDeliver <<- input$costtoDeliver
+      lastpromotionalCost <<- input$promotionalCost  
+      lastcaptiveMonths <<- input$captiveMonths
+      
       currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
       timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1028
       initialtimeRequired <<- timeRequired
@@ -236,9 +243,10 @@ function(input, output, session) {
     }
 
     # We'll use these multiple times, so use short var names for convenience.
-    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck)
-    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck")
-    
+    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck,input$promotionalCost,input$captiveMonths)
+    parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck","promotionalCost","captiveMonths")
+
+        
     # Command start
     #cmdString <- '/home/cem/ui/send.py "<ShinnyParameters>'
     cmdString <- '"<ShinnyParameters>'
