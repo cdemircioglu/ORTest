@@ -383,7 +383,7 @@ function(input, output, session) {
          summarise( 
             cmsisdn = sum(rcount)
          ) %>%
-        arrange(desc(bucket), tolower(bucket)) %>%
+        arrange(desc(bucket), tolower(df$cmsisdn)) %>%
         # Just show the top 60, otherwise it gets hard to see
         head(50)
         total <<- sum(df$cmsisdn)     
