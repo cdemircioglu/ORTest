@@ -384,14 +384,16 @@ function(input, output, session) {
          summarise( 
             cmsisdn = sum(rcount)
          ) %>%
-        arrange(desc(cmsisdn),desc(bucket)) %>%
+        arrange(desc(cmsisdn),desc(bucket)) #%>%
         # Just show the top 60, otherwise it gets hard to see
-        head(30)
+        #head(50)
         
         df<- arrange(df,desc(bucket),desc(cmsisdn))
+        write.csv(df, file = "aaa.csv", row.names = TRUE)
+        df <- df[1:50,]
         
         total <<- sum(df$cmsisdn)  
-        #write.csv(df, file = "aaa.csv", row.names = TRUE)
+        
         ####bubbles(df$cmsisdn, paste("$",df$size, "/", df$cmsisdn, sep="" ), key = df$size, color = cx(nrow(df)) )
         bubbles(df$cmsisdn, paste("$",df$bucket, "/", format(round(df$cmsisdn/1000,2), nsmall = 2),"K",sep="" ),         key = df$bucket, color = c(cp(nrow(df[which(floor((df$bucket))>=0),])),rev(cn(nrow(df[which(floor((df$bucket))<0),])))) 
         )
