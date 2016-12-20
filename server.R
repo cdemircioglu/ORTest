@@ -386,7 +386,7 @@ function(input, output, session) {
          ) %>%
         arrange(desc(cmsisdn),desc(bucket)) #%>%
         # Just show the top 60, otherwise it gets hard to see
-        head(50)
+        head(30)
         
         df<- arrange(df,desc(bucket),desc(cmsisdn))
         #write.csv(df, file = "aaa.csv", row.names = TRUE)
