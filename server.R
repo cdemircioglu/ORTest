@@ -388,7 +388,7 @@ function(input, output, session) {
         # Just show the top 60, otherwise it gets hard to see
         #head(30)
         mecon <- max(df$bucket)
-        df[df$bucket>0,1] <- df$bucket*df$bucket/mecon
+        df[df$bucket>0,1] <- floor(df$bucket*log(df$bucket)/log(mecon))
         
         df<- arrange(df,desc(bucket),desc(cmsisdn))
         #write.csv(df, file = "aaa.csv", row.names = TRUE)
