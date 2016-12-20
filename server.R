@@ -392,7 +392,7 @@ function(input, output, session) {
         
         df<- arrange(df,desc(bucket),desc(cmsisdn))
         #write.csv(df, file = "aaa.csv", row.names = TRUE)
-        df <- df[1:50,]
+        df <- df[1:30,]
         
         total <<- sum(df$cmsisdn)  
         
