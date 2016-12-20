@@ -386,11 +386,11 @@ function(input, output, session) {
          ) %>%
         arrange(desc(cmsisdn),desc(bucket)) #%>%
         # Just show the top 60, otherwise it gets hard to see
-        #head(50)
+        head(50)
         
         df<- arrange(df,desc(bucket),desc(cmsisdn))
-        write.csv(df, file = "aaa.csv", row.names = TRUE)
-        df <- df[1:50,]
+        #write.csv(df, file = "aaa.csv", row.names = TRUE)
+        #df <- df[1:50,]
         
         total <<- sum(df$cmsisdn)  
         
