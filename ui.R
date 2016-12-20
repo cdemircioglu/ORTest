@@ -12,7 +12,7 @@ dashboardPage(
     sliderInput("costtoDeliver", "Monthly Cost",min = 0, max = 50, value = 10, step = 10),
     sliderInput("promotionalCost", "Promotional Cost",min = 0, max = 10, value = 1, step = 1),
     sliderInput("captiveMonths", "Captive Months",min = 0, max = 24, value = 12, step = 2),
-    sliderInput("churnRate", "Monthly Churn",min = 0, max = 0.30, value = 0.1, step = 0.05),
+    sliderInput("churnRate", "Monthly Churn",min = 0, max = 30, value = 2, step = 1),
     sidebarMenu(
       menuItem("Dashboard", tabName = "dashboard")
       #,menuItem("Raw data", tabName = "rawdata")
