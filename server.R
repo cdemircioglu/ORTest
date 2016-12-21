@@ -405,7 +405,7 @@ function(input, output, session) {
         finalset[,1] <- as.numeric(as.character(finalset[,1]))
         finalset[,2] <- as.numeric(as.character(finalset[,2]))
         
-        write.csv(finalset, file = "aaa.csv", row.names = TRUE)
+        #write.csv(finalset, file = "aaa.csv", row.names = TRUE)
         
         #Group the results
         finalset <- finalset %>%
@@ -429,7 +429,7 @@ function(input, output, session) {
         #write.csv(df, file = "aaa.csv", row.names = TRUE)
         #df <- df[1:30,]
         
-        write.csv(df, file = "bbb.csv", row.names = TRUE)
+        #write.csv(df, file = "bbb.csv", row.names = TRUE)
         
         
         total <<- sum(df$cmsisdn)  
@@ -452,7 +452,7 @@ function(input, output, session) {
     #hist(mcv_df$mcv*((input$perceivedValue*1.011-input$costtoDeliver*1.32)/50),
     hist(mcv_df$mcv, 
          warn.unused = FALSE,
-         breaks=50,
+         breaks=40,
          main="",
          col=tcol,         
          ylim=c(0,5000),
