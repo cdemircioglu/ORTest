@@ -414,7 +414,7 @@ function(input, output, session) {
     #hist(mcv_df$mcv*((input$perceivedValue*1.011-input$costtoDeliver*1.32)/50),
     hist(mcv_df$mcv, 
          warn.unused = FALSE,
-         breaks=200,
+         #breaks=200,
          main="",
          col=tcol,         
          ylim=c(0,5000),
