@@ -458,7 +458,7 @@ function(input, output, session) {
          ylim=c(0,5000),
          ylab="Frequency (1K)",
          border=tcol,
-         xlab="Revenue",
+         xlab="Revenue ($)",
          cex.lab=tscale,
          cex.axis=tscale,
          cex.main=tscale,
@@ -481,7 +481,7 @@ function(input, output, session) {
       geom_bar(stat="identity",fill="orange") +
       scale_y_continuous(limits = c(0, 30))+
       coord_flip() +
-      labs(x='Market Interest',y='Percent Distribution')
+      labs(x='Market Interest',y='% of Subscribers')
     print(bp)
     
   },height = 258, width = 300)    
