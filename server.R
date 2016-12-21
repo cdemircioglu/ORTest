@@ -384,7 +384,7 @@ function(input, output, session) {
          summarise( 
             cmsisdn = sum(rcount)
          ) %>%
-        arrange(desc(bucket),desc(cmsisdn)) %>%
+        arrange(desc(cmsisdn),desc(bucket)) %>%
         # Just show the top 60, otherwise it gets hard to see
         head(30)
         #mecon <- max(df$bucket)
