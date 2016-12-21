@@ -379,40 +379,38 @@ function(input, output, session) {
       #write.csv(pkgData(), file = "MyData.csv")
       
       order <- unique(pkgData()$bucket)
-      df<-pkgData() #%>%
-        #group_by(bucket) %>%
-        # summarise( 
-        #    cmsisdn = sum(rcount)
-        # ) %>%
+      df<-pkgData() %>%
+        group_by(bucket) %>%
+         summarise( 
+            cmsisdn = sum(rcount)
+         ) #%>%
         #arrange(desc(cmsisdn),desc(bucket)) %>%
         # Just show the top 60, otherwise it gets hard to see
         #head(30)
         #mecon <- max(df$bucket)
         #df[df$bucket>0,1] <- floor(df$bucket*log(df$bucket)/log(mecon))
-        
-        write.csv(df, file = "aaa.csv", row.names = TRUE)
+        #write.csv(df, file = "aaa.csv", row.names = TRUE)
       
         maxb <- max(df$bucket)
         minb <- min(df$bucket)
-        byb <- floor((maxb-minb)/40)
+        byb <- floor((maxb-minb)/30)
         buckets <- c(0,seq(minb, maxb, by=byb))
         buckets <- sort(unique(as.integer(buckets)))
+        
         
         #Create the bucketing logic
         finalset <- transform(df, LABEL=cut(bucket,breaks=buckets,labels=buckets[1:length(buckets)-1]))
         finalset <- finalset[complete.cases(finalset),] #Remove na figures, if any
         
-        #Calculate the counts
         finalset <- finalset %>%
           group_by(LABEL) %>% 
-          summarise_each(funs(n()),rcount)
+          summarise_each(funs(n()),cmsisdn)
         
-        #Set as data frame
         finalset <- as.data.frame(finalset)
-        
-        #Set the names
         colnames(finalset) <- c("bucket", "cmsisdn")
-
+        
+        df <- finalset
+      
         #df<- arrange(df,desc(bucket),desc(cmsisdn))
         #write.csv(df, file = "aaa.csv", row.names = TRUE)
         #df <- df[1:30,]
