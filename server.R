@@ -389,7 +389,7 @@ function(input, output, session) {
         #head(30)
         #mecon <- max(df$bucket)
         #df[df$bucket>0,1] <- floor(df$bucket*log(df$bucket)/log(mecon))
-        #write.csv(df, file = "aaa.csv", row.names = TRUE)
+        
       
         maxb <- max(df$bucket)
         minb <- min(df$bucket)
@@ -398,19 +398,27 @@ function(input, output, session) {
         buckets <- sort(unique(as.integer(buckets)))
         
         
-        #Create the bucketing logic
+        #Create the bucketing logic for the whole dataset
         finalset <- transform(df, LABEL=cut(bucket,breaks=buckets,labels=buckets[1:length(buckets)-1]))
         finalset <- finalset[complete.cases(finalset),] #Remove na figures, if any
         
+        #write.csv(finalset, file = "aaa.csv", row.names = TRUE)
+        
+        #Group the results
         finalset <- finalset %>%
           group_by(LABEL) %>% 
           summarise_each(funs(n()),cmsisdn)
         
+        #Cast the list to a data frame
         finalset <- as.data.frame(finalset)
         colnames(finalset) <- c("bucket", "cmsisdn")
         
+        #Finally recast factors to numeric
         df <- finalset
+        df[,1] <- as.numeric(as.character(df[,1]))
+        df[,2] <- as.numeric(as.character(df[,2]))
       
+        df <- arrange(df,desc(bucket),desc(cmsisdn))
         #df<- arrange(df,desc(bucket),desc(cmsisdn))
         #write.csv(df, file = "aaa.csv", row.names = TRUE)
         #df <- df[1:30,]
