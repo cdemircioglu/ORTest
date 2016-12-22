@@ -10,8 +10,8 @@ dashboardPage(
     selectInput("marketInterest","Market Interest",selected ="MOVIES", c("ACCESSORIES","ACCOUNTING","ARTS","ASTRONOMY","CHRISTIANITY","EDUCATION","ENTERTAINMENT","FINANCE","HEALTH","INVESTING","MOVIES","MUSIC","SPORTS","TECHNOLOGY","TELEVISION")),
     sliderInput("perceivedValue", "Offer Price",min = 0, max = 20, value = 18, step = 1),
     sliderInput("costtoDeliver", "Offer Cost",min = 0, max = 20, value = 10, step = 1),
-    sliderInput("promotionalCost", "Promotional Cost",min = 0, max = 2, value = 2, step = 0.1),
-    sliderInput("captiveMonths", "Captive Months",min = 0, max = 24, value = 12, step = 2),
+    sliderInput("promotionalCost", "Promotional Cost",min = 0, max = 2, value = 1, step = 0.1),
+    sliderInput("captiveMonths", "Captive Months",min = 0, max = 24, value = 12, step = 1),
     #sliderInput("churnRate", "Monthly Churn",min = 0, max = 30, value = 4, step = 1),
     sidebarMenu(
       menuItem("Dashboard", tabName = "dashboard")
