@@ -1,173 +1,332 @@
-"","bucket","cmsisdn","LABEL"
-"2",-12,64,"-13"
-"3",-11,10,"-13"
-"4",-10,2,"-13"
-"5",-9,10,"-13"
-"6",-8,60,"-13"
-"7",-7,81,"-13"
-"8",-6,40,"-13"
-"9",-5,39,"-13"
-"10",-4,9,"-5"
-"11",-3,39,"-5"
-"12",-2,9,"-5"
-"13",-1,21,"-5"
-"14",0,141,"-5"
-"15",1,64,"0"
-"16",2,46,"0"
-"17",3,22,"0"
-"18",4,78,"3"
-"19",5,20,"3"
-"20",6,56,"3"
-"21",7,42,"3"
-"22",8,15,"3"
-"23",10,94,"3"
-"24",11,76,"3"
-"25",12,23,"11"
-"26",14,38,"11"
-"27",15,14,"11"
-"28",16,114,"11"
-"29",17,44,"11"
-"30",18,39,"11"
-"31",19,17,"11"
-"32",20,3,"19"
-"33",21,66,"19"
-"34",22,77,"19"
-"35",23,21,"19"
-"36",24,17,"19"
-"37",26,69,"19"
-"38",27,27,"19"
-"39",28,66,"27"
-"40",29,14,"27"
-"41",30,15,"27"
-"42",31,33,"27"
-"43",32,18,"27"
-"44",34,86,"27"
-"45",35,51,"27"
-"46",36,50,"35"
-"47",37,13,"35"
-"48",38,9,"35"
-"49",39,2,"35"
-"50",40,43,"35"
-"51",41,48,"35"
-"52",42,50,"35"
-"53",43,17,"35"
-"54",45,2,"43"
-"55",46,87,"43"
-"56",47,19,"43"
-"57",48,8,"43"
-"58",49,14,"43"
-"59",50,30,"43"
-"60",51,42,"43"
-"61",52,53,"51"
-"62",53,17,"51"
-"63",54,6,"51"
-"64",55,3,"51"
-"65",56,64,"51"
-"66",57,10,"51"
-"67",58,63,"51"
-"68",59,32,"51"
-"69",60,8,"59"
-"70",61,25,"59"
-"71",62,10,"59"
-"72",63,14,"59"
-"73",64,32,"59"
-"74",65,5,"59"
-"75",66,45,"59"
-"76",67,15,"59"
-"77",68,3,"67"
-"78",70,41,"67"
-"79",71,21,"67"
-"80",72,10,"67"
-"81",73,1,"67"
-"82",74,21,"67"
-"83",75,10,"67"
-"84",76,48,"75"
-"85",77,20,"75"
-"86",78,7,"75"
-"87",80,3,"75"
-"88",81,11,"75"
-"89",82,34,"75"
-"90",83,10,"75"
-"91",84,15,"83"
-"92",85,2,"83"
-"93",86,24,"83"
-"94",87,7,"83"
-"95",88,24,"83"
-"96",89,10,"83"
-"97",90,8,"83"
-"98",91,33,"83"
-"99",92,5,"91"
-"100",94,28,"91"
-"101",95,6,"91"
-"102",96,27,"91"
-"103",97,1,"91"
-"104",98,17,"91"
-"105",99,10,"91"
-"106",100,16,"99"
-"107",101,25,"99"
-"108",102,13,"99"
-"109",103,1,"99"
-"110",104,1,"99"
-"111",105,9,"99"
-"112",106,32,"99"
-"113",107,14,"99"
-"114",108,6,"107"
-"115",110,1,"107"
-"116",111,8,"107"
-"117",112,21,"107"
-"118",113,6,"107"
-"119",114,11,"107"
-"120",115,3,"107"
-"121",116,13,"115"
-"122",117,1,"115"
-"123",118,10,"115"
-"124",119,9,"115"
-"125",120,3,"115"
-"126",121,8,"115"
-"127",122,10,"115"
-"128",123,5,"115"
-"129",124,9,"123"
-"130",125,2,"123"
-"131",126,7,"123"
-"132",127,3,"123"
-"133",129,4,"123"
-"134",130,11,"123"
-"135",131,14,"123"
-"136",132,4,"131"
-"137",133,3,"131"
-"138",136,11,"131"
-"139",137,5,"131"
-"140",138,8,"131"
-"141",139,5,"131"
-"142",140,2,"139"
-"143",141,3,"139"
-"144",142,6,"139"
-"145",143,4,"139"
-"146",146,6,"139"
-"147",147,8,"139"
-"148",148,3,"147"
-"149",149,3,"147"
-"150",150,3,"147"
-"151",154,12,"147"
-"152",155,3,"147"
-"153",156,2,"155"
-"154",160,2,"155"
-"155",161,1,"155"
-"156",162,4,"155"
-"157",163,1,"155"
-"158",166,5,"163"
-"159",167,3,"163"
-"160",170,4,"163"
-"161",171,1,"163"
-"162",172,1,"171"
-"163",175,2,"171"
-"164",178,4,"171"
-"165",182,2,"179"
-"166",185,1,"179"
-"167",186,3,"179"
-"168",194,1,"187"
-"169",195,4,"187"
-"170",196,1,"195"
-"171",203,1,"195"
-"172",210,1,"203"
-"173",219,1,"211"
+PRODUCT SYMBOL,CONTRACT MONTH,CONTRACT YEAR,CONTRACT DAY,CONTRACT,PRODUCT DESCRIPTION,OPEN,HIGH,HIGH AB INDICATOR,LOW,LOW AB INDICATOR,LAST,LAST AB INDICATOR,SETTLE,PT CHG,EST. VOL,PRIOR SETTLE,PRIOR VOL,PRIOR INT,TRADEDATE
+A38,12,2016,,A38Z16,Aluminium A-380 Alloy (platts) Futures,,,,,,,,.82125,UNCH,0,.82125,,10,12/21/2016
+A38,01,2017,,A38F17,Aluminium A-380 Alloy (platts) Futures,,,,,,,,.84000,UNCH,0,.84000,,16,12/21/2016
+A38,02,2017,,A38G17,Aluminium A-380 Alloy (platts) Futures,,,,,,,,.85000,UNCH,0,.85000,,20,12/21/2016
+A38,03,2017,,A38H17,Aluminium A-380 Alloy (platts) Futures,,,,,,,,.85000,UNCH,0,.85000,,20,12/21/2016
+AEP,12,2016,,AEPZ16,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,74.23,+.09,0,74.14,,784,12/21/2016
+AEP,01,2017,,AEPF17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+1.00,50,81.00,,390,12/21/2016
+AEP,02,2017,,AEPG17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+1.00,50,81.00,,390,12/21/2016
+AEP,03,2017,,AEPH17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+1.00,50,81.00,,390,12/21/2016
+AEP,04,2017,,AEPJ17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+3.00,50,79.00,,398,12/21/2016
+AEP,05,2017,,AEPK17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+3.00,50,79.00,,398,12/21/2016
+AEP,06,2017,,AEPM17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+3.00,50,79.00,,408,12/21/2016
+AEP,07,2017,,AEPN17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+2.00,50,80.00,,345,12/21/2016
+AEP,08,2017,,AEPQ17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+2.00,50,80.00,,345,12/21/2016
+AEP,09,2017,,AEPU17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+2.00,50,80.00,,330,12/21/2016
+AEP,10,2017,,AEPV17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+2.00,50,80.00,,355,12/21/2016
+AEP,11,2017,,AEPX17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+2.00,50,80.00,,355,12/21/2016
+AEP,12,2017,,AEPZ17,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,82.00,+2.00,50,80.00,,355,12/21/2016
+AEP,01,2018,,AEPF18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,02,2018,,AEPG18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,03,2018,,AEPH18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,04,2018,,AEPJ18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,05,2018,,AEPK18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,06,2018,,AEPM18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,07,2018,,AEPN18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,08,2018,,AEPQ18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,09,2018,,AEPU18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,10,2018,,AEPV18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,11,2018,,AEPX18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+AEP,12,2018,,AEPZ18,Aluminium European Premium Metal Bulletin (25mt-du,,,,,,,,88.00,UNCH,0,88.00,,10,12/21/2016
+ALA,01,2017,,ALAF17,Alumina Fob Australia (platts) Futures,,,,,,,,305.00,UNCH,0,305.00,,10,12/21/2016
+ALA,02,2017,,ALAG17,Alumina Fob Australia (platts) Futures,,,,,,,,305.00,UNCH,0,305.00,,10,12/21/2016
+ALA,03,2017,,ALAH17,Alumina Fob Australia (platts) Futures,,,,,,,,305.00,UNCH,0,305.00,,10,12/21/2016
+ALA,04,2017,,ALAJ17,Alumina Fob Australia (platts) Futures,,,,,,,,275.00,UNCH,0,275.00,,10,12/21/2016
+ALA,05,2017,,ALAK17,Alumina Fob Australia (platts) Futures,,,,,,,,275.00,UNCH,0,275.00,,10,12/21/2016
+ALA,06,2017,,ALAM17,Alumina Fob Australia (platts) Futures,,,,,,,,275.00,UNCH,0,275.00,,10,12/21/2016
+ALI,12,2016,,ALIZ16,Physical Aluminum Futures,,,,,,,,1827.50,UNCH,0,1827.50,,,12/21/2016
+ALI,01,2017,,ALIF17,Physical Aluminum Futures,,,,,,,,1829.50,UNCH,0,1829.50,2,90,12/21/2016
+ALI,02,2017,,ALIG17,Physical Aluminum Futures,,,,1809.75,A,1809.75,A,1822.50,UNCH,0,1822.50,,105,12/21/2016
+ALI,03,2017,,ALIH17,Physical Aluminum Futures,,,,,,,,1823.50,UNCH,0,1823.50,,25,12/21/2016
+ALI,04,2017,,ALIJ17,Physical Aluminum Futures,,,,,,,,1824.00,UNCH,0,1824.00,,,12/21/2016
+ALI,05,2017,,ALIK17,Physical Aluminum Futures,,,,,,,,1824.00,UNCH,0,1824.00,,,12/21/2016
+ALI,06,2017,,ALIM17,Physical Aluminum Futures,,,,,,,,1825.00,UNCH,0,1825.00,,,12/21/2016
+ALI,07,2017,,ALIN17,Physical Aluminum Futures,,,,,,,,1825.50,UNCH,0,1825.50,,,12/21/2016
+ALI,08,2017,,ALIQ17,Physical Aluminum Futures,,,,,,,,1825.50,UNCH,0,1825.50,,,12/21/2016
+ALI,09,2017,,ALIU17,Physical Aluminum Futures,,,,,,,,1830.50,UNCH,0,1830.50,,,12/21/2016
+ALI,10,2017,,ALIV17,Physical Aluminum Futures,,,,,,,,1835.50,UNCH,0,1835.50,,,12/21/2016
+ALI,11,2017,,ALIX17,Physical Aluminum Futures,,,,,,,,1840.50,UNCH,0,1840.50,,,12/21/2016
+AUP,12,2016,,AUPZ16,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08014,+.00019,0,.07995,,1973,12/21/2016
+AUP,01,2017,,AUPF17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,3019,12/21/2016
+AUP,02,2017,,AUPG17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,2908,12/21/2016
+AUP,03,2017,,AUPH17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,2897,12/21/2016
+AUP,04,2017,,AUPJ17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,2719,12/21/2016
+AUP,05,2017,,AUPK17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,2550,12/21/2016
+AUP,06,2017,,AUPM17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,2638,12/21/2016
+AUP,07,2017,,AUPN17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,2283,12/21/2016
+AUP,08,2017,,AUPQ17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,2268,12/21/2016
+AUP,09,2017,,AUPU17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,2240,12/21/2016
+AUP,10,2017,,AUPV17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,2160,12/21/2016
+AUP,11,2017,,AUPX17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,1846,12/21/2016
+AUP,12,2017,,AUPZ17,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08250,UNCH,0,.08250,60,1853,12/21/2016
+AUP,01,2018,,AUPF18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,262,12/21/2016
+AUP,02,2018,,AUPG18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,254,12/21/2016
+AUP,03,2018,,AUPH18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,236,12/21/2016
+AUP,04,2018,,AUPJ18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,236,12/21/2016
+AUP,05,2018,,AUPK18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,236,12/21/2016
+AUP,06,2018,,AUPM18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,236,12/21/2016
+AUP,07,2018,,AUPN18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,96,12/21/2016
+AUP,08,2018,,AUPQ18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,91,12/21/2016
+AUP,09,2018,,AUPU18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,91,12/21/2016
+AUP,10,2018,,AUPV18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,91,12/21/2016
+AUP,11,2018,,AUPX18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,91,12/21/2016
+AUP,12,2018,,AUPZ18,Aluminum Mw U.s. Transaction Premium Platts (25mt),,,,,,,,.08500,UNCH,0,.08500,,91,12/21/2016
+EDP,12,2016,,EDPZ16,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,127.75,-.05,0,127.80,,211,12/21/2016
+EDP,01,2017,,EDPF17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,536,12/21/2016
+EDP,02,2017,,EDPG17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,536,12/21/2016
+EDP,03,2017,,EDPH17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,536,12/21/2016
+EDP,04,2017,,EDPJ17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,536,12/21/2016
+EDP,05,2017,,EDPK17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,536,12/21/2016
+EDP,06,2017,,EDPM17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,536,12/21/2016
+EDP,07,2017,,EDPN17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,516,12/21/2016
+EDP,08,2017,,EDPQ17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,516,12/21/2016
+EDP,09,2017,,EDPU17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,516,12/21/2016
+EDP,10,2017,,EDPV17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,516,12/21/2016
+EDP,11,2017,,EDPX17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,516,12/21/2016
+EDP,12,2017,,EDPZ17,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,133.00,UNCH,0,133.00,,516,12/21/2016
+EDP,01,2018,,EDPF18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,02,2018,,EDPG18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,03,2018,,EDPH18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,04,2018,,EDPJ18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,05,2018,,EDPK18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,06,2018,,EDPM18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,07,2018,,EDPN18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,08,2018,,EDPQ18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,09,2018,,EDPU18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,10,2018,,EDPV18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,11,2018,,EDPX18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+EDP,12,2018,,EDPZ18,Aluminium European Premium Duty-paid (metal Bullet,,,,,,,,145.00,UNCH,0,145.00,,80,12/21/2016
+GC,12,2016,,GCZ16,Gold Futures,1136.1,1136.1,,1130.0,,1130.9,,1131.1,-.4,50,1131.5,46,712,12/21/2016
+GC,01,2017,,GCF17,Gold Futures,1132.4,1136.8,,1129.7,,1131.5,B,1131.6,-.4,332,1132.0,822,2248,12/21/2016
+GC,02,2017,,GCG17,Gold Futures,1134.0,1138.8,,1131.0,,1133.2,,1133.2,-.4,110023,1133.6,146050,274507,12/21/2016
+GC,04,2017,,GCJ17,Gold Futures,1137.1,1141.3,,1134.0,,1136.0,,1135.8,-.5,7140,1136.3,4009,39075,12/21/2016
+GC,06,2017,,GCM17,Gold Futures,1138.0,1144.0,,1137.1,,1138.1,,1138.6,-.5,2377,1139.1,3615,35665,12/21/2016
+GC,08,2017,,GCQ17,Gold Futures,1145.1,1146.1,,1140.5,,1140.5,,1141.5,-.4,702,1141.9,833,11199,12/21/2016
+GC,10,2017,,GCV17,Gold Futures,1148.7,1148.7,,1148.7,,1148.7,,1144.6,-.4,100,1145.0,195,3244,12/21/2016
+GC,12,2017,,GCZ17,Gold Futures,1149.5,1151.7,,1146.9,,1146.9,,1147.6,-.5,388,1148.1,1154,21744,12/21/2016
+GC,02,2018,,GCG18,Gold Futures,,,,,,,,1150.9,-.5,0,1151.4,8,204,12/21/2016
+GC,04,2018,,GCJ18,Gold Futures,,,,,,,,1154.4,-.5,0,1154.9,,163,12/21/2016
+GC,06,2018,,GCM18,Gold Futures,,,,,,,,1158.1,-.5,0,1158.6,,4214,12/21/2016
+GC,08,2018,,GCQ18,Gold Futures,,,,,,,,1161.8,-.5,0,1162.3,,6,12/21/2016
+GC,10,2018,,GCV18,Gold Futures,,,,,,,,1165.5,-.5,0,1166.0,,3,12/21/2016
+GC,12,2018,,GCZ18,Gold Futures,,,,,,,,1169.3,-.5,0,1169.8,,2053,12/21/2016
+GC,06,2019,,GCM19,Gold Futures,,,,,,,,1181.5,-.5,0,1182.0,,261,12/21/2016
+GC,12,2019,,GCZ19,Gold Futures,,,,,,,,1194.2,-.5,0,1194.7,2,2455,12/21/2016
+GC,06,2020,,GCM20,Gold Futures,,,,,,,,1204.7,-.5,0,1205.2,,252,12/21/2016
+GC,12,2020,,GCZ20,Gold Futures,,,,,,,,1216.5,-.5,0,1217.0,1,644,12/21/2016
+GC,06,2021,,GCM21,Gold Futures,,,,,,,,1228.5,-.5,0,1229.0,,12,12/21/2016
+GC,12,2021,,GCZ21,Gold Futures,,,,,,,,1241.5,-.5,0,1242.0,,,12/21/2016
+GC,06,2022,,GCM22,Gold Futures,,,,,,,,1254.5,-.5,0,1255.0,,,12/21/2016
+GCK,01,2017,,GCKF17,Kilo Gold Futures,,,,,,,,1130.5,-.2,0,1130.7,,,12/21/2016
+GCK,02,2017,,GCKG17,Kilo Gold Futures,1133.9,1137.4,,1130.0,A,1131.9,B,1132.1,-.2,331,1132.3,289,16,12/21/2016
+GCK,04,2017,,GCKJ17,Kilo Gold Futures,,1139.8,B,1132.7,A,1136.4,A,1134.7,-.2,48,1134.9,60,7,12/21/2016
+GCK,06,2017,,GCKM17,Kilo Gold Futures,,,,,,,,1137.5,-.2,0,1137.7,,,12/21/2016
+GCK,08,2017,,GCKQ17,Kilo Gold Futures,,,,,,,,1140.4,-.1,0,1140.5,,,12/21/2016
+GCK,10,2017,,GCKV17,Kilo Gold Futures,,,,,,,,1143.5,-.1,0,1143.6,,,12/21/2016
+GCK,12,2017,,GCKZ17,Kilo Gold Futures,,,,,,,,1146.5,-.2,0,1146.7,,,12/21/2016
+GCT,02,2017,,GCTG17,Gold Tas Futures,.0,.2,B,-.1,,.2,B,.0,UNCH,350,.0,,,12/21/2016
+GPS,01,2017,,GPSF17,Gold/platinum Spread Futures,,,,,,,,219.30,+9.20,0,210.10,,,12/21/2016
+GPS,02,2017,,GPSG17,Gold/platinum Spread Futures,,,,,,,,217.20,+9.80,0,207.40,,,12/21/2016
+GSR,02,2017,,GSRG17,Gold/silver Ratio Futures,,,,,,,,70.95,+.60,0,70.35,,,12/21/2016
+GSR,03,2017,,GSRH17,Gold/silver Ratio Futures,,,,,,,,71.10,+.60,0,70.50,,,12/21/2016
+HG,12,2016,,HGZ16,Copper Futures,2.5095,2.5095,,2.4900,,2.4900,,2.4915,-.0080,90,2.4995,603,1268,12/21/2016
+HG,01,2017,,HGF17,Copper Futures,2.5020,2.5130,,2.4870,,2.4870,,2.4915,-.0060,364,2.4975,476,3008,12/21/2016
+HG,02,2017,,HGG17,Copper Futures,2.5135,2.5135,,2.4940,,2.4945,,2.4940,-.0055,53,2.4995,410,1649,12/21/2016
+HG,03,2017,,HGH17,Copper Futures,2.5045,2.5225,,2.4925,,2.4945,,2.4970,-.0055,40513,2.5025,44499,153451,12/21/2016
+HG,04,2017,,HGJ17,Copper Futures,2.5175,2.5175,,2.4985,,2.5000,,2.5005,-.0055,23,2.5060,28,750,12/21/2016
+HG,05,2017,,HGK17,Copper Futures,2.5095,2.5270,,2.5005,,2.5005,,2.5045,-.0050,3016,2.5095,2126,27419,12/21/2016
+HG,06,2017,,HGM17,Copper Futures,2.5080,2.5080,,2.5080,,2.5080,,2.5080,-.0050,1,2.5130,3,1100,12/21/2016
+HG,07,2017,,HGN17,Copper Futures,2.5160,2.5285,B,2.5070,A,2.5105,B,2.5105,-.0045,1574,2.5150,1141,20777,12/21/2016
+HG,08,2017,,HGQ17,Copper Futures,,,,,,,,2.5130,-.0045,0,2.5175,,1033,12/21/2016
+HG,09,2017,,HGU17,Copper Futures,2.5320,2.5320,,2.5140,A,2.5145,B,2.5145,-.0040,528,2.5185,217,6901,12/21/2016
+HG,10,2017,,HGV17,Copper Futures,,,,,,,,2.5150,-.0040,0,2.5190,1,1030,12/21/2016
+HG,11,2017,,HGX17,Copper Futures,,,,,,,,2.5155,-.0040,0,2.5195,,985,12/21/2016
+HG,12,2017,,HGZ17,Copper Futures,2.5235,2.5345,B,2.5130,,2.5130,,2.5165,-.0040,222,2.5205,284,9938,12/21/2016
+HG,01,2018,,HGF18,Copper Futures,,,,,,,,2.5165,-.0040,0,2.5205,3,234,12/21/2016
+HG,02,2018,,HGG18,Copper Futures,,,,,,,,2.5165,-.0040,0,2.5205,3,223,12/21/2016
+HG,03,2018,,HGH18,Copper Futures,2.5265,2.5350,,2.5120,,2.5260,,2.5160,-.0040,133,2.5200,42,839,12/21/2016
+HG,04,2018,,HGJ18,Copper Futures,,,,,,,,2.5150,-.0045,0,2.5195,,268,12/21/2016
+HG,05,2018,,HGK18,Copper Futures,,,,,,,,2.5140,-.0045,67,2.5185,7,392,12/21/2016
+HG,06,2018,,HGM18,Copper Futures,,,,,,,,2.5130,-.0055,0,2.5185,,279,12/21/2016
+HG,07,2018,,HGN18,Copper Futures,,,,,,,,2.5105,-.0055,32,2.5160,4,428,12/21/2016
+HG,08,2018,,HGQ18,Copper Futures,,,,,,,,2.5090,-.0060,0,2.5150,,176,12/21/2016
+HG,09,2018,,HGU18,Copper Futures,,,,,,,,2.5080,-.0060,33,2.5140,3,183,12/21/2016
+HG,10,2018,,HGV18,Copper Futures,,,,,,,,2.5075,-.0065,0,2.5140,,176,12/21/2016
+HG,11,2018,,HGX18,Copper Futures,,,,,,,,2.5075,-.0065,0,2.5140,,176,12/21/2016
+HG,12,2018,,HGZ18,Copper Futures,,,,,,,,2.5075,-.0065,3,2.5140,,353,12/21/2016
+HG,03,2019,,HGH19,Copper Futures,,,,,,,,2.5085,-.0065,0,2.5150,,,12/21/2016
+HG,05,2019,,HGK19,Copper Futures,,,,,,,,2.5090,-.0065,0,2.5155,,,12/21/2016
+HG,07,2019,,HGN19,Copper Futures,,,,,,,,2.5095,-.0065,0,2.5160,,,12/21/2016
+HG,09,2019,,HGU19,Copper Futures,,,,,,,,2.5100,-.0065,0,2.5165,,,12/21/2016
+HG,12,2019,,HGZ19,Copper Futures,,,,,,,,2.5110,-.0065,0,2.5175,,5,12/21/2016
+HG,03,2020,,HGH20,Copper Futures,,,,,,,,2.5120,-.0065,0,2.5185,,,12/21/2016
+HG,05,2020,,HGK20,Copper Futures,,,,,,,,2.5125,-.0065,0,2.5190,,,12/21/2016
+HG,07,2020,,HGN20,Copper Futures,,,,,,,,2.5130,-.0065,0,2.5195,,,12/21/2016
+HG,09,2020,,HGU20,Copper Futures,,,,,,,,2.5135,-.0065,0,2.5200,,,12/21/2016
+HG,12,2020,,HGZ20,Copper Futures,,,,,,,,2.5140,-.0065,0,2.5205,,,12/21/2016
+HG,03,2021,,HGH21,Copper Futures,,,,,,,,2.5145,-.0065,0,2.5210,,1,12/21/2016
+HG,05,2021,,HGK21,Copper Futures,,,,,,,,2.5150,-.0065,0,2.5215,,,12/21/2016
+HG,07,2021,,HGN21,Copper Futures,,,,,,,,2.5155,-.0065,0,2.5220,,,12/21/2016
+HG,09,2021,,HGU21,Copper Futures,,,,,,,,2.5160,-.0065,0,2.5225,,,12/21/2016
+HG0,12,2016,,HG0Z16,Copper Spot Tas,.0000,.0000,,.0000,,.0000,,.0000,UNCH,142,.0000,,,12/21/2016
+HGS,12,2016,,HGSZ16,Copper Financial Futures,,,,,,,,2.5670,-.0024,0,2.5694,,448,12/21/2016
+HGS,01,2017,,HGSF17,Copper Financial Futures,,,,,,,,2.4918,-.0059,0,2.4977,,327,12/21/2016
+HGS,02,2017,,HGSG17,Copper Financial Futures,,,,,,,,2.4943,-.0055,0,2.4998,,184,12/21/2016
+HGS,03,2017,,HGSH17,Copper Financial Futures,,,,,,,,2.4973,-.0055,0,2.5028,,89,12/21/2016
+HGS,04,2017,,HGSJ17,Copper Financial Futures,,,,,,,,2.5009,-.0055,0,2.5064,,89,12/21/2016
+HGS,05,2017,,HGSK17,Copper Financial Futures,,,,,,,,2.5048,-.0050,0,2.5098,,89,12/21/2016
+HGS,06,2017,,HGSM17,Copper Financial Futures,,,,,,,,2.5082,-.0050,0,2.5132,,89,12/21/2016
+HGS,07,2017,,HGSN17,Copper Financial Futures,,,,,,,,2.5108,-.0045,0,2.5153,,88,12/21/2016
+HGS,08,2017,,HGSQ17,Copper Financial Futures,,,,,,,,2.5131,-.0045,0,2.5176,,88,12/21/2016
+HGS,09,2017,,HGSU17,Copper Financial Futures,,,,,,,,2.5146,-.0040,0,2.5186,,88,12/21/2016
+HGS,10,2017,,HGSV17,Copper Financial Futures,,,,,,,,2.5150,-.0040,0,2.5190,,88,12/21/2016
+HGS,11,2017,,HGSX17,Copper Financial Futures,,,,,,,,2.5156,-.0040,0,2.5196,,88,12/21/2016
+HGS,12,2017,,HGSZ17,Copper Financial Futures,,,,,,,,2.5165,-.0040,0,2.5205,,88,12/21/2016
+HGS,01,2018,,HGSF18,Copper Financial Futures,,,,,,,,2.5165,-.0040,0,2.5205,,88,12/21/2016
+HGS,02,2018,,HGSG18,Copper Financial Futures,,,,,,,,2.5164,-.0040,0,2.5204,,,12/21/2016
+HGS,03,2018,,HGSH18,Copper Financial Futures,,,,,,,,2.5159,-.0041,0,2.5200,,,12/21/2016
+HGS,04,2018,,HGSJ18,Copper Financial Futures,,,,,,,,2.5149,-.0045,0,2.5194,,,12/21/2016
+HGS,05,2018,,HGSK18,Copper Financial Futures,,,,,,,,2.5139,-.0046,0,2.5185,,,12/21/2016
+HGS,06,2018,,HGSM18,Copper Financial Futures,,,,,,,,2.5128,-.0055,0,2.5183,,,12/21/2016
+HGS,07,2018,,HGSN18,Copper Financial Futures,,,,,,,,2.5104,-.0055,0,2.5159,,,12/21/2016
+HGS,08,2018,,HGSQ18,Copper Financial Futures,,,,,,,,2.5089,-.0060,0,2.5149,,,12/21/2016
+HGS,09,2018,,HGSU18,Copper Financial Futures,,,,,,,,2.5079,-.0061,0,2.5140,,,12/21/2016
+HGS,10,2018,,HGSV18,Copper Financial Futures,,,,,,,,2.5075,-.0065,0,2.5140,,,12/21/2016
+HGT,03,2017,,HGTH17,Copper Tas Futures,.0000,.0000,,.0000,,.0000,,.0000,UNCH,625,.0000,,,12/21/2016
+HGT,05,2017,,HGTK17,Copper Tas Futures,.0000,.0000,,.0000,,.0000,,.0000,UNCH,13,.0000,,,12/21/2016
+LED,12,2016,,LEDZ16,Lead Futures,,2185.00,B,2160.00,A,2170.50,B,2175.50,-4.50,0,2180.00,,,12/21/2016
+LED,01,2017,,LEDF17,Lead Futures,,2185.00,B,2160.00,A,2170.00,A,2175.50,-4.50,0,2180.00,,,12/21/2016
+LED,02,2017,,LEDG17,Lead Futures,,,,,,,,2179.50,-4.50,0,2184.00,,,12/21/2016
+LED,03,2017,,LEDH17,Lead Futures,,,,,,,,2180.00,-4.50,0,2184.50,,,12/21/2016
+LED,04,2017,,LEDJ17,Lead Futures,,,,,,,,2180.50,-4.50,0,2185.00,,,12/21/2016
+LED,05,2017,,LEDK17,Lead Futures,,,,,,,,2181.00,-4.50,0,2185.50,,,12/21/2016
+LED,06,2017,,LEDM17,Lead Futures,,,,,,,,2181.50,-4.50,0,2186.00,,,12/21/2016
+LED,07,2017,,LEDN17,Lead Futures,,,,,,,,2182.00,-4.50,0,2186.50,,,12/21/2016
+LED,08,2017,,LEDQ17,Lead Futures,,,,,,,,2182.50,-4.50,0,2187.00,,,12/21/2016
+LED,09,2017,,LEDU17,Lead Futures,,,,,,,,2183.00,-4.50,0,2187.50,,,12/21/2016
+LED,10,2017,,LEDV17,Lead Futures,,,,,,,,2183.50,-4.50,0,2188.00,,,12/21/2016
+LED,11,2017,,LEDX17,Lead Futures,,,,,,,,2184.00,-4.50,0,2188.50,,,12/21/2016
+MGC,12,2016,,MGCZ16,E-micro Gold Futures,,,,,,,,1131.1,-.4,0,1131.5,,425,12/21/2016
+MGC,02,2017,,MGCG17,E-micro Gold Futures,1132.6,1138.9,,1131.2,,1133.0,A,1133.2,-.4,1963,1133.6,2332,2481,12/21/2016
+MGC,04,2017,,MGCJ17,E-micro Gold Futures,1139.5,1141.0,,1134.8,,1136.4,,1135.8,-.5,25,1136.3,56,230,12/21/2016
+MGC,06,2017,,MGCM17,E-micro Gold Futures,1137.9,1143.5,,1137.3,,1138.5,,1138.6,-.5,25,1139.1,4,115,12/21/2016
+MGC,08,2017,,MGCQ17,E-micro Gold Futures,,,,,,,,1141.5,-.4,0,1141.9,,24,12/21/2016
+MGC,10,2017,,MGCV17,E-micro Gold Futures,1143.5,1149.5,,1143.5,,1145.5,,1144.6,-.4,11,1145.0,10,34,12/21/2016
+MGC,12,2017,,MGCZ17,E-micro Gold Futures,1147.5,1153.2,,1146.2,,1147.2,,1147.6,-.5,30,1148.1,43,128,12/21/2016
+MGC,02,2018,,MGCG18,E-micro Gold Futures,,,,,,,,1150.9,-.5,0,1151.4,,1,12/21/2016
+MGC,04,2018,,MGCJ18,E-micro Gold Futures,,,,,,,,1154.4,-.5,0,1154.9,,2,12/21/2016
+MGC,06,2018,,MGCM18,E-micro Gold Futures,,,,,,,,1158.1,-.5,0,1158.6,,,12/21/2016
+MGC,08,2018,,MGCQ18,E-micro Gold Futures,,,,,,,,1161.8,-.5,0,1162.3,,1,12/21/2016
+MGC,10,2018,,MGCV18,E-micro Gold Futures,,,,,,,,1165.5,-.5,0,1166.0,,,12/21/2016
+MJP,12,2016,,MJPZ16,Aluminum Japan Premium (platts) Futures,,,,,,,,81.76,+.97,0,80.79,,280,12/21/2016
+MJP,01,2017,,MJPF17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,412,12/21/2016
+MJP,02,2017,,MJPG17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,412,12/21/2016
+MJP,03,2017,,MJPH17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,392,12/21/2016
+MJP,04,2017,,MJPJ17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,400,12/21/2016
+MJP,05,2017,,MJPK17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,400,12/21/2016
+MJP,06,2017,,MJPM17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,400,12/21/2016
+MJP,07,2017,,MJPN17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,330,12/21/2016
+MJP,08,2017,,MJPQ17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,350,12/21/2016
+MJP,09,2017,,MJPU17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,350,12/21/2016
+MJP,10,2017,,MJPV17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,350,12/21/2016
+MJP,11,2017,,MJPX17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,370,12/21/2016
+MJP,12,2017,,MJPZ17,Aluminum Japan Premium (platts) Futures,,,,,,,,90.00,UNCH,0,90.00,,400,12/21/2016
+QC,01,2017,,QCF17,E-mini Copper Futures,,,,,,,,2.4915,-.0060,0,2.4975,4,6,12/21/2016
+QC,02,2017,,QCG17,E-mini Copper Futures,,,,,,,,2.4940,-.0055,0,2.4995,,,12/21/2016
+QC,03,2017,,QCH17,E-mini Copper Futures,2.5140,2.5220,,2.4940,,2.4940,,2.4970,-.0055,17,2.5025,19,78,12/21/2016
+QC,04,2017,,QCJ17,E-mini Copper Futures,,,,,,,,2.5005,-.0055,0,2.5060,,,12/21/2016
+QC,05,2017,,QCK17,E-mini Copper Futures,,,,,,,,2.5045,-.0050,0,2.5095,,,12/21/2016
+QC,06,2017,,QCM17,E-mini Copper Futures,,,,,,,,2.5080,-.0050,0,2.5130,,,12/21/2016
+QC,07,2017,,QCN17,E-mini Copper Futures,,,,,,,,2.5105,-.0045,0,2.5150,,,12/21/2016
+QC,08,2017,,QCQ17,E-mini Copper Futures,,,,,,,,2.5130,-.0045,0,2.5175,,,12/21/2016
+QC,09,2017,,QCU17,E-mini Copper Futures,,,,,,,,2.5145,-.0040,0,2.5185,,,12/21/2016
+QC,10,2017,,QCV17,E-mini Copper Futures,,,,,,,,2.5150,-.0040,0,2.5190,,,12/21/2016
+QC,11,2017,,QCX17,E-mini Copper Futures,,,,,,,,2.5155,-.0040,0,2.5195,,,12/21/2016
+QC,12,2017,,QCZ17,E-mini Copper Futures,,,,,,,,2.5165,-.0040,0,2.5205,,,12/21/2016
+QC,01,2018,,QCF18,E-mini Copper Futures,,,,,,,,2.5165,-.0040,0,2.5205,,,12/21/2016
+QC,02,2018,,QCG18,E-mini Copper Futures,,,,,,,,2.5165,-.0040,0,2.5205,,,12/21/2016
+QC,03,2018,,QCH18,E-mini Copper Futures,,,,,,,,2.5160,-.0040,0,2.5200,,,12/21/2016
+QC,04,2018,,QCJ18,E-mini Copper Futures,,,,,,,,2.5150,-.0045,0,2.5195,,,12/21/2016
+QC,05,2018,,QCK18,E-mini Copper Futures,,,,,,,,2.5140,-.0045,0,2.5185,,,12/21/2016
+QC,06,2018,,QCM18,E-mini Copper Futures,,,,,,,,2.5130,-.0055,0,2.5185,,,12/21/2016
+QC,07,2018,,QCN18,E-mini Copper Futures,,,,,,,,2.5105,-.0055,0,2.5160,,,12/21/2016
+QC,08,2018,,QCQ18,E-mini Copper Futures,,,,,,,,2.5090,-.0060,0,2.5150,,,12/21/2016
+QC,09,2018,,QCU18,E-mini Copper Futures,,,,,,,,2.5080,-.0060,0,2.5140,,,12/21/2016
+QC,10,2018,,QCV18,E-mini Copper Futures,,,,,,,,2.5075,-.0065,0,2.5140,,,12/21/2016
+QC,11,2018,,QCX18,E-mini Copper Futures,,,,,,,,2.5075,-.0065,0,2.5140,,,12/21/2016
+QC,12,2018,,QCZ18,E-mini Copper Futures,,,,,,,,2.5075,-.0065,0,2.5140,,,12/21/2016
+QC,03,2019,,QCH19,E-mini Copper Futures,,,,,,,,2.5085,-.0065,0,2.5150,,,12/21/2016
+QC,05,2019,,QCK19,E-mini Copper Futures,,,,,,,,2.5090,-.0065,0,2.5155,,,12/21/2016
+QC,07,2019,,QCN19,E-mini Copper Futures,,,,,,,,2.5095,-.0065,0,2.5160,,,12/21/2016
+QC,09,2019,,QCU19,E-mini Copper Futures,,,,,,,,2.5100,-.0065,0,2.5165,,,12/21/2016
+QC,12,2019,,QCZ19,E-mini Copper Futures,,,,,,,,2.5110,-.0065,0,2.5175,,,12/21/2016
+QC,03,2020,,QCH20,E-mini Copper Futures,,,,,,,,2.5120,-.0065,0,2.5185,,,12/21/2016
+QC,05,2020,,QCK20,E-mini Copper Futures,,,,,,,,2.5125,-.0065,0,2.5190,,,12/21/2016
+QC,07,2020,,QCN20,E-mini Copper Futures,,,,,,,,2.5130,-.0065,0,2.5195,,,12/21/2016
+QC,09,2020,,QCU20,E-mini Copper Futures,,,,,,,,2.5135,-.0065,0,2.5200,,,12/21/2016
+QC,12,2020,,QCZ20,E-mini Copper Futures,,,,,,,,2.5140,-.0065,0,2.5205,,,12/21/2016
+QC,03,2021,,QCH21,E-mini Copper Futures,,,,,,,,2.5145,-.0065,0,2.5210,,,12/21/2016
+QC,05,2021,,QCK21,E-mini Copper Futures,,,,,,,,2.5150,-.0065,0,2.5215,,,12/21/2016
+QC,07,2021,,QCN21,E-mini Copper Futures,,,,,,,,2.5155,-.0065,0,2.5220,,,12/21/2016
+QC,09,2021,,QCU21,E-mini Copper Futures,,,,,,,,2.5160,-.0065,0,2.5225,,,12/21/2016
+QI,01,2017,,QIF17,E-mini Silver Futures,16.0625,16.0625,,15.9375,,15.9375,,15.9350,-.1390,4,16.0740,4,25,12/21/2016
+QI,03,2017,,QIH17,E-mini Silver Futures,16.1500,16.2250,,15.9625,A,15.9875,,15.9790,-.1380,39,16.1170,59,104,12/21/2016
+QI,05,2017,,QIK17,E-mini Silver Futures,,,,,,,,16.0320,-.1370,0,16.1690,3,14,12/21/2016
+QI,07,2017,,QIN17,E-mini Silver Futures,,,,,,,,16.0820,-.1370,0,16.2190,3,3,12/21/2016
+QI,09,2017,,QIU17,E-mini Silver Futures,,,,,,,,16.1310,-.1380,0,16.2690,,1,12/21/2016
+QI,12,2017,,QIZ17,E-mini Silver Futures,,,,,,,,16.2100,-.1390,0,16.3490,,8,12/21/2016
+QI,01,2018,,QIF18,E-mini Silver Futures,,,,,,,,16.2440,-.1390,0,16.3830,,,12/21/2016
+QI,03,2018,,QIH18,E-mini Silver Futures,,,,,,,,16.2980,-.1390,0,16.4370,,,12/21/2016
+QI,05,2018,,QIK18,E-mini Silver Futures,,,,,,,,16.3410,-.1390,0,16.4800,,1,12/21/2016
+QI,07,2018,,QIN18,E-mini Silver Futures,,,,,,,,16.3840,-.1390,0,16.5230,,,12/21/2016
+QI,09,2018,,QIU18,E-mini Silver Futures,,,,,,,,16.4390,-.1390,0,16.5780,,,12/21/2016
+QO,02,2017,,QOG17,E-mini Gold Futures,1135.50,1139.00,,1131.50,A,1133.50,,1133.20,-.40,165,1133.60,211,1830,12/21/2016
+QO,04,2017,,QOJ17,E-mini Gold Futures,1141.75,1141.75,,1138.00,,1138.00,,1135.80,-.50,4,1136.30,11,116,12/21/2016
+QO,06,2017,,QOM17,E-mini Gold Futures,,,,,,,,1138.60,-.50,0,1139.10,,35,12/21/2016
+QO,08,2017,,QOQ17,E-mini Gold Futures,,,,,,,,1141.50,-.40,0,1141.90,,2,12/21/2016
+QO,10,2017,,QOV17,E-mini Gold Futures,,,,,,,,1144.60,-.40,0,1145.00,,,12/21/2016
+QO,12,2017,,QOZ17,E-mini Gold Futures,,,,,,,,1147.60,-.50,0,1148.10,,14,12/21/2016
+QO,02,2018,,QOG18,E-mini Gold Futures,,,,,,,,1150.90,-.50,0,1151.40,,,12/21/2016
+QO,04,2018,,QOJ18,E-mini Gold Futures,,,,,,,,1154.40,-.50,0,1154.90,,,12/21/2016
+QO,06,2018,,QOM18,E-mini Gold Futures,,,,,,,,1158.10,-.50,0,1158.60,,1,12/21/2016
+QO,08,2018,,QOQ18,E-mini Gold Futures,,,,,,,,1161.80,-.50,0,1162.30,,,12/21/2016
+QO,10,2018,,QOV18,E-mini Gold Futures,,,,,,,,1165.50,-.50,0,1166.00,,,12/21/2016
+SI,12,2016,,SIZ16,Silver Futures,16.105,16.125,,15.950,,15.950,,15.918,-.136,187,16.054,17,275,12/21/2016
+SI,01,2017,,SIF17,Silver Futures,16.000,16.155,,15.910,,15.950,,15.935,-.139,178,16.074,295,1024,12/21/2016
+SI,02,2017,,SIG17,Silver Futures,16.035,16.155,,15.960,,15.960,,15.957,-.139,32,16.096,23,56,12/21/2016
+SI,03,2017,,SIH17,Silver Futures,16.150,16.240,,15.950,,15.975,,15.979,-.138,43897,16.117,58270,130585,12/21/2016
+SI,05,2017,,SIK17,Silver Futures,16.065,16.280,,16.005,A,16.030,,16.032,-.137,1238,16.169,1574,14821,12/21/2016
+SI,07,2017,,SIN17,Silver Futures,16.105,16.315,,16.085,A,16.085,A,16.082,-.137,382,16.219,767,5746,12/21/2016
+SI,09,2017,,SIU17,Silver Futures,16.195,16.200,,16.135,A,16.135,A,16.131,-.138,59,16.269,230,1237,12/21/2016
+SI,12,2017,,SIZ17,Silver Futures,16.375,16.430,,16.215,A,16.230,,16.210,-.139,126,16.349,101,5185,12/21/2016
+SI,01,2018,,SIF18,Silver Futures,,,,,,,,16.244,-.139,0,16.383,,13,12/21/2016
+SI,03,2018,,SIH18,Silver Futures,,,,16.325,A,16.325,A,16.298,-.139,0,16.437,,14,12/21/2016
+SI,05,2018,,SIK18,Silver Futures,,,,,,,,16.341,-.139,0,16.480,,5,12/21/2016
+SI,07,2018,,SIN18,Silver Futures,,,,,,,,16.384,-.139,0,16.523,,40,12/21/2016
+SI,09,2018,,SIU18,Silver Futures,,,,,,,,16.439,-.139,0,16.578,,1,12/21/2016
+SI,12,2018,,SIZ18,Silver Futures,,,,16.525,A,16.525,A,16.495,-.139,0,16.634,4,591,12/21/2016
+SI,07,2019,,SIN19,Silver Futures,,,,,,,,16.658,-.139,0,16.797,,,12/21/2016
+SI,12,2019,,SIZ19,Silver Futures,,,,,,,,16.814,-.139,0,16.953,,78,12/21/2016
+SI,07,2020,,SIN20,Silver Futures,,,,,,,,17.021,-.139,0,17.160,,1,12/21/2016
+SI,12,2020,,SIZ20,Silver Futures,,,,,,,,17.210,-.139,0,17.349,,25,12/21/2016
+SI,07,2021,,SIN21,Silver Futures,,,,,,,,17.383,-.139,0,17.522,,,12/21/2016
+SIL,12,2016,,SILZ16,1s000 Oz. Silver Futures,,,,,,,,15.918,-.136,0,16.054,,212,12/21/2016
+SIL,01,2017,,SILF17,1s000 Oz. Silver Futures,16.020,16.120,,15.950,,15.950,,15.935,-.139,6,16.074,28,65,12/21/2016
+SIL,02,2017,,SILG17,1s000 Oz. Silver Futures,,,,,,,,15.957,-.139,0,16.096,,8,12/21/2016
+SIL,03,2017,,SILH17,1s000 Oz. Silver Futures,16.170,16.250,,15.950,,15.980,,15.979,-.138,149,16.117,410,595,12/21/2016
+SIL,05,2017,,SILK17,1s000 Oz. Silver Futures,,,,,,,,16.032,-.137,5,16.169,6,48,12/21/2016
+SIL,07,2017,,SILN17,1s000 Oz. Silver Futures,16.240,16.250,,16.240,,16.250,,16.082,-.137,6,16.219,1,23,12/21/2016
+SIL,09,2017,,SILU17,1s000 Oz. Silver Futures,,,,,,,,16.131,-.138,0,16.269,,5,12/21/2016
+SIT,03,2017,,SITH17,Silver Tas Futures,.000,.000,,-.001,,-.001,,.000,UNCH,192,.000,,,12/21/2016
+ZNC,12,2016,,ZNCZ16,Zinc Futures,,,,,,,,2611.5,-20.5,0,2632.0,,,12/21/2016
+ZNC,01,2017,,ZNCF17,Zinc Futures,,2639.5,B,2600.0,A,2617.5,B,2616.5,-20.5,0,2637.0,,3,12/21/2016
+ZNC,02,2017,,ZNCG17,Zinc Futures,,,,,,,,2621.5,-20.5,0,2642.0,,,12/21/2016
+ZNC,03,2017,,ZNCH17,Zinc Futures,,,,,,,,2626.5,-20.5,0,2647.0,,,12/21/2016
+ZNC,04,2017,,ZNCJ17,Zinc Futures,,,,,,,,2628.5,-20.5,0,2649.0,,,12/21/2016
+ZNC,05,2017,,ZNCK17,Zinc Futures,,,,,,,,2630.5,-20.5,0,2651.0,,,12/21/2016
+ZNC,06,2017,,ZNCM17,Zinc Futures,,,,,,,,2630.5,-20.5,0,2651.0,,,12/21/2016
+ZNC,07,2017,,ZNCN17,Zinc Futures,,,,,,,,2632.5,-20.5,0,2653.0,,,12/21/2016
+ZNC,08,2017,,ZNCQ17,Zinc Futures,,,,,,,,2634.5,-20.5,0,2655.0,,,12/21/2016
+ZNC,09,2017,,ZNCU17,Zinc Futures,,,,,,,,2636.5,-20.5,0,2657.0,,,12/21/2016
+ZNC,10,2017,,ZNCV17,Zinc Futures,,,,,,,,2638.5,-20.5,0,2659.0,,,12/21/2016
+ZNC,11,2017,,ZNCX17,Zinc Futures,,,,,,,,2640.5,-20.5,0,2661.0,,,12/21/2016

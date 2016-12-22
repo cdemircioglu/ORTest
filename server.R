@@ -220,7 +220,7 @@ function(input, output, session) {
   observe({
 
     # Check the parameters, if they are changed reset the data frame. 
-    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver || lastpromotionalCost != input$promotionalCost || lastcaptiveMonths != input$captiveMonths || lastchurnRate != input$churnRate)
+    if (lastmarketInterest != input$marketInterest || lastperceivedValue != input$perceivedValue || lastcosttoDeliver != input$costtoDeliver || lastpromotionalCost != input$promotionalCost || lastcaptiveMonths != input$captiveMonths)
     {
       resetfactor <<- 1 #Reset the data frame
       lastmarketInterest <<- input$marketInterest
@@ -228,7 +228,7 @@ function(input, output, session) {
       lastcosttoDeliver <<- input$costtoDeliver
       lastpromotionalCost <<- input$promotionalCost  
       lastcaptiveMonths <<- input$captiveMonths
-      lastchurnRate <<- input$churnRate
+      
       
       currentMarketInterest <- df_duration[which(df_duration$X2 == input$marketInterest),]
       timeRequired <<- as.numeric(as.character(currentMarketInterest[1]))*1028
@@ -244,7 +244,7 @@ function(input, output, session) {
     }
 
     # We'll use these multiple times, so use short var names for convenience.
-    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck,input$promotionalCost,input$captiveMonths,input$churnRate)
+    parameterValue <- c(input$servercnt,input$marketInterest,input$perceivedValue,input$costtoDeliver,runCheck,input$promotionalCost,input$captiveMonths,1)
     parameterName <- c("servercnt","marketInterest","perceivedValue","costtoDeliver","runCheck","promotionalCost","captiveMonths","churnRate")
 
         
